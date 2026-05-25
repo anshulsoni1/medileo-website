@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Head from "next/head";
-import { motion } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import Footer from "@/components/Footer";
 
 const fadeInUp = {
@@ -16,6 +16,164 @@ const staggerContainer = {
   hidden: {},
   visible: { transition: { staggerChildren: 0.12 } },
 };
+
+function easeOutQuart(x) {
+  return 1 - Math.pow(1 - x, 4);
+}
+
+function StatItem({ value, suffix = "", label, delay = 0, type = "number" }) {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, amount: 0.5 });
+  const [displayValue, setDisplayValue] = useState(type === "number" ? "0" : value);
+
+  useEffect(() => {
+    if (!isInView || type !== "number") return;
+    
+    let startTime;
+    const targetValue = parseInt(value, 10);
+    const duration = 2000; // 2 seconds
+
+    const animateCount = (timestamp) => {
+      if (!startTime) startTime = timestamp;
+      const progress = Math.min((timestamp - startTime) / duration, 1);
+      const easedProgress = easeOutQuart(progress);
+      const current = Math.floor(easedProgress * targetValue);
+      
+      setDisplayValue(current.toString());
+      
+      if (progress < 1) {
+        requestAnimationFrame(animateCount);
+      } else {
+        setDisplayValue(targetValue.toString());
+      }
+    };
+
+    requestAnimationFrame(animateCount);
+  }, [isInView, value, type]);
+
+  return (
+    <div ref={ref} className="text-center px-4">
+      {type === "number" ? (
+        <div className="text-3xl md:text-4xl font-black text-[#00152b] mb-2 font-serif">
+          {displayValue}{suffix}
+        </div>
+      ) : (
+        <motion.div
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
+          transition={{ duration: 0.5, delay }}
+          className="text-3xl md:text-4xl font-black text-[#00152b] mb-2 font-serif"
+        >
+          {value}{suffix}
+        </motion.div>
+      )}
+      <motion.div
+        initial={{ opacity: 0, y: 8 }}
+        animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 8 }}
+        transition={{ duration: 0.5, delay: delay + 0.3 }}
+        className="text-xs md:text-sm font-semibold text-slate-500 uppercase tracking-widest"
+      >
+        {label}
+      </motion.div>
+    </div>
+  );
+}
+
+function FocusAreas() {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, amount: 0.2 });
+
+  const areas = [
+    {
+      emoji: "❤️",
+      title: "Cardiovascular",
+      desc: "Advanced lipid regulators and anti-hypertensives.",
+    },
+    {
+      emoji: "🧠",
+      title: "Neurology",
+      desc: "Neuroprotectives and cognitive enhancement formulas.",
+    },
+    {
+      emoji: "🦴",
+      title: "Diabetology",
+      desc: "Precision-engineered oral formulations for long-term glycaemic control and metabolic stability.",
+    },
+    {
+      emoji: "🦠",
+      title: "Anti-Infectives",
+      desc: "Broad-spectrum and targeted antimicrobial agents.",
+    },
+  ];
+
+  return (
+    <section ref={ref} className="py-20 bg-slate-50">
+      <div className="max-w-7xl mx-auto px-6">
+        <div className="text-center max-w-3xl mx-auto mb-16">
+          <motion.div
+            initial={{ opacity: 0, y: 28 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 28 }}
+            transition={{ duration: 0.55, ease: [0.25, 0.46, 0.45, 0.94] }}
+            className="flex justify-center items-center gap-3 mb-4"
+          >
+            <span className="h-px w-8 bg-[#14b8a6]"></span>
+            <span className="text-[#14b8a6] font-bold tracking-widest uppercase text-sm">
+              Therapeutic Focus
+            </span>
+            <span className="h-px w-8 bg-[#14b8a6]"></span>
+          </motion.div>
+          <motion.h2
+            initial={{ opacity: 0, y: 28 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 28 }}
+            transition={{ duration: 0.55, delay: 0.1, ease: [0.25, 0.46, 0.45, 0.94] }}
+            className="text-3xl md:text-4xl font-bold text-[#0b192c] mb-6"
+          >
+            Core Specialties
+          </motion.h2>
+          <motion.p
+            initial={{ opacity: 0, y: 28 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 28 }}
+            transition={{ duration: 0.55, delay: 0.2, ease: [0.25, 0.46, 0.45, 0.94] }}
+            className="text-slate-600 leading-relaxed text-lg"
+          >
+            Delivering highly effective molecular formulas to critical hospital departments. Each molecule undergoes rigorous multi-stage laboratory checks before reaching pharmacy shelves, focusing heavily on consistent drug release metrics and superior systemic bioavailability.
+          </motion.p>
+        </div>
+
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {areas.map((area, idx) => (
+            <motion.div
+              key={idx}
+              initial={{ opacity: 0, y: 28, scale: 0.96 }}
+              animate={isInView ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 28, scale: 0.96 }}
+              transition={{ duration: 0.55, delay: 0.3 + idx * 0.1, ease: [0.25, 0.46, 0.45, 0.94] }}
+              whileHover={{ 
+                y: typeof window !== "undefined" && window.innerWidth < 768 ? -3 : -6, 
+                boxShadow: "-2px 0 0 0 #14b8a6, 0 20px 25px -5px rgba(20,184,166,0.1), 0 8px 10px -6px rgba(20,184,166,0.1)",
+                transition: { duration: 0.25, ease: "easeOut" }
+              }}
+              className="bg-white p-8 rounded-xl border border-slate-100 shadow-sm relative group cursor-default"
+            >
+              <motion.div
+                variants={{ hover: { scale: 1.18 } }}
+                transition={{ duration: 0.2 }}
+                className="text-4xl mb-4 bg-slate-50 w-16 h-16 flex items-center justify-center rounded-lg group-hover:bg-[#E0F2F1] transition-colors origin-center"
+              >
+                {area.emoji}
+              </motion.div>
+              <h3 className="text-xl font-bold text-[#00152b] mb-3 font-serif">
+                {area.title}
+              </h3>
+              <p className="text-slate-500 leading-relaxed font-light">
+                {area.desc}
+              </p>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
 
 export default function Home() {
   return (
@@ -160,18 +318,32 @@ export default function Home() {
               }}
               className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start"
             >
-              <a
-                href="/products"
-                className="bg-[#14b8a6] hover:bg-[#0f766e] text-white px-8 py-3.5 rounded-lg font-bold transition-all shadow-lg shadow-teal-500/20"
-              >
-                Explore Product Portfolio
-              </a>
-              <a
+              <div className="relative w-full sm:w-auto">
+                <motion.span
+                  className="absolute inset-0 rounded-lg hidden md:block pointer-events-none border-2 border-[#14b8a6]"
+                  style={{ zIndex: -1 }}
+                  animate={{ scale: [1, 1.5], opacity: [0.4, 0] }}
+                  transition={{ duration: 2, repeat: Infinity, ease: "easeOut" }}
+                />
+                <motion.a
+                  href="/products"
+                  className="bg-[#14b8a6] hover:bg-[#0f766e] text-white px-8 py-3.5 rounded-lg font-bold transition-colors shadow-lg shadow-teal-500/20 block text-center w-full"
+                  whileHover={{ scale: 1.03, boxShadow: "0 10px 25px -5px rgba(20,184,166,0.4)" }}
+                  whileTap={{ scale: 0.97 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  Explore Product Portfolio
+                </motion.a>
+              </div>
+              <motion.a
                 href="/contact"
-                className="bg-transparent border border-white/30 hover:bg-white/10 text-white px-8 py-3.5 rounded-lg font-bold transition-all backdrop-blur-sm"
+                className="bg-transparent border border-white/30 text-white px-8 py-3.5 rounded-lg font-bold transition-colors backdrop-blur-sm block text-center w-full sm:w-auto"
+                whileHover={{ scale: 1.02, backgroundColor: "rgba(20,184,166,0.15)" }}
+                whileTap={{ scale: 0.97 }}
+                transition={{ duration: 0.2 }}
               >
                 Corporate Profile
-              </a>
+              </motion.a>
             </motion.div>
           </div>
         </div>
@@ -183,94 +355,19 @@ export default function Home() {
         <div className="bg-white rounded-2xl shadow-xl shadow-slate-200/50 p-8 md:p-12 border border-slate-100">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-4 divide-x divide-slate-100">
             {[
-              { value: "50+", label: "Product Lines" },
-              { value: "WHO", label: "GMP Certified" },
-              { value: "100%", label: "QA Compliance" },
-              { value: "Pan", label: "India Presence" },
+              { value: "50", suffix: "+", label: "Product Lines", delay: 0 },
+              { value: "WHO", label: "GMP Certified", delay: 0.15, type: "text" },
+              { value: "100", suffix: "%", label: "QA Compliance", delay: 0.3 },
+              { value: "Pan", label: "India Presence", delay: 0.45, type: "text" },
             ].map((stat, idx) => (
-              <div key={idx} className="text-center px-4">
-                <div className="text-3xl md:text-4xl font-black text-[#00152b] mb-2 font-serif">
-                  {stat.value}
-                </div>
-                <div className="text-xs md:text-sm font-semibold text-slate-500 uppercase tracking-widest">
-                  {stat.label}
-                </div>
-              </div>
+              <StatItem key={idx} {...stat} />
             ))}
           </div>
         </div>
       </section>
 
       {/* Focus Areas Section */}
-      <section className="py-20 bg-slate-50">
-        <div className="max-w-7xl mx-auto px-6">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-100px" }}
-            variants={staggerContainer}
-            className="text-center max-w-3xl mx-auto mb-16"
-          >
-            <motion.div custom={0} variants={fadeInUp} className="flex justify-center items-center gap-3 mb-4">
-              <span className="h-px w-8 bg-[#14b8a6]"></span>
-              <span className="text-[#14b8a6] font-bold tracking-widest uppercase text-sm">
-                Therapeutic Focus
-              </span>
-              <span className="h-px w-8 bg-[#14b8a6]"></span>
-            </motion.div>
-            <motion.h2 custom={1} variants={fadeInUp} className="text-3xl md:text-4xl font-bold text-[#0b192c] mb-6">
-              Core Specialties
-            </motion.h2>
-            <motion.p custom={2} variants={fadeInUp} className="text-slate-600 leading-relaxed text-lg">
-              Delivering highly effective molecular formulas to critical hospital departments. Each molecule undergoes rigorous multi-stage laboratory checks before reaching pharmacy shelves, focusing heavily on consistent drug release metrics and superior systemic bioavailability.
-            </motion.p>
-          </motion.div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {[
-              {
-                emoji: "❤️",
-                title: "Cardiovascular",
-                desc: "Advanced lipid regulators and anti-hypertensives.",
-              },
-              {
-                emoji: "🧠",
-                title: "Neurology",
-                desc: "Neuroprotectives and cognitive enhancement formulas.",
-              },
-              {
-                emoji: "🦴",
-                title: "Diabetology",
-                desc: "Precision-engineered oral formulations for long-term glycaemic control and metabolic stability.",
-              },
-              {
-                emoji: "🦠",
-                title: "Anti-Infectives",
-                desc: "Broad-spectrum and targeted antimicrobial agents.",
-              },
-            ].map((area, idx) => (
-              <motion.div
-                key={idx}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: idx * 0.1 }}
-                className="bg-white p-8 rounded-xl border border-slate-100 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all group"
-              >
-                <div className="text-4xl mb-4 bg-slate-50 w-16 h-16 flex items-center justify-center rounded-lg group-hover:bg-[#E0F2F1] transition-colors">
-                  {area.emoji}
-                </div>
-                <h3 className="text-xl font-bold text-[#00152b] mb-3 font-serif">
-                  {area.title}
-                </h3>
-                <p className="text-slate-500 leading-relaxed font-light">
-                  {area.desc}
-                </p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
+      <FocusAreas />
 
       <Footer />
     </>
