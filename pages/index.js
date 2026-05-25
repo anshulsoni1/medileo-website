@@ -47,9 +47,7 @@ export default function Home() {
               variants={fadeInUp}
               className="text-lg md:text-xl text-blue-50 mb-10 leading-relaxed font-light max-w-2xl mx-auto md:mx-0"
             >
-              Delivering world-class therapeutic formulations to global markets with
-              uncompromising quality, relentless innovation, and absolute
-              integrity.
+             Medileo Healthcare Pvt. Ltd. is an innovative, research-driven pharmaceutical corporation dedicated to formulating premium therapeutic drug classes. Our state-of-the-art manufacturing facilities operate strictly under stringent WHO-GMP guidelines, ensuring every batch meets rigorous international quality benchmarks to satisfy clinicians and transform patient outcomes globally.
             </motion.p>
             <motion.div
               custom={2}
@@ -66,7 +64,7 @@ export default function Home() {
                 href="/contact"
                 className="bg-transparent border border-white/30 hover:bg-white/10 text-white px-8 py-3.5 rounded-lg font-bold transition-all backdrop-blur-sm"
               >
-                Global Partnerships
+                Corporate Profile
               </a>
             </motion.div>
           </motion.div>
@@ -118,9 +116,7 @@ export default function Home() {
               Core Specialties
             </motion.h2>
             <motion.p custom={2} variants={fadeInUp} className="text-slate-600 leading-relaxed text-lg">
-              Our advanced R&D pipeline targets high-growth therapeutic segments,
-              engineering solutions that significantly improve patient outcomes
-              worldwide.
+              Delivering highly effective molecular formulas to critical hospital departments. Each molecule undergoes rigorous multi-stage laboratory checks before reaching pharmacy shelves, focusing heavily on consistent drug release metrics and superior systemic bioavailability.
             </motion.p>
           </motion.div>
 
@@ -138,8 +134,8 @@ export default function Home() {
               },
               {
                 emoji: "🦴",
-                title: "Orthopedics",
-                desc: "Next-gen NSAIDs and joint reconstructive therapies.",
+                title: "Diabetology",
+                desc: "Precision-engineered oral formulations for long-term glycaemic control and metabolic stability.",
               },
               {
                 emoji: "🦠",

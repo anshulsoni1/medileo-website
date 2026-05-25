@@ -77,7 +77,7 @@ export default function About() {
                   manufacture medicines; we engineer high-precision therapeutic tools that empower physicians to heal.
                 </p>
                 <p>
-                  Our advanced pharmacological portfolio spans critical care, chronic disease management, and specialty therapeutics.
+                  Our advanced pharmacological portfolio spans  Diabetology, Cardiology, Neurology, Gastroenterology, and Cellular Nutrition.
                   By bridging the gap between rigorous clinical science and scalable commercial production, we ensure that premium healthcare
                   is globally accessible.
                 </p>
