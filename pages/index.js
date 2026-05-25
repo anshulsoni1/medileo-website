@@ -184,131 +184,117 @@ export default function Home() {
         <meta name="description" content="Medileo Healthcare is a leader in therapeutic formulations." />
       </Head>
       {/* Hero Section */}
-      <section className="hero-gradient text-white pt-24 pb-48 md:pt-32 md:pb-56 relative">
-        <div className="curved-line"></div>
+      <section className="hero-gradient text-white pt-32 pb-56 md:pt-40 md:pb-64 relative overflow-hidden">
+        <div className="curved-line opacity-50"></div>
+
+        {/* Atmospheric Right-Side Glow (Visual Balance) */}
+        <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-teal-500/10 to-transparent pointer-events-none mix-blend-overlay"></div>
 
         {/* Animated Background Orbs */}
         <motion.div
-          className="absolute pointer-events-none opacity-[0.06] md:opacity-[0.12]"
+          className="absolute pointer-events-none opacity-[0.15] md:opacity-[0.25] mix-blend-screen"
           style={{
             top: "5%",
             left: "-5%",
+            width: 600,
+            height: 600,
+            borderRadius: "50%",
+            background: "radial-gradient(circle, rgba(13,148,136,0.8) 0%, transparent 60%)",
+          }}
+          animate={{ x: [0, 30, -15, 0], y: [0, -20, 15, 0] }}
+          transition={{ duration: 14, repeat: Infinity, repeatType: "mirror", ease: "easeInOut" }}
+        />
+        <motion.div
+          className="absolute pointer-events-none opacity-[0.12] md:opacity-[0.2] mix-blend-screen"
+          style={{
+            top: "10%",
+            right: "-10%",
+            width: 800,
+            height: 800,
+            borderRadius: "50%",
+            background: "radial-gradient(circle, rgba(20,184,166,0.6) 0%, transparent 65%)",
+          }}
+          animate={{ x: [0, -25, 15, 0], y: [0, 25, -15, 0] }}
+          transition={{ duration: 18, repeat: Infinity, repeatType: "mirror", ease: "easeInOut", delay: 2 }}
+        />
+        <motion.div
+          className="absolute pointer-events-none opacity-[0.15] md:opacity-[0.25] mix-blend-screen"
+          style={{
+            bottom: "-10%",
+            right: "20%",
             width: 500,
             height: 500,
             borderRadius: "50%",
-            background: "radial-gradient(circle, #0d9488 0%, transparent 70%)",
+            background: "radial-gradient(circle, rgba(19,78,74,0.8) 0%, transparent 60%)",
           }}
-          animate={{ x: [0, 20, -10, 0], y: [0, -15, 10, 0] }}
-          transition={{
-            duration: 12,
-            repeat: Infinity,
-            repeatType: "mirror",
-            ease: "easeInOut",
-            delay: 0,
-          }}
-        />
-        <motion.div
-          className="absolute pointer-events-none opacity-[0.06] md:opacity-[0.08]"
-          style={{
-            bottom: "10%",
-            right: "-8%",
-            width: 400,
-            height: 400,
-            borderRadius: "50%",
-            background: "radial-gradient(circle, #14b8a6 0%, transparent 70%)",
-          }}
-          animate={{ x: [0, -15, 10, 0], y: [0, 20, -10, 0] }}
-          transition={{
-            duration: 15,
-            repeat: Infinity,
-            repeatType: "mirror",
-            ease: "easeInOut",
-            delay: 2,
-          }}
-        />
-        <motion.div
-          className="absolute pointer-events-none opacity-[0.06] md:opacity-[0.15]"
-          style={{
-            top: "30%",
-            right: "15%",
-            width: 300,
-            height: 300,
-            borderRadius: "50%",
-            background: "radial-gradient(circle, #134e4a 0%, transparent 70%)",
-          }}
-          animate={{ x: [0, 10, -20, 0], y: [0, -10, 15, 0] }}
-          transition={{
-            duration: 18,
-            repeat: Infinity,
-            repeatType: "mirror",
-            ease: "easeInOut",
-            delay: 4,
-          }}
+          animate={{ x: [0, 20, -25, 0], y: [0, -15, 20, 0] }}
+          transition={{ duration: 16, repeat: Infinity, repeatType: "mirror", ease: "easeInOut", delay: 1 }}
         />
 
         <div className="max-w-7xl mx-auto px-6 relative z-10 text-center md:text-left">
-          <div className="max-w-3xl">
+          <div className="max-w-2xl lg:max-w-3xl">
             {/* Word-by-word animated headline */}
-            <h1 className="text-4xl md:text-6xl font-black mb-6 leading-tight tracking-tight text-white drop-shadow-sm">
+            <h1 className="text-5xl md:text-7xl font-black mb-8 leading-[1.1] tracking-tighter text-white drop-shadow-md">
               {["Pioneering", "Pharmaceutical"].map((word, i) => (
                 <motion.span
                   key={word}
-                  initial={{ opacity: 0, y: 30 }}
+                  initial={{ opacity: 0, y: 40 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{
-                    duration: 0.6,
-                    delay: 0.2 + i * 0.1,
-                    ease: [0.25, 0.46, 0.45, 0.94],
+                    duration: 0.8,
+                    delay: 0.1 + i * 0.15,
+                    ease: [0.22, 1, 0.36, 1], // Premium apple-like ease
                   }}
-                  style={{ display: "inline-block", marginRight: "0.3em" }}
+                  style={{ display: "inline-block", marginRight: "0.25em" }}
                 >
                   {word}
                 </motion.span>
               ))}
+              <br className="hidden md:block" />
               <TypewriterText 
                 text="Excellence" 
                 className="text-[#2ec4b6]"
-                delay={1.2}
+                delay={0.7}
               />
             </h1>
 
             {/* Body paragraph — fades up after headline */}
             <motion.p
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 25 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{
-                duration: 0.6,
-                delay: 0.7,
-                ease: [0.25, 0.46, 0.45, 0.94],
+                duration: 0.8,
+                delay: 0.5,
+                ease: [0.22, 1, 0.36, 1],
               }}
-              className="text-lg md:text-xl text-blue-50 mb-10 leading-relaxed font-light max-w-2xl mx-auto md:mx-0"
+              className="text-lg md:text-xl text-teal-50/90 mb-12 leading-relaxed font-light max-w-2xl mx-auto md:mx-0 drop-shadow-sm"
             >
              Medileo Healthcare Pvt. Ltd. is an innovative, research-driven pharmaceutical corporation dedicated to formulating premium therapeutic drug classes. Our state-of-the-art manufacturing facilities operate strictly under stringent WHO-GMP guidelines, ensuring every batch meets rigorous international quality benchmarks to satisfy clinicians and transform patient outcomes globally.
             </motion.p>
 
             {/* CTA buttons — fade up last */}
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 25 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{
-                duration: 0.5,
-                delay: 0.95,
-                ease: [0.25, 0.46, 0.45, 0.94],
+                duration: 0.8,
+                delay: 0.7,
+                ease: [0.22, 1, 0.36, 1],
               }}
-              className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start"
+              className="flex flex-col sm:flex-row gap-5 justify-center md:justify-start"
             >
               <div className="relative w-full sm:w-auto">
                 <motion.span
-                  className="absolute inset-0 rounded-lg hidden md:block pointer-events-none border-2 border-[#14b8a6]"
+                  className="absolute inset-0 rounded-xl hidden md:block pointer-events-none border-2 border-teal-400"
                   style={{ zIndex: -1 }}
-                  animate={{ scale: [1, 1.5], opacity: [0.4, 0] }}
-                  transition={{ duration: 2, repeat: Infinity, ease: "easeOut" }}
+                  animate={{ scale: [1, 1.4], opacity: [0.3, 0] }}
+                  transition={{ duration: 2.5, repeat: Infinity, ease: "easeOut" }}
                 />
                 <motion.a
                   href="/products"
-                  className="bg-[#14b8a6] hover:bg-[#0f766e] text-white px-8 py-3.5 rounded-lg font-bold transition-colors shadow-lg shadow-teal-500/20 block text-center w-full"
-                  whileHover={{ scale: 1.03, boxShadow: "0 10px 25px -5px rgba(20,184,166,0.4)" }}
-                  whileTap={{ scale: 0.97 }}
+                  className="bg-[#14b8a6] hover:bg-[#0f766e] text-white px-10 py-4 rounded-xl font-bold transition-colors shadow-xl shadow-teal-900/40 border border-teal-400/30 block text-center w-full tracking-wide"
+                  whileHover={{ scale: 1.02, boxShadow: "0 15px 30px -5px rgba(15,118,110,0.5)" }}
+                  whileTap={{ scale: 0.98 }}
                   transition={{ duration: 0.2 }}
                 >
                   Explore Product Portfolio
@@ -316,9 +302,9 @@ export default function Home() {
               </div>
               <motion.a
                 href="/contact"
-                className="bg-transparent border border-white/30 text-white px-8 py-3.5 rounded-lg font-bold transition-colors backdrop-blur-sm block text-center w-full sm:w-auto"
-                whileHover={{ scale: 1.02, backgroundColor: "rgba(20,184,166,0.15)" }}
-                whileTap={{ scale: 0.97 }}
+                className="bg-transparent border-2 border-white/20 text-white px-10 py-4 rounded-xl font-bold transition-all backdrop-blur-sm block text-center w-full sm:w-auto tracking-wide hover:border-white/40 hover:bg-white/5"
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
                 transition={{ duration: 0.2 }}
               >
                 Corporate Profile
@@ -330,9 +316,9 @@ export default function Home() {
       </section>
 
       {/* Stats Section */}
-      <section className="relative z-20 -mt-24 max-w-7xl mx-auto px-6 mb-24">
-        <div className="bg-white rounded-2xl shadow-xl shadow-slate-200/50 p-8 md:p-12 border border-slate-100">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-4 divide-x divide-slate-100">
+      <section className="relative z-20 -mt-24 md:-mt-32 max-w-7xl mx-auto px-6 mb-24">
+        <div className="bg-white/95 backdrop-blur-xl rounded-2xl shadow-2xl shadow-slate-300/40 p-8 md:p-12 border border-white/60">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-4 divide-x divide-slate-100/60">
             {[
               { value: "50", suffix: "+", label: "Product Lines", delay: 0 },
               { value: "WHO", label: "GMP Certified", delay: 0.15, type: "text" },
