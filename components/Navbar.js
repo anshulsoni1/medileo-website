@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { motion, AnimatePresence } from "framer-motion";
@@ -15,30 +15,68 @@ const NAV_LINKS = [
 export default function Navbar() {
   const router = useRouter();
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20);
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    // Check on mount
+    handleScroll();
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
-    <header className="bg-white sticky top-0 z-40 shadow-sm w-full">
-      <div className="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
+    <header 
+      className={`sticky top-0 z-40 w-full transition-all duration-300 ease-out ${
+        isScrolled 
+          ? "bg-white/80 backdrop-blur-md shadow-sm" 
+          : "bg-white border-b border-transparent"
+      }`}
+    >
+      <div 
+        className={`max-w-7xl mx-auto px-6 flex justify-between items-center transition-all duration-300 ease-out ${
+          isScrolled ? "h-16" : "h-24"
+        }`}
+      >
         {/* Logo */}
         <Link href="/" className="flex items-center h-full py-2">
           <img
             alt="Medileo Healthcare Logo"
-            className="h-14 w-auto object-contain"
+            className={`w-auto object-contain transition-all duration-300 ease-out ${
+              isScrolled ? "h-10" : "h-14"
+            }`}
             src={LOGO_URL}
           />
         </Link>
 
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex space-x-8 h-full items-center">
+        <nav className="hidden md:flex space-x-10 h-full items-center relative">
           {NAV_LINKS.map((link) => {
             const isActive = router.pathname === link.href;
             return (
               <Link
                 key={link.href}
                 href={link.href}
-                className={`nav-link ${isActive ? "active" : ""}`}
+                className="relative h-full flex items-center group"
               >
-                {link.label}
+                <span 
+                  className={`text-sm font-bold uppercase tracking-wider transition-colors duration-200 ${
+                    isActive 
+                      ? "text-[#0f766e]" 
+                      : "text-slate-600 group-hover:text-[#00B4A9]"
+                  }`}
+                >
+                  {link.label}
+                </span>
+                {isActive && (
+                  <motion.div
+                    layoutId="activeNavIndicator"
+                    className="absolute bottom-[-1px] left-0 right-0 h-[2px] bg-[#0f766e]"
+                    transition={{ type: "spring", stiffness: 350, damping: 30 }}
+                  />
+                )}
               </Link>
             );
           })}
@@ -46,16 +84,18 @@ export default function Navbar() {
 
         {/* Mobile Menu Button */}
         <button
-          className="md:hidden text-slate-800 focus:outline-none p-2"
+          className="md:hidden text-slate-800 focus:outline-none p-2 hover:bg-slate-50 rounded-lg transition-colors"
           onClick={() => setMobileOpen(!mobileOpen)}
           aria-label="Toggle menu"
         >
-          <svg
+          <motion.svg
             className="h-6 w-6"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
             xmlns="http://www.w3.org/2000/svg"
+            animate={{ rotate: mobileOpen ? 90 : 0 }}
+            transition={{ duration: 0.2 }}
           >
             {mobileOpen ? (
               <path
@@ -72,7 +112,7 @@ export default function Navbar() {
                 strokeWidth="2"
               />
             )}
-          </svg>
+          </motion.svg>
         </button>
       </div>
 
@@ -83,25 +123,32 @@ export default function Navbar() {
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.3 }}
-            className="md:hidden overflow-hidden bg-white border-t border-gray-100"
+            transition={{ duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
+            className="md:hidden overflow-hidden bg-white border-t border-gray-100 shadow-lg absolute w-full left-0 top-full"
           >
-            <div className="px-6 py-4 space-y-3">
-              {NAV_LINKS.map((link) => {
+            <div className="px-6 py-6 space-y-4">
+              {NAV_LINKS.map((link, i) => {
                 const isActive = router.pathname === link.href;
                 return (
-                  <Link
+                  <motion.div
                     key={link.href}
-                    href={link.href}
-                    onClick={() => setMobileOpen(false)}
-                    className={`block py-2 text-sm font-bold uppercase tracking-wider transition-colors ${
-                      isActive
-                        ? "text-[#0f766e] border-l-4 border-[#0f766e] pl-3"
-                        : "text-slate-800 hover:text-[#0f766e] pl-4"
-                    }`}
+                    initial={{ opacity: 0, x: -10 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: -10 }}
+                    transition={{ duration: 0.2, delay: i * 0.05 }}
                   >
-                    {link.label}
-                  </Link>
+                    <Link
+                      href={link.href}
+                      onClick={() => setMobileOpen(false)}
+                      className={`block py-2 text-sm font-bold uppercase tracking-wider transition-colors duration-200 ${
+                        isActive
+                          ? "text-[#0f766e] border-l-2 border-[#0f766e] pl-4 bg-teal-50/50"
+                          : "text-slate-600 hover:text-[#0f766e] pl-4"
+                      }`}
+                    >
+                      {link.label}
+                    </Link>
+                  </motion.div>
                 );
               })}
             </div>

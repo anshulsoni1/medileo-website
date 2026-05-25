@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import Head from "next/head";
 import { motion, useInView } from "framer-motion";
 import Footer from "@/components/Footer";
+import TypewriterText from "@/components/TypewriterText";
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 30 },
@@ -264,33 +265,11 @@ export default function Home() {
                   {word}
                 </motion.span>
               ))}
-              <motion.span
-                initial={{ opacity: 0, y: 30 }}
-                animate={{
-                  opacity: 1,
-                  y: 0,
-                  textShadow: [
-                    "0 0 0px rgba(20,184,166,0)",
-                    "0 0 0px rgba(20,184,166,0)",
-                    "0 0 20px rgba(20,184,166,0.4)",
-                    "0 0 0px rgba(20,184,166,0)",
-                  ],
-                }}
-                transition={{
-                  opacity: { duration: 0.6, delay: 0.4, ease: [0.25, 0.46, 0.45, 0.94] },
-                  y: { duration: 0.6, delay: 0.4, ease: [0.25, 0.46, 0.45, 0.94] },
-                  textShadow: {
-                    duration: 1,
-                    delay: 1.0,
-                    ease: "easeInOut",
-                    times: [0, 0.1, 0.5, 1],
-                  },
-                }}
+              <TypewriterText 
+                text="Excellence" 
                 className="text-[#2ec4b6]"
-                style={{ display: "inline-block" }}
-              >
-                Excellence
-              </motion.span>
+                delay={1.2}
+              />
             </h1>
 
             {/* Body paragraph — fades up after headline */}
