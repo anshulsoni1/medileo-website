@@ -3,8 +3,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { motion, AnimatePresence } from "framer-motion";
 
-const LOGO_URL =
-  "https://lh3.googleusercontent.com/aida/ADBb0uhh4beQLlLK_ksUarE-rZQkFve6bCCB0q-kNsrqQ4FW6waDRSq3N4i1CB3isdiBFIA0AgqdBl7quJ03AiSB3L_MSGyBfK1TfYK9ObBBttfC5cd-DBSE8jTSBYyGPWoNizVTpPRJ3iejmw34y0g8xHORtb0vm0gEVp9X9mdDI86lhBcPf48e9Ey0CxqcdI3yu16M1vxLDzBJyLvHYmoGVTX-IOLnvFWkO5F3G2ITMIXEbQZltFvW6YPtsdNY";
+const LOGO_URL = "/logo.png";
 
 const NAV_LINKS = [
   { href: "/", label: "Home" },

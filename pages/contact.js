@@ -54,9 +54,10 @@ export default function Contact() {
                 Registered Corporate Office
               </h3>
               <p className="text-slate-600 font-light leading-relaxed mb-6">
-                Medileo Healthcare Pvt. Ltd.<br />
-                Pincode - 110001<br />
-                New Delhi, India
+               Medileo Healthcare Pvt. Ltd.<br />
+Build TR(A), 2nd Floor, Mhada Colony,<br />
+Mumbai, Maharashtra,<br />
+India — 400075
               </p>
             </motion.div>
 
@@ -150,7 +151,7 @@ export default function Contact() {
 
             <div className="mt-8 p-4 border border-dashed border-red-200 bg-red-50 rounded-lg">
               <p className="text-xs text-red-800 font-medium">
-                <strong className="font-bold text-red-900">CRITICAL NOTICE:</strong> If you are a patient experiencing a severe adverse reaction or a medical emergency, do not use this form. Please contact your local emergency services or treating physician immediately.
+                <strong className="font-bold text-red-900">CRITICAL NOTICE:</strong> The primary data listed on this domain regarding clinical molecules or descriptive chemical layouts is organized exclusively for educational reference. It is strictly meant For the Use of a Registered Medical Practitioner or a Hospital or a Laboratory Only. It should under no circumstance be utilized to execute home self-treatment or substitute official specialist medical guidance.
               </p>
             </div>
           </div>

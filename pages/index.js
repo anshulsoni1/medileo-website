@@ -27,31 +27,137 @@ export default function Home() {
       {/* Hero Section */}
       <section className="hero-gradient text-white pt-24 pb-48 md:pt-32 md:pb-56 relative">
         <div className="curved-line"></div>
+
+        {/* Animated Background Orbs */}
+        <motion.div
+          className="absolute pointer-events-none opacity-[0.06] md:opacity-[0.12]"
+          style={{
+            top: "5%",
+            left: "-5%",
+            width: 500,
+            height: 500,
+            borderRadius: "50%",
+            background: "radial-gradient(circle, #0d9488 0%, transparent 70%)",
+          }}
+          animate={{ x: [0, 20, -10, 0], y: [0, -15, 10, 0] }}
+          transition={{
+            duration: 12,
+            repeat: Infinity,
+            repeatType: "mirror",
+            ease: "easeInOut",
+            delay: 0,
+          }}
+        />
+        <motion.div
+          className="absolute pointer-events-none opacity-[0.06] md:opacity-[0.08]"
+          style={{
+            bottom: "10%",
+            right: "-8%",
+            width: 400,
+            height: 400,
+            borderRadius: "50%",
+            background: "radial-gradient(circle, #14b8a6 0%, transparent 70%)",
+          }}
+          animate={{ x: [0, -15, 10, 0], y: [0, 20, -10, 0] }}
+          transition={{
+            duration: 15,
+            repeat: Infinity,
+            repeatType: "mirror",
+            ease: "easeInOut",
+            delay: 2,
+          }}
+        />
+        <motion.div
+          className="absolute pointer-events-none opacity-[0.06] md:opacity-[0.15]"
+          style={{
+            top: "30%",
+            right: "15%",
+            width: 300,
+            height: 300,
+            borderRadius: "50%",
+            background: "radial-gradient(circle, #134e4a 0%, transparent 70%)",
+          }}
+          animate={{ x: [0, 10, -20, 0], y: [0, -10, 15, 0] }}
+          transition={{
+            duration: 18,
+            repeat: Infinity,
+            repeatType: "mirror",
+            ease: "easeInOut",
+            delay: 4,
+          }}
+        />
+
         <div className="max-w-7xl mx-auto px-6 relative z-10 text-center md:text-left">
-          <motion.div
-            initial="hidden"
-            animate="visible"
-            variants={staggerContainer}
-            className="max-w-3xl"
-          >
-            <motion.h1
-              custom={0}
-              variants={fadeInUp}
-              className="text-4xl md:text-6xl font-black mb-6 leading-tight tracking-tight text-white drop-shadow-sm"
-            >
-              Pioneering Pharmaceutical{" "}
-              <span className="text-[#2ec4b6]">Excellence</span>
-            </motion.h1>
+          <div className="max-w-3xl">
+            {/* Word-by-word animated headline */}
+            <h1 className="text-4xl md:text-6xl font-black mb-6 leading-tight tracking-tight text-white drop-shadow-sm">
+              {["Pioneering", "Pharmaceutical"].map((word, i) => (
+                <motion.span
+                  key={word}
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{
+                    duration: 0.6,
+                    delay: 0.2 + i * 0.1,
+                    ease: [0.25, 0.46, 0.45, 0.94],
+                  }}
+                  style={{ display: "inline-block", marginRight: "0.3em" }}
+                >
+                  {word}
+                </motion.span>
+              ))}
+              <motion.span
+                initial={{ opacity: 0, y: 30 }}
+                animate={{
+                  opacity: 1,
+                  y: 0,
+                  textShadow: [
+                    "0 0 0px rgba(20,184,166,0)",
+                    "0 0 0px rgba(20,184,166,0)",
+                    "0 0 20px rgba(20,184,166,0.4)",
+                    "0 0 0px rgba(20,184,166,0)",
+                  ],
+                }}
+                transition={{
+                  opacity: { duration: 0.6, delay: 0.4, ease: [0.25, 0.46, 0.45, 0.94] },
+                  y: { duration: 0.6, delay: 0.4, ease: [0.25, 0.46, 0.45, 0.94] },
+                  textShadow: {
+                    duration: 1,
+                    delay: 1.0,
+                    ease: "easeInOut",
+                    times: [0, 0.1, 0.5, 1],
+                  },
+                }}
+                className="text-[#2ec4b6]"
+                style={{ display: "inline-block" }}
+              >
+                Excellence
+              </motion.span>
+            </h1>
+
+            {/* Body paragraph — fades up after headline */}
             <motion.p
-              custom={1}
-              variants={fadeInUp}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{
+                duration: 0.6,
+                delay: 0.7,
+                ease: [0.25, 0.46, 0.45, 0.94],
+              }}
               className="text-lg md:text-xl text-blue-50 mb-10 leading-relaxed font-light max-w-2xl mx-auto md:mx-0"
             >
              Medileo Healthcare Pvt. Ltd. is an innovative, research-driven pharmaceutical corporation dedicated to formulating premium therapeutic drug classes. Our state-of-the-art manufacturing facilities operate strictly under stringent WHO-GMP guidelines, ensuring every batch meets rigorous international quality benchmarks to satisfy clinicians and transform patient outcomes globally.
             </motion.p>
+
+            {/* CTA buttons — fade up last */}
             <motion.div
-              custom={2}
-              variants={fadeInUp}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{
+                duration: 0.5,
+                delay: 0.95,
+                ease: [0.25, 0.46, 0.45, 0.94],
+              }}
               className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start"
             >
               <a
@@ -67,7 +173,7 @@ export default function Home() {
                 Corporate Profile
               </a>
             </motion.div>
-          </motion.div>
+          </div>
         </div>
         <div className="hero-wave"></div>
       </section>
