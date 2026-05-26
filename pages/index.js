@@ -57,33 +57,33 @@ function StatItem({ value, suffix = "", label, delay = 0, type = "number" }) {
     <motion.div 
       ref={ref} 
       className="text-center px-2 md:px-6 py-4 flex flex-col justify-center items-center group cursor-default"
-      whileHover={{ y: -6, scale: 1.02 }}
-      transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+      whileHover={{ y: -2 }}
+      transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
     >
       {type === "number" ? (
         <motion.div 
-          initial={{ opacity: 0, scale: 0.85 }}
-          animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.85 }}
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.95 }}
           transition={{ duration: 1.2, delay, ease: [0.16, 1, 0.3, 1] }}
-          className="text-5xl md:text-[3.5rem] font-extrabold text-[#00152b] mb-4 font-serif tracking-tighter drop-shadow-sm group-hover:text-[#0f766e] transition-colors duration-500"
+          className="text-5xl md:text-[3.5rem] font-extrabold text-[#00152b] mb-3 font-serif tracking-tighter drop-shadow-sm group-hover:text-[#0f766e] transition-colors duration-500"
         >
           {displayValue}{suffix}
         </motion.div>
       ) : (
         <motion.div
-          initial={{ opacity: 0, scale: 0.85 }}
-          animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.85 }}
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.95 }}
           transition={{ duration: 1.2, delay, ease: [0.16, 1, 0.3, 1] }}
-          className="text-5xl md:text-[3.5rem] font-extrabold text-[#00152b] mb-4 font-serif tracking-tighter drop-shadow-sm group-hover:text-[#0f766e] transition-colors duration-500"
+          className="text-5xl md:text-[3.5rem] font-extrabold text-[#00152b] mb-3 font-serif tracking-tighter drop-shadow-sm group-hover:text-[#0f766e] transition-colors duration-500"
         >
           {value}{suffix}
         </motion.div>
       )}
       <motion.div
-        initial={{ opacity: 0, filter: "blur(4px)" }}
-        animate={isInView ? { opacity: 1, filter: "blur(0px)" } : { opacity: 0, filter: "blur(4px)" }}
+        initial={{ opacity: 0, filter: "blur(2px)", y: 5 }}
+        animate={isInView ? { opacity: 1, filter: "blur(0px)", y: 0 } : { opacity: 0, filter: "blur(2px)", y: 5 }}
         transition={{ duration: 1.0, delay: delay + 0.2, ease: [0.16, 1, 0.3, 1] }}
-        className="text-[0.65rem] md:text-xs font-semibold text-slate-500 uppercase tracking-[0.25em] group-hover:text-slate-700 transition-colors duration-500"
+        className="text-[0.65rem] md:text-[0.7rem] font-bold text-slate-500/90 uppercase tracking-[0.2em] group-hover:text-[#0f766e] transition-colors duration-500"
       >
         {label}
       </motion.div>
@@ -97,22 +97,39 @@ function FocusAreas() {
 
   const areas = [
     {
-      emoji: "❤️",
+      icon: (
+        <svg className="w-7 h-7 text-[#0f766e] group-hover:scale-110 transition-transform duration-500 ease-out" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
+        </svg>
+      ),
       title: "Cardiovascular",
       desc: "Advanced lipid regulators and anti-hypertensives.",
     },
     {
-      emoji: "🧠",
+      icon: (
+        <svg className="w-7 h-7 text-[#0f766e] group-hover:scale-110 transition-transform duration-500 ease-out" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 10.5h7.5M8.25 13.5h7.5M12 3a9 9 0 100 18 9 9 0 000-18z" />
+          <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v12M6 12h12" />
+        </svg>
+      ),
       title: "Neurology",
       desc: "Neuroprotectives and cognitive enhancement formulas.",
     },
     {
-      emoji: "🦴",
+      icon: (
+        <svg className="w-7 h-7 text-[#0f766e] group-hover:scale-110 transition-transform duration-500 ease-out" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" d="M12 21.75c-4.142 0-7.5-3.358-7.5-7.5 0-2.22 1.343-4.992 4.01-8.541C9.697 4.148 10.82 2.656 12 2.25c1.18.406 2.303 1.898 3.49 3.459 2.667 3.549 4.01 6.32 4.01 8.541 0 4.142-3.358 7.5-7.5 7.5z" />
+        </svg>
+      ),
       title: "Diabetology",
       desc: "Precision-engineered oral formulations for long-term glycaemic control and metabolic stability.",
     },
     {
-      emoji: "🦠",
+      icon: (
+        <svg className="w-7 h-7 text-[#0f766e] group-hover:scale-110 transition-transform duration-500 ease-out" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 01-1.043 3.296 3.745 3.745 0 01-3.296 1.043A3.745 3.745 0 0112 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 01-3.296-1.043 3.745 3.745 0 01-1.043-3.296A3.745 3.745 0 013 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 011.043-3.296 3.746 3.746 0 013.296-1.043A3.746 3.746 0 0112 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 013.296 1.043 3.746 3.746 0 011.043 3.296A3.745 3.745 0 0121 12z" />
+        </svg>
+      ),
       title: "Anti-Infectives",
       desc: "Broad-spectrum and targeted antimicrobial agents.",
     },
@@ -155,7 +172,7 @@ function FocusAreas() {
           </motion.p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-10">
           {areas.map((area, idx) => (
             <motion.div
               key={idx}
@@ -168,33 +185,34 @@ function FocusAreas() {
                   transition: { duration: 1.2, delay: 0.2 + i * 0.12, ease: [0.16, 1, 0.3, 1] }
                 }),
                 hover: {
-                  y: -10,
-                  scale: 1.01,
-                  boxShadow: "0 30px 40px -10px rgba(20,184,166,0.15), 0 10px 15px -5px rgba(20,184,166,0.05)",
-                  transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] }
+                  y: -4,
+                  boxShadow: "0 30px 60px -15px rgba(15,118,110,0.12), 0 15px 25px -5px rgba(15,118,110,0.08)",
+                  transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] }
                 }
               }}
               initial="initial"
               animate={isInView ? "visible" : "initial"}
               whileHover="hover"
-              className="bg-white p-10 rounded-2xl border border-slate-200/50 shadow-lg shadow-slate-200/30 relative group cursor-pointer overflow-hidden flex flex-col h-full"
+              className="bg-white p-10 lg:p-12 rounded-[1.5rem] border border-slate-100 shadow-xl shadow-slate-200/20 relative group cursor-pointer overflow-hidden flex flex-col h-full"
             >
               {/* Subtle top accent border line that glows on hover */}
               <motion.div 
-                className="absolute top-0 left-0 w-full h-[3px] bg-gradient-to-r from-[#14b8a6] to-[#0d9488] opacity-0 group-hover:opacity-100 transition-opacity duration-500" 
+                className="absolute top-0 left-0 w-full h-[3px] bg-gradient-to-r from-[#14b8a6] to-[#0d9488] opacity-0 group-hover:opacity-100 transition-opacity duration-700 ease-out" 
               />
               
               <motion.div
-                variants={{ hover: { scale: 1.15, rotate: 5 } }}
-                transition={{ duration: 0.3, ease: "easeOut" }}
-                className="text-[2rem] mb-8 bg-slate-50 w-14 h-14 flex items-center justify-center rounded-xl group-hover:bg-teal-50/50 transition-colors origin-center shadow-sm"
+                variants={{ hover: { scale: 1.05, y: -2 } }}
+                transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+                className="mb-10 bg-gradient-to-br from-slate-50 to-slate-100/50 border border-slate-200/60 shadow-[0_8px_15px_-3px_rgba(0,0,0,0.04)] w-16 h-16 flex items-center justify-center rounded-2xl group-hover:from-teal-50/80 group-hover:to-teal-100/30 group-hover:border-teal-200/60 group-hover:shadow-[0_12px_25px_-5px_rgba(20,184,166,0.15)] transition-all duration-500 relative overflow-hidden"
               >
-                {area.emoji}
+                {/* Subtle internal glare */}
+                <div className="absolute top-0 left-0 w-full h-1/2 bg-gradient-to-b from-white/60 to-transparent opacity-50 pointer-events-none"></div>
+                {area.icon}
               </motion.div>
-              <h3 className="text-xl md:text-[1.35rem] font-bold text-[#00152b] mb-4 font-serif tracking-tight leading-snug">
+              <h3 className="text-xl md:text-[1.5rem] font-bold text-[#00152b] mb-5 font-serif tracking-tight leading-snug group-hover:text-[#0f766e] transition-colors duration-300">
                 {area.title}
               </h3>
-              <p className="text-slate-500 leading-[1.7] text-[0.95rem] md:text-base font-light">
+              <p className="text-slate-500 leading-[1.8] text-[0.95rem] md:text-base font-light">
                 {area.desc}
               </p>
             </motion.div>
@@ -360,12 +378,14 @@ export default function Home() {
       </section>
 
       {/* Stats Section */}
-      <section className="relative z-20 -mt-24 md:-mt-32 max-w-7xl mx-auto px-4 sm:px-6 mb-32">
-        <div className="bg-white/98 backdrop-blur-2xl rounded-3xl shadow-2xl shadow-teal-900/5 p-10 md:p-14 border border-white/80 relative overflow-hidden group/stats">
+      <section className="relative z-20 -mt-20 md:-mt-32 max-w-7xl mx-auto px-4 sm:px-6 mb-32">
+        <motion.div 
+          className="bg-gradient-to-b from-white/95 to-slate-50/95 backdrop-blur-3xl rounded-[1.5rem] md:rounded-[2rem] shadow-[0_20px_40px_-15px_rgba(20,184,166,0.1),_0_0_20px_0_rgba(0,0,0,0.03)] hover:shadow-[0_30px_60px_-15px_rgba(15,118,110,0.15)] transition-shadow duration-700 ease-out p-10 md:p-14 border border-slate-100/80 relative overflow-hidden group/stats"
+        >
           {/* Subtle gradient accent line at the top to blend with hero */}
-          <div className="absolute top-0 left-0 w-full h-[3px] bg-gradient-to-r from-transparent via-[#14b8a6]/40 to-transparent opacity-80"></div>
+          <div className="absolute top-0 left-0 w-full h-[3px] bg-gradient-to-r from-transparent via-teal-400/30 to-transparent opacity-80"></div>
           
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-y-12 md:gap-y-0 gap-x-4 md:divide-x divide-slate-200/50 relative z-10">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-y-12 md:gap-y-0 gap-x-4 md:divide-x divide-slate-200/40 relative z-10">
             {[
               { value: "50", suffix: "+", label: "Product Lines", delay: 0 },
               { value: "WHO", label: "GMP Certified", delay: 0.1, type: "text" },
@@ -375,7 +395,7 @@ export default function Home() {
               <StatItem key={idx} {...stat} />
             ))}
           </div>
-        </div>
+        </motion.div>
       </section>
 
       {/* Focus Areas Section */}
