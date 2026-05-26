@@ -31,7 +31,7 @@ export default function Navbar() {
     <header 
       className={`sticky top-0 z-40 w-full transition-all duration-300 ease-out ${
         isScrolled 
-          ? "bg-white/80 backdrop-blur-md shadow-sm" 
+          ? "bg-white/90 backdrop-blur-lg shadow-lg shadow-teal-900/5" 
           : "bg-white border-b border-transparent"
       }`}
     >

@@ -56,33 +56,33 @@ function StatItem({ value, suffix = "", label, delay = 0, type = "number" }) {
     <motion.div 
       ref={ref} 
       className="text-center px-2 md:px-6 py-4 flex flex-col justify-center items-center group cursor-default"
-      whileHover={{ y: -4 }}
-      transition={{ duration: 0.4, ease: "easeOut" }}
+      whileHover={{ y: -6, scale: 1.02 }}
+      transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
     >
       {type === "number" ? (
         <motion.div 
-          initial={{ opacity: 0, scale: 0.9, y: 15 }}
-          animate={isInView ? { opacity: 1, scale: 1, y: 0 } : { opacity: 0, scale: 0.9, y: 15 }}
-          transition={{ duration: 0.7, delay, ease: [0.22, 1, 0.36, 1] }}
-          className="text-4xl md:text-5xl font-black text-[#00152b] mb-3 font-serif tracking-tight drop-shadow-sm group-hover:text-[#0f766e] transition-colors duration-300"
+          initial={{ opacity: 0, scale: 0.85 }}
+          animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.85 }}
+          transition={{ duration: 1.2, delay, ease: [0.16, 1, 0.3, 1] }}
+          className="text-5xl md:text-[3.5rem] font-extrabold text-[#00152b] mb-4 font-serif tracking-tighter drop-shadow-sm group-hover:text-[#0f766e] transition-colors duration-500"
         >
           {displayValue}{suffix}
         </motion.div>
       ) : (
         <motion.div
-          initial={{ opacity: 0, scale: 0.9, y: 15 }}
-          animate={isInView ? { opacity: 1, scale: 1, y: 0 } : { opacity: 0, scale: 0.9, y: 15 }}
-          transition={{ duration: 0.7, delay, ease: [0.22, 1, 0.36, 1] }}
-          className="text-4xl md:text-5xl font-black text-[#00152b] mb-3 font-serif tracking-tight drop-shadow-sm group-hover:text-[#0f766e] transition-colors duration-300"
+          initial={{ opacity: 0, scale: 0.85 }}
+          animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.85 }}
+          transition={{ duration: 1.2, delay, ease: [0.16, 1, 0.3, 1] }}
+          className="text-5xl md:text-[3.5rem] font-extrabold text-[#00152b] mb-4 font-serif tracking-tighter drop-shadow-sm group-hover:text-[#0f766e] transition-colors duration-500"
         >
           {value}{suffix}
         </motion.div>
       )}
       <motion.div
-        initial={{ opacity: 0, y: 10 }}
-        animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
-        transition={{ duration: 0.7, delay: delay + 0.15, ease: [0.22, 1, 0.36, 1] }}
-        className="text-xs md:text-sm font-bold text-slate-500 uppercase tracking-[0.2em] group-hover:text-slate-700 transition-colors duration-300"
+        initial={{ opacity: 0, filter: "blur(4px)" }}
+        animate={isInView ? { opacity: 1, filter: "blur(0px)" } : { opacity: 0, filter: "blur(4px)" }}
+        transition={{ duration: 1.0, delay: delay + 0.2, ease: [0.16, 1, 0.3, 1] }}
+        className="text-[0.65rem] md:text-xs font-semibold text-slate-500 uppercase tracking-[0.25em] group-hover:text-slate-700 transition-colors duration-500"
       >
         {label}
       </motion.div>
@@ -125,30 +125,30 @@ function FocusAreas() {
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         <div className="text-center max-w-3xl mx-auto mb-20 md:mb-24">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-            className="flex justify-center items-center gap-4 mb-6"
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.95 }}
+            transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+            className="flex justify-center items-center gap-5 mb-8"
           >
-            <span className="h-px w-10 bg-[#14b8a6]/40"></span>
-            <span className="text-[#14b8a6] font-bold tracking-[0.2em] uppercase text-xs md:text-sm">
+            <span className="h-px w-12 bg-[#14b8a6]/40"></span>
+            <span className="text-[#14b8a6] font-semibold tracking-[0.3em] uppercase text-[0.65rem] md:text-xs">
               Therapeutic Focus
             </span>
-            <span className="h-px w-10 bg-[#14b8a6]/40"></span>
+            <span className="h-px w-12 bg-[#14b8a6]/40"></span>
           </motion.div>
           <motion.h2
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-            transition={{ duration: 0.8, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-            className="text-4xl md:text-5xl font-black text-[#00152b] mb-8 tracking-tight font-serif"
+            transition={{ duration: 1.0, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+            className="text-4xl md:text-[3.25rem] font-extrabold text-[#00152b] mb-8 tracking-tighter font-serif leading-tight"
           >
             Core Specialties
           </motion.h2>
           <motion.p
-            initial={{ opacity: 0, y: 30 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-            transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-            className="text-slate-600 leading-relaxed text-lg md:text-xl font-light max-w-2xl mx-auto"
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            transition={{ duration: 1.0, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+            className="text-slate-600 leading-[1.8] text-lg md:text-xl font-light max-w-3xl mx-auto"
           >
             Delivering highly effective molecular formulas to critical hospital departments. Each molecule undergoes rigorous multi-stage laboratory checks before reaching pharmacy shelves, focusing heavily on consistent drug release metrics and superior systemic bioavailability.
           </motion.p>
@@ -160,40 +160,40 @@ function FocusAreas() {
               key={idx}
               custom={idx}
               variants={{
-                initial: { opacity: 0, y: 30, scale: 0.98 },
+                initial: { opacity: 0, y: 50 },
                 visible: (i) => ({
                   opacity: 1,
                   y: 0,
-                  scale: 1,
-                  transition: { duration: 0.8, delay: 0.3 + i * 0.1, ease: [0.22, 1, 0.36, 1] }
+                  transition: { duration: 1.2, delay: 0.2 + i * 0.12, ease: [0.16, 1, 0.3, 1] }
                 }),
                 hover: {
-                  y: -8,
-                  boxShadow: "0 25px 35px -5px rgba(20,184,166,0.15), 0 10px 15px -5px rgba(20,184,166,0.1)",
-                  transition: { duration: 0.3, ease: "easeOut" }
+                  y: -10,
+                  scale: 1.01,
+                  boxShadow: "0 30px 40px -10px rgba(20,184,166,0.15), 0 10px 15px -5px rgba(20,184,166,0.05)",
+                  transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] }
                 }
               }}
               initial="initial"
               animate={isInView ? "visible" : "initial"}
               whileHover="hover"
-              className="bg-white p-10 rounded-2xl border border-slate-200/60 shadow-lg shadow-slate-200/20 relative group cursor-pointer overflow-hidden flex flex-col h-full"
+              className="bg-white p-10 rounded-2xl border border-slate-200/50 shadow-lg shadow-slate-200/30 relative group cursor-pointer overflow-hidden flex flex-col h-full"
             >
               {/* Subtle top accent border line that glows on hover */}
               <motion.div 
-                className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#14b8a6] to-[#0d9488] opacity-0 group-hover:opacity-100 transition-opacity duration-300" 
+                className="absolute top-0 left-0 w-full h-[3px] bg-gradient-to-r from-[#14b8a6] to-[#0d9488] opacity-0 group-hover:opacity-100 transition-opacity duration-500" 
               />
               
               <motion.div
                 variants={{ hover: { scale: 1.15, rotate: 5 } }}
                 transition={{ duration: 0.3, ease: "easeOut" }}
-                className="text-4xl mb-6 bg-slate-50 w-16 h-16 flex items-center justify-center rounded-xl group-hover:bg-teal-50/50 transition-colors origin-center shadow-sm"
+                className="text-[2rem] mb-8 bg-slate-50 w-14 h-14 flex items-center justify-center rounded-xl group-hover:bg-teal-50/50 transition-colors origin-center shadow-sm"
               >
                 {area.emoji}
               </motion.div>
-              <h3 className="text-2xl font-bold text-[#00152b] mb-4 font-serif">
+              <h3 className="text-xl md:text-[1.35rem] font-bold text-[#00152b] mb-4 font-serif tracking-tight leading-snug">
                 {area.title}
               </h3>
-              <p className="text-slate-600 leading-relaxed font-light">
+              <p className="text-slate-500 leading-[1.7] text-[0.95rem] md:text-base font-light">
                 {area.desc}
               </p>
             </motion.div>
@@ -260,18 +260,18 @@ export default function Home() {
         />
 
         <div className="max-w-7xl mx-auto px-6 relative z-10 text-center md:text-left">
-          <div className="max-w-2xl lg:max-w-3xl">
+          <div className="max-w-2xl lg:max-w-[44rem]">
             {/* Word-by-word animated headline */}
-            <h1 className="text-5xl md:text-7xl font-black mb-8 leading-[1.1] tracking-tighter text-white drop-shadow-md">
+            <h1 className="text-5xl md:text-7xl font-extrabold mb-8 leading-[1.15] tracking-tighter text-white drop-shadow-md font-serif">
               {["Pioneering", "Pharmaceutical"].map((word, i) => (
                 <motion.span
                   key={word}
-                  initial={{ opacity: 0, y: 40 }}
+                  initial={{ opacity: 0, y: 50 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{
-                    duration: 0.8,
+                    duration: 1.2,
                     delay: 0.1 + i * 0.15,
-                    ease: [0.22, 1, 0.36, 1], // Premium apple-like ease
+                    ease: [0.16, 1, 0.3, 1], // Cinematic ultra-smooth slide
                   }}
                   style={{ display: "inline-block", marginRight: "0.25em" }}
                 >
@@ -288,24 +288,24 @@ export default function Home() {
 
             {/* Body paragraph — fades up after headline */}
             <motion.p
-              initial={{ opacity: 0, y: 25 }}
-              animate={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, scale: 0.98, y: 15 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
               transition={{
-                duration: 0.8,
+                duration: 1.2,
                 delay: 0.5,
-                ease: [0.22, 1, 0.36, 1],
+                ease: [0.16, 1, 0.3, 1],
               }}
-              className="text-lg md:text-xl text-teal-50/90 mb-12 leading-relaxed font-light max-w-2xl mx-auto md:mx-0 drop-shadow-sm"
+              className="text-lg md:text-xl text-teal-50/80 mb-14 leading-[1.8] font-light max-w-xl mx-auto md:mx-0 drop-shadow-sm"
             >
              Medileo Healthcare Pvt. Ltd. is an innovative, research-driven pharmaceutical corporation dedicated to formulating premium therapeutic drug classes. Our state-of-the-art manufacturing facilities operate strictly under stringent WHO-GMP guidelines, ensuring every batch meets rigorous international quality benchmarks to satisfy clinicians and transform patient outcomes globally.
             </motion.p>
 
             {/* CTA buttons — fade up last */}
             <motion.div
-              initial={{ opacity: 0, y: 25 }}
+              initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{
-                duration: 0.8,
+                duration: 1.0,
                 delay: 0.7,
                 ease: [0.22, 1, 0.36, 1],
               }}
@@ -321,19 +321,19 @@ export default function Home() {
                 <motion.a
                   href="/products"
                   className="bg-[#14b8a6] hover:bg-[#0f766e] text-white px-10 py-4 rounded-xl font-bold transition-colors shadow-xl shadow-teal-900/40 border border-teal-400/30 block text-center w-full tracking-wide"
-                  whileHover={{ scale: 1.02, boxShadow: "0 15px 30px -5px rgba(15,118,110,0.5)" }}
-                  whileTap={{ scale: 0.98 }}
-                  transition={{ duration: 0.2 }}
+                  whileHover={{ scale: 1.02, y: -2, boxShadow: "0 20px 40px -8px rgba(15,118,110,0.6)" }}
+                  whileTap={{ scale: 0.98, y: 0, boxShadow: "0 5px 10px -2px rgba(15,118,110,0.4)" }}
+                  transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
                 >
                   Explore Product Portfolio
                 </motion.a>
               </div>
               <motion.a
                 href="/contact"
-                className="bg-transparent border-2 border-white/20 text-white px-10 py-4 rounded-xl font-bold transition-all backdrop-blur-sm block text-center w-full sm:w-auto tracking-wide hover:border-white/40 hover:bg-white/5"
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                transition={{ duration: 0.2 }}
+                className="bg-transparent border border-white/20 text-white px-10 py-4 rounded-xl font-bold transition-all backdrop-blur-md block text-center w-full sm:w-auto tracking-wide hover:border-white/40 hover:bg-white/10 shadow-lg shadow-transparent hover:shadow-white/5"
+                whileHover={{ scale: 1.02, y: -2 }}
+                whileTap={{ scale: 0.98, y: 0 }}
+                transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
               >
                 Corporate Profile
               </motion.a>
@@ -345,11 +345,11 @@ export default function Home() {
 
       {/* Stats Section */}
       <section className="relative z-20 -mt-24 md:-mt-32 max-w-7xl mx-auto px-4 sm:px-6 mb-32">
-        <div className="bg-white/98 backdrop-blur-2xl rounded-3xl shadow-2xl shadow-slate-300/60 p-10 md:p-14 border border-white relative overflow-hidden group/stats">
+        <div className="bg-white/98 backdrop-blur-2xl rounded-3xl shadow-2xl shadow-teal-900/5 p-10 md:p-14 border border-white/80 relative overflow-hidden group/stats">
           {/* Subtle gradient accent line at the top to blend with hero */}
-          <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-teal-400/40 to-transparent opacity-60"></div>
+          <div className="absolute top-0 left-0 w-full h-[3px] bg-gradient-to-r from-transparent via-[#14b8a6]/40 to-transparent opacity-80"></div>
           
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-y-12 md:gap-y-0 gap-x-4 md:divide-x divide-slate-200/70 relative z-10">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-y-12 md:gap-y-0 gap-x-4 md:divide-x divide-slate-200/50 relative z-10">
             {[
               { value: "50", suffix: "+", label: "Product Lines", delay: 0 },
               { value: "WHO", label: "GMP Certified", delay: 0.1, type: "text" },
