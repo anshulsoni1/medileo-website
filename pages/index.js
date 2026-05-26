@@ -136,12 +136,12 @@ function FocusAreas() {
   ];
 
   return (
-    <section ref={ref} className="pt-32 pb-40 bg-gradient-to-b from-[#f1f5f9] via-white to-slate-50 relative">
+    <section ref={ref} className="pt-20 md:pt-28 pb-40 bg-gradient-to-b from-[#f1f5f9] via-white to-slate-50 relative">
       {/* Subtle top edge transition */}
       <div className="absolute top-0 left-0 w-full h-32 bg-gradient-to-b from-[#f1f5f9] to-transparent pointer-events-none"></div>
       
       <div className="max-w-7xl mx-auto px-6 relative z-10">
-        <div className="text-center max-w-3xl mx-auto mb-20 md:mb-24">
+        <div className="text-center max-w-3xl mx-auto mb-16 md:mb-20">
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.95 }}
@@ -378,7 +378,7 @@ export default function Home() {
       </section>
 
       {/* Stats Section */}
-      <section className="relative z-20 -mt-20 md:-mt-32 max-w-7xl mx-auto px-4 sm:px-6 mb-32">
+      <section className="relative z-20 -mt-20 md:-mt-32 max-w-7xl mx-auto px-4 sm:px-6 mb-12 md:mb-20">
         <motion.div 
           className="bg-gradient-to-b from-white/95 to-slate-50/95 backdrop-blur-3xl rounded-[1.5rem] md:rounded-[2rem] shadow-[0_20px_40px_-15px_rgba(20,184,166,0.1),_0_0_20px_0_rgba(0,0,0,0.03)] hover:shadow-[0_30px_60px_-15px_rgba(15,118,110,0.15)] transition-shadow duration-700 ease-out p-10 md:p-14 border border-slate-100/80 relative overflow-hidden group/stats"
         >
