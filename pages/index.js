@@ -312,17 +312,20 @@ export default function Home() {
               className="flex flex-col sm:flex-row gap-5 justify-center md:justify-start"
             >
               <div className="relative w-full sm:w-auto">
-                <motion.span
-                  className="absolute inset-0 rounded-xl hidden md:block pointer-events-none border-2 border-teal-400"
-                  style={{ zIndex: -1 }}
-                  animate={{ scale: [1, 1.4], opacity: [0.3, 0] }}
-                  transition={{ duration: 2.5, repeat: Infinity, ease: "easeOut" }}
-                />
                 <motion.a
                   href="/products"
-                  className="bg-[#14b8a6] hover:bg-[#0f766e] text-white px-10 py-4 rounded-xl font-bold transition-colors shadow-xl shadow-teal-900/40 border border-teal-400/30 block text-center w-full tracking-wide"
-                  whileHover={{ scale: 1.02, y: -2, boxShadow: "0 20px 40px -8px rgba(15,118,110,0.6)" }}
-                  whileTap={{ scale: 0.98, y: 0, boxShadow: "0 5px 10px -2px rgba(15,118,110,0.4)" }}
+                  className="bg-[#14b8a6] text-white px-10 py-4 rounded-xl font-bold transition-colors border border-teal-400/20 block text-center w-full tracking-wide shadow-lg shadow-teal-900/20"
+                  whileHover={{ 
+                    scale: 1.01, 
+                    y: -2, 
+                    backgroundColor: "#0f766e",
+                    boxShadow: "0 20px 40px -8px rgba(20,184,166,0.25), 0 10px 15px -4px rgba(20,184,166,0.15)" 
+                  }}
+                  whileTap={{ 
+                    scale: 0.99, 
+                    y: 0, 
+                    boxShadow: "0 5px 10px -2px rgba(20,184,166,0.2)" 
+                  }}
                   transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
                 >
                   Explore Product Portfolio
