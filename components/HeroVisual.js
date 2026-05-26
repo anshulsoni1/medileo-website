@@ -3,15 +3,15 @@ import { motion } from "framer-motion";
 
 export default function HeroVisual() {
   return (
-    <div className="relative w-full h-full flex items-center justify-center opacity-90 mix-blend-screen pointer-events-none">
+    <div className="relative w-full h-full flex items-center justify-center opacity-90 pointer-events-none">
       
       {/* Core Atmospheric Gradient Blurs */}
-      <div className="absolute w-40 h-40 bg-[#14b8a6] rounded-full blur-[100px] opacity-40"></div>
-      <div className="absolute w-20 h-20 bg-[#2ec4b6] rounded-full blur-[60px] opacity-50"></div>
+      <div className="absolute w-40 h-40 bg-[#14b8a6] rounded-full blur-[100px] opacity-40 mix-blend-screen"></div>
+      <div className="absolute w-20 h-20 bg-[#2ec4b6] rounded-full blur-[60px] opacity-50 mix-blend-screen"></div>
       
       {/* Static Measurement Ring */}
-      <div className="absolute w-[460px] h-[460px] rounded-full border border-white/5" style={{ clipPath: 'polygon(0 0, 100% 0, 100% 50%, 0 50%)' }}></div>
-      <div className="absolute w-[500px] h-[500px] rounded-full border border-teal-500/5" style={{ clipPath: 'polygon(50% 50%, 100% 0, 100% 100%, 50% 100%)' }}></div>
+      <div className="absolute w-[460px] h-[460px] rounded-full border border-white/5 mix-blend-screen" style={{ clipPath: 'polygon(0 0, 100% 0, 100% 50%, 0 50%)' }}></div>
+      <div className="absolute w-[500px] h-[500px] rounded-full border border-teal-500/5 mix-blend-screen" style={{ clipPath: 'polygon(50% 50%, 100% 0, 100% 100%, 50% 100%)' }}></div>
 
       {/* Outer Orbit (Slow, Dashed) */}
       <motion.div
@@ -61,32 +61,36 @@ export default function HeroVisual() {
       </motion.svg>
       
       {/* Premium Semi-Abstract Capsule Silhouettes */}
-      {/* Primary Capsule */}
+      {/* Primary Hero Focal Capsule */}
       <motion.div 
-        className="absolute w-[64px] h-[160px] rounded-full border border-teal-200/10 shadow-[0_15px_40px_rgba(20,184,166,0.12)] flex flex-col overflow-hidden backdrop-blur-md"
-        animate={{ y: [-12, 12, -12], rotate: [15, 18, 15] }}
-        transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
-        style={{ left: '15%', top: '25%' }}
+        className="absolute w-[86px] h-[220px] rounded-full border border-white/10 shadow-[0_20px_50px_rgba(15,118,110,0.4)] flex flex-col overflow-hidden backdrop-blur-xl z-20"
+        animate={{ y: [-15, 15, -15], rotate: [12, 16, 12] }}
+        transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
+        style={{ left: '18%', top: '22%' }}
       >
-        {/* Top Hemisphere */}
-        <div className="w-full h-1/2 bg-gradient-to-br from-teal-300/20 via-teal-400/5 to-transparent relative">
-           {/* Subtle glass reflection highlight */}
-           <div className="absolute top-3 left-2.5 w-1.5 h-14 rounded-full bg-white/20 blur-[2px]"></div>
+        {/* Top Hemisphere - Pearl White */}
+        <div className="w-full h-1/2 bg-gradient-to-br from-white/70 via-white/10 to-transparent relative">
+           {/* Soft internal rim light */}
+           <div className="absolute inset-0 rounded-t-full border-t-[1.5px] border-l-[1px] border-white/50"></div>
+           {/* Subtle pearl reflection */}
+           <div className="absolute top-5 left-3 w-2 h-20 rounded-full bg-white/60 blur-[3px]"></div>
         </div>
-        {/* Bottom Hemisphere */}
-        <div className="w-full h-1/2 bg-gradient-to-t from-[#00152b]/50 to-transparent border-t border-teal-100/5 relative">
-           <div className="absolute bottom-3 right-2.5 w-1 h-10 rounded-full bg-teal-500/20 blur-[2px]"></div>
+        {/* Bottom Hemisphere - Deep Emerald Teal */}
+        <div className="w-full h-1/2 bg-gradient-to-t from-teal-900/90 via-teal-800/50 to-teal-900/10 relative border-t border-white/20">
+           {/* Emerald core glow */}
+           <div className="absolute inset-0 rounded-b-full shadow-[inset_0_-15px_25px_rgba(20,184,166,0.3)]"></div>
+           <div className="absolute bottom-5 right-3 w-2 h-16 rounded-full bg-teal-400/30 blur-[3px]"></div>
         </div>
       </motion.div>
 
       {/* Secondary Distant Capsule */}
       <motion.div 
-        className="absolute w-[36px] h-[90px] rounded-full border border-teal-100/5 flex flex-col overflow-hidden backdrop-blur-sm opacity-60"
-        animate={{ y: [8, -8, 8], rotate: [-20, -15, -20] }}
+        className="absolute w-[28px] h-[70px] rounded-full border border-teal-100/5 flex flex-col overflow-hidden backdrop-blur-sm opacity-30 blur-[1px] z-10"
+        animate={{ y: [6, -6, 6], rotate: [-20, -15, -20] }}
         transition={{ duration: 24, repeat: Infinity, ease: "easeInOut", delay: 2 }}
-        style={{ right: '22%', bottom: '22%' }}
+        style={{ right: '20%', bottom: '25%' }}
       >
-        <div className="w-full h-1/2 bg-gradient-to-br from-teal-200/15 to-transparent"></div>
+        <div className="w-full h-1/2 bg-gradient-to-br from-teal-200/10 to-transparent"></div>
         <div className="w-full h-1/2 bg-gradient-to-t from-white/5 to-transparent border-t border-white/5"></div>
       </motion.div>
 
