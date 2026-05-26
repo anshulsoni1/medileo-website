@@ -3,6 +3,7 @@ import Head from "next/head";
 import { motion, useInView } from "framer-motion";
 import Footer from "@/components/Footer";
 import TypewriterText from "@/components/TypewriterText";
+import HeroVisual from "@/components/HeroVisual";
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 30 },
@@ -259,8 +260,10 @@ export default function Home() {
           transition={{ duration: 16, repeat: Infinity, repeatType: "mirror", ease: "easeInOut", delay: 1 }}
         />
 
-        <div className="max-w-7xl mx-auto px-6 relative z-10 text-center md:text-left">
-          <div className="max-w-2xl lg:max-w-[44rem]">
+        <div className="max-w-7xl mx-auto px-6 relative z-10 flex flex-col lg:flex-row items-center justify-between h-full gap-12 lg:gap-8">
+          
+          {/* Left Text Content */}
+          <div className="max-w-2xl lg:max-w-[44rem] relative z-20 text-center lg:text-left w-full">
             {/* Word-by-word animated headline */}
             <h1 className="text-5xl md:text-7xl font-extrabold mb-8 leading-[1.15] tracking-tighter text-white drop-shadow-md font-serif">
               {["Pioneering", "Pharmaceutical"].map((word, i) => (
@@ -295,7 +298,7 @@ export default function Home() {
                 delay: 0.5,
                 ease: [0.16, 1, 0.3, 1],
               }}
-              className="text-lg md:text-xl text-teal-50/80 mb-14 leading-[1.8] font-light max-w-xl mx-auto md:mx-0 drop-shadow-sm"
+              className="text-lg md:text-xl text-teal-50/80 mb-14 leading-[1.8] font-light max-w-xl mx-auto lg:mx-0 drop-shadow-sm"
             >
              Medileo Healthcare Pvt. Ltd. is an innovative, research-driven pharmaceutical corporation dedicated to formulating premium therapeutic drug classes. Our state-of-the-art manufacturing facilities operate strictly under stringent WHO-GMP guidelines, ensuring every batch meets rigorous international quality benchmarks to satisfy clinicians and transform patient outcomes globally.
             </motion.p>
@@ -309,7 +312,7 @@ export default function Home() {
                 delay: 0.7,
                 ease: [0.22, 1, 0.36, 1],
               }}
-              className="flex flex-col sm:flex-row gap-5 justify-center md:justify-start"
+              className="flex flex-col sm:flex-row gap-5 justify-center lg:justify-start"
             >
               <div className="relative w-full sm:w-auto">
                 <motion.a
@@ -342,6 +345,16 @@ export default function Home() {
               </motion.a>
             </motion.div>
           </div>
+          
+          {/* Right Atmospheric Visual */}
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 2, delay: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            className="hidden lg:flex relative z-10 w-full max-w-[500px] h-[500px] items-center justify-center flex-shrink-0"
+          >
+            <HeroVisual />
+          </motion.div>
         </div>
         <div className="hero-wave"></div>
       </section>
