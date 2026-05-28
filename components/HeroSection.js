@@ -146,10 +146,10 @@ export default function HeroSection() {
           >
             <div className="relative w-full sm:w-auto">
               <a
-                href="/products"
+                href="/about"
                 className="bg-[#14b8a6] hover:bg-[#0f766e] text-white px-10 py-4 rounded-xl font-bold transition-all duration-300 border border-teal-400/20 block text-center w-full tracking-wide shadow-[0_10px_20px_-5px_rgba(20,184,166,0.25)] hover:shadow-[0_15px_30px_-5px_rgba(20,184,166,0.35)] hover:-translate-y-0.5"
               >
-                Explore Product Portfolio
+                Our Expertise
               </a>
             </div>
             <a

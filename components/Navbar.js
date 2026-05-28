@@ -8,7 +8,6 @@ const LOGO_URL = "/logo.png";
 const NAV_LINKS = [
   { href: "/", label: "Home" },
   { href: "/about", label: "About Us" },
-  { href: "/products", label: "Products" },
   { href: "/contact", label: "Contact" },
 ];
 

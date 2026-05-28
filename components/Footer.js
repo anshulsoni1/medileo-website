@@ -35,7 +35,6 @@ export default function Footer({ variant = "default" }) {
           <div className="flex flex-col gap-4">
             <h4 className="text-white uppercase tracking-[0.2em] text-xs font-bold mb-1">Corporate</h4>
             <Link href="/about" className="text-white/60 hover:text-white transition-colors text-sm font-light">About Us</Link>
-            <Link href="/products" className="text-white/60 hover:text-white transition-colors text-sm font-light">Product Portfolio</Link>
             <Link href="/contact" className="text-white/60 hover:text-white transition-colors text-sm font-light">Contact</Link>
           </div>
 
@@ -71,7 +70,7 @@ export default function Footer({ variant = "default" }) {
           © {new Date().getFullYear()} MEDILEO HEALTHCARE PVT. LTD. ALL RIGHTS RESERVED.
         </p>
         
-        {(variant === "products" || variant === "contact") ? (
+        {(variant === "contact") ? (
           <p className="text-[#14b8a6] text-[10px] sm:text-xs tracking-[0.2em] uppercase font-medium">
             DESIGNED WITH BRIGHT SCIENTIFIC COMPLIANCE STANDARDS.
           </p>
