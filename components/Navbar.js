@@ -36,16 +36,17 @@ export default function Navbar() {
     >
       <div 
         className={`max-w-7xl mx-auto px-6 flex justify-between items-center transition-all duration-300 ease-out ${
-          isScrolled ? "h-16" : "h-24"
+          isScrolled ? "h-20" : "h-28 md:h-[7.5rem]"
         }`}
       >
         {/* Logo */}
-        <Link href="/" className="flex items-center h-full py-2">
+        <Link href="/" className="flex items-center h-full py-2 group">
           <img
             alt="Medileo Healthcare Logo"
-            className={`w-auto object-contain transition-all duration-300 ease-out ${
-              isScrolled ? "h-10" : "h-14"
+            className={`w-auto object-contain transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] drop-shadow-[0_1px_1px_rgba(0,0,0,0.05)] group-hover:opacity-90 group-hover:scale-[1.01] ${
+              isScrolled ? "h-12 md:h-[3.25rem]" : "h-16 md:h-[4.5rem]"
             }`}
+            style={{ imageRendering: "high-quality" }}
             src={LOGO_URL}
           />
         </Link>
@@ -61,10 +62,10 @@ export default function Navbar() {
                 className="relative h-full flex items-center group"
               >
                 <span 
-                  className={`text-sm font-bold uppercase tracking-wider transition-colors duration-200 ${
+                  className={`text-xs font-semibold uppercase tracking-[0.15em] transition-colors duration-300 ${
                     isActive 
                       ? "text-[#0f766e]" 
-                      : "text-slate-600 group-hover:text-[#00B4A9]"
+                      : "text-slate-500 group-hover:text-[#0f766e]"
                   }`}
                 >
                   {link.label}
@@ -139,10 +140,10 @@ export default function Navbar() {
                     <Link
                       href={link.href}
                       onClick={() => setMobileOpen(false)}
-                      className={`block py-2 text-sm font-bold uppercase tracking-wider transition-colors duration-200 ${
+                      className={`block py-2 text-xs font-semibold uppercase tracking-[0.15em] transition-colors duration-300 ${
                         isActive
                           ? "text-[#0f766e] border-l-2 border-[#0f766e] pl-4 bg-teal-50/50"
-                          : "text-slate-600 hover:text-[#0f766e] pl-4"
+                          : "text-slate-500 hover:text-[#0f766e] pl-4"
                       }`}
                     >
                       {link.label}
