@@ -20,23 +20,23 @@ export default function Contact() {
         <meta name="description" content="Contact Medileo Healthcare for medical inquiries and partnerships." />
       </Head>
 
-      <div className="bg-[#00152b] py-20 relative">
+      <div className="bg-[#00152b] py-16 md:py-20 relative">
         <div className="max-w-7xl mx-auto px-6 relative z-10 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
           >
-            <h1 className="text-4xl md:text-5xl font-black text-white mb-4 font-serif">
-              Corporate <span className="text-[#14b8a6]">Communications</span>
+            <h1 className="text-4xl md:text-5xl font-black text-white mb-6 font-serif">
+              Contact <span className="text-[#14b8a6]">Medileo</span>
             </h1>
-            <p className="text-slate-400 max-w-2xl mx-auto text-lg">
-              For medical inquiries, adverse event reporting, or global partnership opportunities, please direct your correspondence to the appropriate department below.
+            <p className="text-slate-400 max-w-2xl mx-auto text-lg leading-relaxed">
+              For business inquiries, healthcare partnerships, product information, and distribution collaborations, connect with the Medileo Healthcare team.
             </p>
           </motion.div>
         </div>
       </div>
 
-      <section className="py-20 bg-white">
+      <section className="py-16 md:py-20 bg-white">
         <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-5 gap-12">
           {/* Left Column: Contact Info */}
           <div className="lg:col-span-2 space-y-8">
@@ -51,7 +51,7 @@ export default function Contact() {
                 🏢
               </div>
               <h3 className="text-xl font-bold text-[#00152b] mb-4 font-serif">
-                Registered Corporate Office
+                Business Contact
               </h3>
               <p className="text-slate-600 font-light leading-relaxed mb-6">
                Medileo Healthcare Pvt. Ltd.<br />
@@ -72,7 +72,7 @@ India — 400075
                 ✉️
               </div>
               <h3 className="text-xl font-bold mb-4 font-serif">
-                Official Mailroom
+                Email Address
               </h3>
               <p className="text-slate-300 font-light mb-2">Primary Contact:</p>
               <a
@@ -142,17 +142,39 @@ India — 400075
                 </div>
                 <button
                   type="button"
-                  className="w-full bg-[#0b192c] hover:bg-[#00152b] text-white font-bold py-4 rounded-lg tracking-widest uppercase text-sm transition-colors"
+                  className="w-full bg-[#0b192c] hover:bg-[#1a2b3c] text-white font-bold py-4 rounded-lg tracking-widest uppercase text-sm transition-colors"
                 >
-                  Transmit Secure Message
+                  Send Inquiry
                 </button>
               </form>
             </motion.div>
+          </div>
+        </div>
+      </section>
 
-            <div className="mt-8 p-4 border border-dashed border-red-200 bg-red-50 rounded-lg">
-              <p className="text-xs text-red-800 font-medium">
-                <strong className="font-bold text-red-900">CRITICAL NOTICE:</strong> The primary data listed on this domain regarding clinical molecules or descriptive chemical layouts is organized exclusively for educational reference. It is strictly meant For the Use of a Registered Medical Practitioner or a Hospital or a Laboratory Only. It should under no circumstance be utilized to execute home self-treatment or substitute official specialist medical guidance.
-              </p>
+      {/* Premium Trust Strip */}
+      <section className="bg-slate-50 py-12 border-t border-slate-200">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-12">
+            <div className="flex items-center gap-3">
+              <div className="w-8 h-8 rounded-full bg-teal-100 flex items-center justify-center">
+                <div className="w-2.5 h-2.5 bg-[#14b8a6] rounded-full"></div>
+              </div>
+              <span className="text-slate-600 font-semibold">WHO-GMP Partnerships</span>
+            </div>
+            <div className="hidden md:block w-px h-8 bg-slate-300"></div>
+            <div className="flex items-center gap-3">
+              <div className="w-8 h-8 rounded-full bg-teal-100 flex items-center justify-center">
+                <div className="w-2.5 h-2.5 bg-[#14b8a6] rounded-full"></div>
+              </div>
+              <span className="text-slate-600 font-semibold">Ethical Healthcare Commitment</span>
+            </div>
+            <div className="hidden md:block w-px h-8 bg-slate-300"></div>
+            <div className="flex items-center gap-3">
+              <div className="w-8 h-8 rounded-full bg-teal-100 flex items-center justify-center">
+                <div className="w-2.5 h-2.5 bg-[#14b8a6] rounded-full"></div>
+              </div>
+              <span className="text-slate-600 font-semibold">Trusted Pharmaceutical Solutions</span>
             </div>
           </div>
         </div>

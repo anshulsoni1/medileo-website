@@ -12,16 +12,19 @@ export default function Footer({ variant = "default" }) {
         
         {/* Brand Column */}
         <div className="flex flex-col gap-6 max-w-sm">
-          {/* Logo with CSS filter to make it white */}
-          <Link href="/">
-            <img 
-              src="/logo.png" 
-              alt="Medileo Healthcare" 
-              className="h-12 w-auto object-contain brightness-0 invert opacity-95 transition-opacity hover:opacity-100" 
-            />
+          {/* Premium Logo Plaque */}
+          <Link href="/" className="inline-block">
+            <div className="bg-white/95 backdrop-blur-md px-6 py-4 rounded-[1.25rem] inline-flex items-center justify-center shadow-[0_10px_30px_-10px_rgba(0,0,0,0.5)] border border-white/10 relative overflow-hidden group">
+              <div className="absolute inset-0 bg-gradient-to-br from-white to-slate-100 opacity-50"></div>
+              <img 
+                src="/logo.png" 
+                alt="Medileo Healthcare" 
+                className="h-10 w-auto object-contain relative z-10 opacity-95 group-hover:opacity-100 group-hover:scale-[1.02] transition-all duration-500 ease-out" 
+              />
+            </div>
           </Link>
           <p className="text-white/60 text-sm leading-relaxed font-light">
-            Formulating premium therapeutic drug classes under stringent WHO-GMP guidelines. Transforming patient outcomes globally through continuous scientific excellence and rigorous quality controls.
+            Delivering trusted pharmaceutical solutions through strategic healthcare partnerships and WHO-GMP certified manufacturing collaborations.
           </p>
         </div>
 

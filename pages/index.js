@@ -2,8 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import Head from "next/head";
 import { motion, useInView } from "framer-motion";
 import Footer from "@/components/Footer";
-import TypewriterText from "@/components/TypewriterText";
-import HeroVisual from "@/components/HeroVisual";
+import HeroSection from "@/components/HeroSection";
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 30 },
@@ -62,26 +61,26 @@ function StatItem({ value, suffix = "", label, delay = 0, type = "number" }) {
     >
       {type === "number" ? (
         <motion.div 
-          initial={{ opacity: 0, scale: 0.95 }}
-          animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.95 }}
-          transition={{ duration: 1.2, delay, ease: [0.16, 1, 0.3, 1] }}
+          initial={{ opacity: 0, scale: 0.98, filter: "blur(4px)" }}
+          animate={isInView ? { opacity: 1, scale: 1, filter: "blur(0px)" } : { opacity: 0, scale: 0.98, filter: "blur(4px)" }}
+          transition={{ duration: 1.0, delay, ease: [0.16, 1, 0.3, 1] }}
           className="text-5xl md:text-[3.5rem] font-extrabold text-[#00152b] mb-3 font-serif tracking-tighter drop-shadow-sm group-hover:text-[#0f766e] transition-colors duration-500"
         >
           {displayValue}{suffix}
         </motion.div>
       ) : (
         <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
-          animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.95 }}
-          transition={{ duration: 1.2, delay, ease: [0.16, 1, 0.3, 1] }}
+          initial={{ opacity: 0, scale: 0.98, filter: "blur(4px)" }}
+          animate={isInView ? { opacity: 1, scale: 1, filter: "blur(0px)" } : { opacity: 0, scale: 0.98, filter: "blur(4px)" }}
+          transition={{ duration: 1.0, delay, ease: [0.16, 1, 0.3, 1] }}
           className="text-5xl md:text-[3.5rem] font-extrabold text-[#00152b] mb-3 font-serif tracking-tighter drop-shadow-sm group-hover:text-[#0f766e] transition-colors duration-500"
         >
           {value}{suffix}
         </motion.div>
       )}
       <motion.div
-        initial={{ opacity: 0, filter: "blur(2px)", y: 5 }}
-        animate={isInView ? { opacity: 1, filter: "blur(0px)", y: 0 } : { opacity: 0, filter: "blur(2px)", y: 5 }}
+        initial={{ opacity: 0, filter: "blur(3px)" }}
+        animate={isInView ? { opacity: 1, filter: "blur(0px)" } : { opacity: 0, filter: "blur(3px)" }}
         transition={{ duration: 1.0, delay: delay + 0.2, ease: [0.16, 1, 0.3, 1] }}
         className="text-[0.65rem] md:text-[0.7rem] font-bold text-slate-500/90 uppercase tracking-[0.2em] group-hover:text-[#0f766e] transition-colors duration-500"
       >
@@ -103,7 +102,7 @@ function FocusAreas() {
         </svg>
       ),
       title: "Cardiovascular",
-      desc: "Advanced lipid regulators and anti-hypertensives.",
+      desc: "Advanced therapeutic solutions supporting cardiovascular and hypertension management.",
     },
     {
       icon: (
@@ -113,7 +112,7 @@ function FocusAreas() {
         </svg>
       ),
       title: "Neurology",
-      desc: "Neuroprotectives and cognitive enhancement formulas.",
+      desc: "Precision formulations designed for neurological wellness and cognitive care.",
     },
     {
       icon: (
@@ -122,7 +121,7 @@ function FocusAreas() {
         </svg>
       ),
       title: "Diabetology",
-      desc: "Precision-engineered oral formulations for long-term glycaemic control and metabolic stability.",
+      desc: "Therapeutic solutions focused on glycemic control and metabolic health support.",
     },
     {
       icon: (
@@ -131,20 +130,20 @@ function FocusAreas() {
         </svg>
       ),
       title: "Anti-Infectives",
-      desc: "Broad-spectrum and targeted antimicrobial agents.",
+      desc: "Broad-spectrum pharmaceutical solutions supporting infection management.",
     },
   ];
 
   return (
-    <section ref={ref} className="pt-20 md:pt-28 pb-40 bg-gradient-to-b from-[#f1f5f9] via-white to-slate-50 relative">
+    <section ref={ref} className="pt-10 md:pt-16 pb-24 bg-gradient-to-b from-[#f1f5f9] via-white to-slate-50 relative">
       {/* Subtle top edge transition */}
       <div className="absolute top-0 left-0 w-full h-32 bg-gradient-to-b from-[#f1f5f9] to-transparent pointer-events-none"></div>
       
       <div className="max-w-7xl mx-auto px-6 relative z-10">
-        <div className="text-center max-w-3xl mx-auto mb-16 md:mb-20">
+        <div className="text-center max-w-3xl mx-auto mb-10 md:mb-16">
           <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.95 }}
+            initial={{ opacity: 0, filter: "blur(4px)" }}
+            animate={isInView ? { opacity: 1, filter: "blur(0px)" } : { opacity: 0, filter: "blur(4px)" }}
             transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
             className="flex justify-center items-center gap-5 mb-8"
           >
@@ -155,20 +154,20 @@ function FocusAreas() {
             <span className="h-px w-12 bg-[#14b8a6]/40"></span>
           </motion.div>
           <motion.h2
-            initial={{ opacity: 0, y: 30 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-            transition={{ duration: 1.0, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+            initial={{ opacity: 0, y: 15 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 15 }}
+            transition={{ duration: 1.2, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
             className="text-4xl md:text-[3.25rem] font-extrabold text-[#00152b] mb-8 tracking-tighter font-serif leading-tight"
           >
             Core Specialties
           </motion.h2>
           <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-            transition={{ duration: 1.0, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+            initial={{ opacity: 0, y: 10 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
+            transition={{ duration: 1.2, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
             className="text-slate-600 leading-[1.8] text-lg md:text-xl font-light max-w-3xl mx-auto"
           >
-            Delivering highly effective molecular formulas to critical hospital departments. Each molecule undergoes rigorous multi-stage laboratory checks before reaching pharmacy shelves, focusing heavily on consistent drug release metrics and superior systemic bioavailability.
+            Delivering highly effective formulations. Each molecule undergoes rigorous multi-stage checks before reaching pharmacy shelves, focusing heavily on consistent quality and therapeutic excellence.
           </motion.p>
         </div>
 
@@ -178,11 +177,12 @@ function FocusAreas() {
               key={idx}
               custom={idx}
               variants={{
-                initial: { opacity: 0, y: 50 },
+                initial: { opacity: 0, y: 20, scale: 0.98 },
                 visible: (i) => ({
                   opacity: 1,
                   y: 0,
-                  transition: { duration: 1.2, delay: 0.2 + i * 0.12, ease: [0.16, 1, 0.3, 1] }
+                  scale: 1,
+                  transition: { duration: 1.0, delay: 0.15 + i * 0.1, ease: [0.16, 1, 0.3, 1] }
                 }),
                 hover: {
                   y: -4,
@@ -231,155 +231,15 @@ export default function Home() {
         <meta name="description" content="Medileo Healthcare is a leader in therapeutic formulations." />
       </Head>
       {/* Hero Section */}
-      <section className="hero-gradient text-white pt-32 pb-56 md:pt-40 md:pb-64 relative overflow-hidden">
-        <div className="curved-line opacity-50"></div>
-
-        {/* Atmospheric Right-Side Glow (Visual Balance) */}
-        <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-teal-500/10 to-transparent pointer-events-none mix-blend-overlay"></div>
-
-        {/* Animated Background Orbs */}
-        <motion.div
-          className="absolute pointer-events-none opacity-[0.15] md:opacity-[0.25] mix-blend-screen"
-          style={{
-            top: "5%",
-            left: "-5%",
-            width: 600,
-            height: 600,
-            borderRadius: "50%",
-            background: "radial-gradient(circle, rgba(13,148,136,0.8) 0%, transparent 60%)",
-          }}
-          animate={{ x: [0, 30, -15, 0], y: [0, -20, 15, 0] }}
-          transition={{ duration: 14, repeat: Infinity, repeatType: "mirror", ease: "easeInOut" }}
-        />
-        <motion.div
-          className="absolute pointer-events-none opacity-[0.12] md:opacity-[0.2] mix-blend-screen"
-          style={{
-            top: "10%",
-            right: "-10%",
-            width: 800,
-            height: 800,
-            borderRadius: "50%",
-            background: "radial-gradient(circle, rgba(20,184,166,0.6) 0%, transparent 65%)",
-          }}
-          animate={{ x: [0, -25, 15, 0], y: [0, 25, -15, 0] }}
-          transition={{ duration: 18, repeat: Infinity, repeatType: "mirror", ease: "easeInOut", delay: 2 }}
-        />
-        <motion.div
-          className="absolute pointer-events-none opacity-[0.15] md:opacity-[0.25] mix-blend-screen"
-          style={{
-            bottom: "-10%",
-            right: "20%",
-            width: 500,
-            height: 500,
-            borderRadius: "50%",
-            background: "radial-gradient(circle, rgba(19,78,74,0.8) 0%, transparent 60%)",
-          }}
-          animate={{ x: [0, 20, -25, 0], y: [0, -15, 20, 0] }}
-          transition={{ duration: 16, repeat: Infinity, repeatType: "mirror", ease: "easeInOut", delay: 1 }}
-        />
-
-        <div className="max-w-7xl mx-auto px-6 relative z-10 flex flex-col lg:flex-row items-center justify-between h-full gap-12 lg:gap-8">
-          
-          {/* Left Text Content */}
-          <div className="max-w-2xl lg:max-w-[44rem] relative z-20 text-center lg:text-left w-full">
-            {/* Word-by-word animated headline */}
-            <h1 className="text-5xl md:text-7xl font-extrabold mb-8 leading-[1.15] tracking-tighter text-white drop-shadow-md font-serif">
-              {["Pioneering", "Pharmaceutical"].map((word, i) => (
-                <motion.span
-                  key={word}
-                  initial={{ opacity: 0, y: 50 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{
-                    duration: 1.2,
-                    delay: 0.1 + i * 0.15,
-                    ease: [0.16, 1, 0.3, 1], // Cinematic ultra-smooth slide
-                  }}
-                  style={{ display: "inline-block", marginRight: "0.25em" }}
-                >
-                  {word}
-                </motion.span>
-              ))}
-              <br className="hidden md:block" />
-              <TypewriterText 
-                text="Excellence" 
-                className="text-[#2ec4b6]"
-                delay={0.7}
-              />
-            </h1>
-
-            {/* Body paragraph — fades up after headline */}
-            <motion.p
-              initial={{ opacity: 0, scale: 0.98, y: 15 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              transition={{
-                duration: 1.2,
-                delay: 0.5,
-                ease: [0.16, 1, 0.3, 1],
-              }}
-              className="text-lg md:text-xl text-teal-50/80 mb-14 leading-[1.8] font-light max-w-xl mx-auto lg:mx-0 drop-shadow-sm"
-            >
-             Medileo Healthcare Pvt. Ltd. is an innovative, research-driven pharmaceutical corporation dedicated to formulating premium therapeutic drug classes. Our state-of-the-art manufacturing facilities operate strictly under stringent WHO-GMP guidelines, ensuring every batch meets rigorous international quality benchmarks to satisfy clinicians and transform patient outcomes globally.
-            </motion.p>
-
-            {/* CTA buttons — fade up last */}
-            <motion.div
-              initial={{ opacity: 0, y: 15 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{
-                duration: 1.0,
-                delay: 0.7,
-                ease: [0.22, 1, 0.36, 1],
-              }}
-              className="flex flex-col sm:flex-row gap-5 justify-center lg:justify-start"
-            >
-              <div className="relative w-full sm:w-auto">
-                <motion.a
-                  href="/products"
-                  className="bg-[#14b8a6] text-white px-10 py-4 rounded-xl font-bold transition-colors border border-teal-400/20 block text-center w-full tracking-wide shadow-lg shadow-teal-900/20"
-                  whileHover={{ 
-                    scale: 1.01, 
-                    y: -2, 
-                    backgroundColor: "#0f766e",
-                    boxShadow: "0 20px 40px -8px rgba(20,184,166,0.25), 0 10px 15px -4px rgba(20,184,166,0.15)" 
-                  }}
-                  whileTap={{ 
-                    scale: 0.99, 
-                    y: 0, 
-                    boxShadow: "0 5px 10px -2px rgba(20,184,166,0.2)" 
-                  }}
-                  transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-                >
-                  Explore Product Portfolio
-                </motion.a>
-              </div>
-              <motion.a
-                href="/contact"
-                className="bg-transparent border border-white/20 text-white px-10 py-4 rounded-xl font-bold transition-all backdrop-blur-md block text-center w-full sm:w-auto tracking-wide hover:border-white/40 hover:bg-white/10 shadow-lg shadow-transparent hover:shadow-white/5"
-                whileHover={{ scale: 1.02, y: -2 }}
-                whileTap={{ scale: 0.98, y: 0 }}
-                transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-              >
-                Corporate Profile
-              </motion.a>
-            </motion.div>
-          </div>
-          
-          {/* Right Atmospheric Visual */}
-          <motion.div 
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 2, delay: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            className="hidden lg:flex relative z-10 w-full max-w-[500px] h-[500px] items-center justify-center flex-shrink-0"
-          >
-            <HeroVisual />
-          </motion.div>
-        </div>
-        <div className="hero-wave"></div>
-      </section>
+      <HeroSection />
 
       {/* Stats Section */}
-      <section className="relative z-20 -mt-20 md:-mt-32 max-w-7xl mx-auto px-4 sm:px-6 mb-12 md:mb-20">
+      <section className="relative z-20 -mt-20 md:-mt-32 max-w-7xl mx-auto px-4 sm:px-6 mb-8 md:mb-12">
         <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1] }}
           className="bg-gradient-to-b from-white/95 to-slate-50/95 backdrop-blur-3xl rounded-[1.5rem] md:rounded-[2rem] shadow-[0_20px_40px_-15px_rgba(20,184,166,0.1),_0_0_20px_0_rgba(0,0,0,0.03)] hover:shadow-[0_30px_60px_-15px_rgba(15,118,110,0.15)] transition-shadow duration-700 ease-out p-10 md:p-14 border border-slate-100/80 relative overflow-hidden group/stats"
         >
           {/* Subtle gradient accent line at the top to blend with hero */}
@@ -388,9 +248,9 @@ export default function Home() {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-y-12 md:gap-y-0 gap-x-4 md:divide-x divide-slate-200/40 relative z-10">
             {[
               { value: "50", suffix: "+", label: "Product Lines", delay: 0 },
-              { value: "WHO", label: "GMP Certified", delay: 0.1, type: "text" },
-              { value: "100", suffix: "%", label: "QA Compliance", delay: 0.2 },
-              { value: "Pan", label: "India Presence", delay: 0.3, type: "text" },
+              { value: "WHO-GMP", label: "Certified", delay: 0.1, type: "text" },
+              { value: "Strict", label: "Quality Standards", delay: 0.2, type: "text" },
+              { value: "Pan-India", label: "Presence", delay: 0.3, type: "text" },
             ].map((stat, idx) => (
               <StatItem key={idx} {...stat} />
             ))}
