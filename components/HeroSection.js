@@ -42,7 +42,7 @@ export default function HeroSection() {
   const slide = slides[currentSlide];
 
   return (
-    <section className="hero-gradient text-white pt-32 pb-56 md:pt-40 md:pb-64 relative overflow-hidden min-h-[900px] lg:min-h-[850px]">
+    <section className="hero-gradient text-white pt-28 pb-40 md:pt-36 md:pb-48 relative overflow-hidden min-h-[800px] lg:min-h-[750px]">
       <div className="curved-line opacity-50 z-20"></div>
 
       {/* Persistent Atmospheric Glow */}
@@ -84,7 +84,7 @@ export default function HeroSection() {
           >
             {slide.bgType === "capsule" ? (
               <div className="absolute right-0 top-0 h-full w-full lg:w-[60%] flex items-center justify-end opacity-70">
-                <div className="w-[800px] h-[800px] translate-x-1/4 -translate-y-10 lg:translate-x-0 lg:translate-y-0">
+                <div className="w-[850px] h-[850px] lg:w-[900px] lg:h-[900px] translate-x-1/4 -translate-y-10 lg:translate-x-[5%] lg:-translate-y-[5%]">
                   <HeroVisual />
                 </div>
               </div>
@@ -105,7 +105,7 @@ export default function HeroSection() {
       <div className="max-w-7xl mx-auto px-6 relative z-30 flex flex-col items-start justify-center h-full pt-10">
         
         {/* Left Text Content */}
-        <div className="max-w-2xl lg:max-w-[44rem] relative text-center lg:text-left w-full mx-auto lg:mx-0">
+        <div className="max-w-2xl lg:max-w-[50rem] relative text-center lg:text-left w-full mx-auto lg:mx-0">
           <AnimatePresence mode="wait">
             <motion.div
               key={`content-${currentSlide}`}
@@ -126,7 +126,7 @@ export default function HeroSection() {
                 />
               </h1>
 
-              <div className="text-lg md:text-xl text-teal-50/90 mb-14 leading-[1.8] font-light max-w-xl mx-auto lg:mx-0 drop-shadow-sm min-h-[140px] md:min-h-[120px] space-y-4">
+              <div className="text-lg md:text-xl text-teal-50/90 mb-10 leading-[1.8] font-light max-w-2xl mx-auto lg:mx-0 drop-shadow-sm min-h-[140px] md:min-h-[120px] space-y-4">
                 <p>
                   Welcome to Medileo Healthcare. We are a dynamic and fast-growing pharmaceutical company dedicated to delivering high-quality, affordable, and innovative healthcare solutions across diverse medical specialties.
                 </p>
@@ -142,7 +142,7 @@ export default function HeroSection() {
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.2, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
-            className="flex flex-col sm:flex-row gap-5 justify-center lg:justify-start mt-4"
+            className="flex flex-col sm:flex-row gap-5 justify-center lg:justify-start mt-2"
           >
             <div className="relative w-full sm:w-auto">
               <a
@@ -163,7 +163,7 @@ export default function HeroSection() {
       </div>
 
       {/* Slide Indicators */}
-      <div className="absolute bottom-32 left-0 w-full z-40 flex justify-center lg:justify-start lg:pl-[max(1.5rem,calc((100%-80rem)/2+1.5rem))]">
+      <div className="absolute bottom-20 left-0 w-full z-40 flex justify-center lg:justify-start lg:pl-[max(1.5rem,calc((100%-80rem)/2+1.5rem))]">
         <div className="flex gap-3 px-6">
           {slides.map((_, idx) => (
             <button
