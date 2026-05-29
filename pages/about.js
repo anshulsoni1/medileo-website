@@ -45,9 +45,9 @@ export default function About() {
       </Head>
       
       {/* Premium Corporate Hero */}
-      <section className="bg-[#00152b] pt-24 pb-32 md:pt-32 md:pb-48 relative overflow-hidden">
+      <section className="bg-[#021120] pt-32 pb-32 md:pt-40 md:pb-40 relative overflow-hidden">
         {/* Subtle Corporate Gradients & Patterns */}
-        <div className="absolute top-0 right-0 w-full h-full bg-gradient-to-bl from-[#0f766e]/40 via-[#00152b]/50 to-[#00152b] pointer-events-none"></div>
+        <div className="absolute top-0 right-0 w-full h-full bg-gradient-to-bl from-[#0f766e]/40 via-[#021120]/50 to-[#021120] pointer-events-none"></div>
         <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)', backgroundSize: '32px 32px' }}></div>
         
         <div className="max-w-7xl mx-auto px-6 relative z-10 text-center">
@@ -67,9 +67,9 @@ export default function About() {
       </section>
 
       {/* Main Content - Elevated Intro Card */}
-      <section className="pt-0 pb-20 md:pb-32 bg-slate-50 relative">
+      <section className="pt-0 pb-16 md:pb-24 bg-slate-50 relative">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="bg-white rounded-3xl shadow-[0_20px_40px_-10px_rgba(0,0,0,0.08)] p-10 md:p-20 border border-slate-100 -mt-20 md:-mt-32 relative z-20 overflow-hidden">
+          <div className="bg-white rounded-3xl shadow-[0_20px_40px_-10px_rgba(0,0,0,0.08)] p-10 md:p-20 border border-slate-200/60 -mt-16 md:-mt-24 relative z-20 overflow-hidden">
             <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-[#14b8a6] via-[#0f766e] to-[#14b8a6]"></div>
             
             <div className="max-w-4xl mx-auto text-center relative z-10">
@@ -91,7 +91,7 @@ export default function About() {
       </section>
 
       {/* Three Pillars */}
-      <section className="py-20 md:py-32 bg-white relative">
+      <section className="py-16 md:py-24 bg-white relative">
         {/* Smooth blend from previous slate-50 background */}
         <div className="absolute top-0 left-0 w-full h-32 bg-gradient-to-b from-slate-50 to-transparent pointer-events-none z-0"></div>
         <div className="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-slate-50/80 to-transparent pointer-events-none"></div>
@@ -133,7 +133,7 @@ export default function About() {
       </section>
 
       {/* Vision & Mission */}
-      <section className="py-24 md:py-32 bg-slate-50 relative overflow-hidden">
+      <section className="py-16 md:py-24 bg-slate-50 relative overflow-hidden">
         {/* Organic curved divider transitioning from white */}
         <div className="absolute top-0 left-0 w-full overflow-hidden leading-none z-0 pointer-events-none">
           <svg className="relative block w-full h-[60px] md:h-[100px]" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
@@ -144,7 +144,7 @@ export default function About() {
         </div>
         {/* Enterprise Watermark */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full flex justify-center pointer-events-none opacity-[0.015] select-none">
-          <span className="text-[15rem] lg:text-[25rem] font-black font-serif leading-none whitespace-nowrap text-[#00152b]">PURPOSE</span>
+          <span className="text-[15rem] lg:text-[25rem] font-black font-serif leading-none whitespace-nowrap text-[#021120]">PURPOSE</span>
         </div>
         
         <div className="max-w-7xl mx-auto px-6 relative z-10">
@@ -198,7 +198,7 @@ export default function About() {
       </section>
 
       {/* Therapeutic Expertise & Technologies */}
-      <section className="bg-[#00152b] text-white pt-32 pb-24 md:pt-40 md:pb-32 relative overflow-hidden">
+      <section className="bg-[#021120] text-white py-16 md:py-24 relative overflow-hidden">
         {/* Sharp Clinical Angle from slate-50 */}
         <div className="absolute top-0 left-0 w-full overflow-hidden leading-none z-0 pointer-events-none">
           <svg className="relative block w-full h-[60px] md:h-[120px]" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
@@ -290,11 +290,11 @@ export default function About() {
       </section>
 
       {/* Trusted Quality Partnerships */}
-      <section className="pt-32 pb-24 md:pt-40 md:pb-32 bg-white relative">
+      <section className="py-16 md:py-24 bg-white relative">
         {/* Soft return curve from dark blue */}
         <div className="absolute top-0 left-0 w-full overflow-hidden leading-none z-0 rotate-180 pointer-events-none">
           <svg className="relative block w-full h-[60px] md:h-[100px]" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
-            <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" fill="#00152b"></path>
+            <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" fill="#021120"></path>
           </svg>
         </div>
         <div className="max-w-7xl mx-auto px-6">
@@ -341,7 +341,7 @@ export default function About() {
       </section>
 
       {/* Final Push CTA */}
-      <section className="bg-slate-50 py-20 md:py-28 relative border-t border-slate-200 overflow-hidden">
+      <section className="bg-slate-50 py-16 md:py-24 relative border-t border-slate-200 overflow-hidden">
         <div className="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-teal-50/50 to-transparent pointer-events-none"></div>
         <div className="max-w-4xl mx-auto px-6 text-center relative z-10">
           <h2 className="text-3xl md:text-5xl font-extrabold text-[#00152b] font-serif mb-6 tracking-tight leading-tight">
@@ -353,7 +353,7 @@ export default function About() {
           <div className="flex justify-center">
             <Link
               href="/contact"
-              className="inline-flex items-center justify-center gap-3 bg-[#14b8a6] hover:bg-[#0f766e] text-white px-10 py-5 rounded-xl font-bold transition-all duration-300 ease-premium shadow-[0_10px_20px_-5px_rgba(20,184,166,0.3)] hover:shadow-[0_15px_30px_-5px_rgba(20,184,166,0.4)] hover:-translate-y-1 tracking-wide"
+              className="inline-flex items-center justify-center gap-3 bg-teal-500 hover:bg-teal-600 text-white px-10 py-5 rounded-full font-bold transition-all duration-300 shadow-[0_10px_20px_-5px_rgba(20,184,166,0.3)] hover:shadow-[0_15px_30px_-5px_rgba(20,184,166,0.4)] hover:-translate-y-1 tracking-wide focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 focus-visible:ring-offset-2"
             >
               Connect With Our Corporate Team
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>

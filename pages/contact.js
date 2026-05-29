@@ -21,8 +21,8 @@ export default function Contact() {
       </Head>
 
       {/* Premium Corporate Hero */}
-      <section className="bg-[#00152b] pt-24 pb-32 md:pt-32 md:pb-48 relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-full h-full bg-gradient-to-bl from-[#0f766e]/40 via-[#00152b]/50 to-[#00152b] pointer-events-none"></div>
+      <section className="bg-[#021120] pt-32 pb-32 md:pt-40 md:pb-40 relative overflow-hidden">
+        <div className="absolute top-0 right-0 w-full h-full bg-gradient-to-bl from-[#0f766e]/40 via-[#021120]/50 to-[#021120] pointer-events-none"></div>
         {/* Rotating Molecular Ring */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] md:w-[800px] md:h-[800px] border-[0.5px] border-white/5 rounded-full animate-[spin_60s_linear_infinite] pointer-events-none z-0">
           <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-4 h-4 rounded-full bg-teal-500/20 border border-teal-500/50"></div>
@@ -59,7 +59,7 @@ export default function Contact() {
         </div>
       </section>
 
-      <section className="pt-24 pb-20 md:pt-32 md:pb-32 bg-slate-50 relative">
+      <section className="py-16 md:py-24 bg-slate-50 relative">
         <div className="absolute inset-0 opacity-[0.02] text-[#0f766e] bg-science-grid pointer-events-none z-0"></div>
         <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-5 gap-12 lg:gap-20 relative z-10">
           {/* Left Column: Contact Info */}
@@ -96,10 +96,10 @@ India — 400075
               whileInView="visible"
               viewport={{ once: true }}
               variants={fadeInUp}
-              className="bg-[#0b192c] p-6 md:p-8 rounded-2xl border border-[#1a2b3c] shadow-[0_8px_30px_-10px_rgba(0,0,0,0.2)] hover:-translate-y-1.5 hover:shadow-[0_20px_40px_-15px_rgba(20,184,166,0.15)] hover:border-teal-500/30 transition-all duration-500 ease-premium relative group overflow-hidden text-white"
+              className="bg-[#021120] p-6 md:p-8 rounded-2xl border border-white/5 shadow-[0_8px_30px_-10px_rgba(0,0,0,0.2)] hover:-translate-y-1.5 hover:shadow-[0_20px_40px_-15px_rgba(20,184,166,0.15)] hover:border-teal-500/30 transition-all duration-500 ease-premium relative group overflow-hidden text-white"
             >
               <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#14b8a6] to-[#0d9488] transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ease-out" />
-              <div className="mb-5 w-14 h-14 rounded-xl bg-[#1a2b3c] border border-white/10 text-white flex items-center justify-center text-3xl group-hover:scale-105 group-hover:bg-[#1a2b3c]/80 transition-all duration-500">
+              <div className="mb-5 w-14 h-14 rounded-xl bg-white/5 border border-white/10 text-white flex items-center justify-center text-3xl group-hover:scale-105 group-hover:bg-white/10 transition-all duration-500">
                 ✉️
               </div>
               <h3 className="text-xl md:text-2xl font-bold font-serif tracking-tight mb-3">
@@ -117,7 +117,7 @@ India — 400075
           </div>
 
           {/* Right Column: Contact Form */}
-          <div className="lg:col-span-3 lg:-mt-32 relative z-20">
+          <div className="lg:col-span-3 lg:-mt-24 relative z-20">
             <motion.div
               initial="hidden"
               whileInView="visible"
@@ -142,7 +142,7 @@ India — 400075
                     </label>
                     <input
                       type="text"
-                      className="w-full bg-slate-50/50 border border-slate-200 rounded-xl px-5 py-4 focus:outline-none focus:border-[#14b8a6] focus:ring-4 focus:ring-[#14b8a6]/10 transition-all font-light text-slate-700"
+                      className="w-full bg-slate-50/50 border border-slate-200 rounded-xl px-5 py-4 focus:outline-none focus:border-teal-500 focus:ring-4 focus:ring-teal-500/20 transition-all font-light text-slate-700"
                       placeholder="e.g. Dr. Jane Doe"
                     />
                   </div>
@@ -152,7 +152,7 @@ India — 400075
                     </label>
                     <input
                       type="email"
-                      className="w-full bg-slate-50/50 border border-slate-200 rounded-xl px-5 py-4 focus:outline-none focus:border-[#14b8a6] focus:ring-4 focus:ring-[#14b8a6]/10 transition-all font-light text-slate-700"
+                      className="w-full bg-slate-50/50 border border-slate-200 rounded-xl px-5 py-4 focus:outline-none focus:border-teal-500 focus:ring-4 focus:ring-teal-500/20 transition-all font-light text-slate-700"
                       placeholder="jane.doe@hospital.org"
                     />
                   </div>
@@ -161,7 +161,7 @@ India — 400075
                   <label className="block text-xs font-bold text-slate-500 uppercase tracking-widest mb-2.5">
                     Subject / Department <span className="text-red-400">*</span>
                   </label>
-                  <select className="w-full bg-slate-50/50 border border-slate-200 rounded-xl px-5 py-4 focus:outline-none focus:border-[#14b8a6] focus:ring-4 focus:ring-[#14b8a6]/10 transition-all font-light text-slate-700 appearance-none">
+                  <select className="w-full bg-slate-50/50 border border-slate-200 rounded-xl px-5 py-4 focus:outline-none focus:border-teal-500 focus:ring-4 focus:ring-teal-500/20 transition-all font-light text-slate-700 appearance-none">
                     <option>General Inquiry</option>
                     <option>Pharmacovigilance (Adverse Events)</option>
                     <option>Global Business Development</option>
@@ -177,7 +177,7 @@ India — 400075
                   </label>
                   <textarea
                     rows="5"
-                    className="w-full bg-slate-50/50 border border-slate-200 rounded-xl px-5 py-4 focus:outline-none focus:border-[#14b8a6] focus:ring-4 focus:ring-[#14b8a6]/10 transition-all font-light text-slate-700 resize-none"
+                    className="w-full bg-slate-50/50 border border-slate-200 rounded-xl px-5 py-4 focus:outline-none focus:border-teal-500 focus:ring-4 focus:ring-teal-500/20 transition-all font-light text-slate-700 resize-none"
                     placeholder="Provide detailed context for your inquiry..."
                   ></textarea>
                 </div>
@@ -185,7 +185,7 @@ India — 400075
                 <div className="pt-2">
                   <button
                     type="button"
-                    className="w-full flex items-center justify-center gap-3 bg-[#14b8a6] hover:bg-[#0f766e] text-white font-bold py-4 rounded-xl tracking-widest uppercase text-sm transition-all duration-300 ease-premium shadow-[0_10px_20px_-5px_rgba(20,184,166,0.3)] hover:shadow-[0_15px_30px_-5px_rgba(20,184,166,0.4)] hover:-translate-y-1"
+                    className="w-full flex items-center justify-center gap-3 bg-teal-500 hover:bg-teal-600 text-white font-bold py-4 rounded-full tracking-widest uppercase text-sm transition-all duration-300 shadow-[0_10px_20px_-5px_rgba(20,184,166,0.3)] hover:shadow-[0_15px_30px_-5px_rgba(20,184,166,0.4)] hover:-translate-y-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 focus-visible:ring-offset-2"
                   >
                     Send Corporate Inquiry
                     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
@@ -202,7 +202,7 @@ India — 400075
       </section>
 
       {/* Premium Trust Strip */}
-      <section className="bg-slate-50 py-12 border-t border-slate-200">
+      <section className="bg-slate-50 py-12 md:py-16 border-t border-slate-200">
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-12">
             <div className="flex items-center gap-3">

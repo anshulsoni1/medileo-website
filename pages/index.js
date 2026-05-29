@@ -63,7 +63,7 @@ function StatCard({ value, suffix = "", label, delay = 0, type = "number" }) {
       initial="hidden"
       animate={isInView ? "visible" : "hidden"}
       whileHover={{ y: -6, transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] } }}
-      className="bg-white rounded-2xl p-6 md:p-8 shadow-[0_8px_30px_-10px_rgba(0,0,0,0.04)] hover:shadow-[0_20px_40px_-15px_rgba(20,184,166,0.12)] hover:border-teal-500/30 border border-slate-100 flex flex-col justify-between items-start relative overflow-hidden group cursor-default min-h-[160px] md:min-h-[180px] transition-all duration-500 ease-premium"
+      className="bg-white rounded-2xl p-6 md:p-8 shadow-[0_8px_30px_-10px_rgba(0,0,0,0.04)] hover:shadow-[0_20px_40px_-15px_rgba(20,184,166,0.12)] hover:border-teal-500/30 border border-slate-200/60 flex flex-col justify-between items-start relative overflow-hidden group cursor-default min-h-[160px] md:min-h-[180px] transition-all duration-500 ease-premium"
     >
       {/* Decorative enterprise accent (Top border) */}
       <div className="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-[#14b8a6] to-[#0f766e] transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ease-out"></div>
@@ -155,7 +155,7 @@ function FocusAreas() {
   ];
 
   return (
-    <section ref={ref} className="pt-16 md:pt-24 pb-20 md:pb-24 bg-slate-50 relative">
+    <section ref={ref} className="py-16 md:py-24 bg-slate-50 relative">
       {/* Smooth top edge transition from white */}
       <div className="absolute top-0 left-0 w-full h-32 bg-gradient-to-b from-white to-transparent pointer-events-none z-0"></div>
       
@@ -243,7 +243,7 @@ export default function Home() {
       <HeroSection />
 
       {/* Stats Section */}
-      <section className="relative z-20 -mt-16 md:-mt-28 max-w-7xl mx-auto px-4 sm:px-6 mb-12 md:mb-20">
+      <section className="relative z-20 -mt-16 md:-mt-28 max-w-7xl mx-auto px-4 sm:px-6 mb-16 md:mb-24">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 md:gap-6">
           {[
             { value: "50", suffix: "+", label: "Product Lines", delay: 0 },
@@ -260,9 +260,9 @@ export default function Home() {
       <FocusAreas />
 
       {/* Final Push CTA */}
-      <section className="bg-[#00152b] py-20 md:py-28 relative overflow-hidden">
+      <section className="bg-[#021120] py-16 md:py-24 relative overflow-hidden">
         <div className="absolute inset-0 opacity-[0.05] text-white bg-science-grid"></div>
-        <div className="absolute top-0 right-0 w-full h-full bg-gradient-to-bl from-[#0f766e]/30 via-transparent to-[#00152b] pointer-events-none"></div>
+        <div className="absolute top-0 right-0 w-full h-full bg-gradient-to-bl from-[#0f766e]/30 via-transparent to-[#021120] pointer-events-none"></div>
         <div className="max-w-4xl mx-auto px-6 text-center relative z-10">
           <h2 className="text-3xl md:text-5xl font-extrabold text-white font-serif mb-6 tracking-tight leading-tight">
             Ready to Elevate Your Pharmaceutical Supply Chain?
@@ -273,7 +273,7 @@ export default function Home() {
           <div className="flex justify-center">
             <Link
               href="/contact"
-              className="inline-flex items-center justify-center gap-3 bg-[#14b8a6] hover:bg-[#0f766e] text-white px-10 py-5 rounded-xl font-bold transition-all duration-300 ease-premium shadow-[0_10px_20px_-5px_rgba(20,184,166,0.3)] hover:shadow-[0_15px_30px_-5px_rgba(20,184,166,0.4)] hover:-translate-y-1 tracking-wide"
+              className="inline-flex items-center justify-center gap-3 bg-teal-500 hover:bg-teal-600 text-white px-10 py-5 rounded-full font-bold transition-all duration-300 shadow-[0_10px_20px_-5px_rgba(20,184,166,0.3)] hover:shadow-[0_15px_30px_-5px_rgba(20,184,166,0.4)] hover:-translate-y-1 tracking-wide focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 focus-visible:ring-offset-2 focus-visible:ring-offset-[#021120]"
             >
               Initiate a Partnership
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>

@@ -58,7 +58,7 @@ export default function Navbar() {
               <Link
                 key={link.href}
                 href={link.href}
-                className="relative h-full flex items-center group"
+                className="relative h-full flex items-center group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 focus-visible:ring-inset rounded-md px-2"
               >
                 <span 
                   className={`text-sm font-semibold uppercase tracking-[0.1em] transition-colors duration-300 ease-premium ${
@@ -83,7 +83,7 @@ export default function Navbar() {
           <div className="flex items-center pl-4 border-l border-slate-200 h-8">
             <Link
               href="/contact"
-              className="flex items-center gap-2 bg-[#14b8a6] hover:bg-[#0f766e] text-white px-5 py-2.5 rounded-full font-bold text-xs uppercase tracking-widest transition-all duration-300 ease-premium shadow-[0_4px_14px_0_rgba(20,184,166,0.39)] hover:shadow-[0_6px_20px_rgba(20,184,166,0.4)] hover:-translate-y-1"
+              className="flex items-center gap-2 bg-teal-500 hover:bg-teal-600 text-white px-5 py-2.5 rounded-full font-bold text-xs uppercase tracking-widest transition-all duration-300 shadow-[0_4px_14px_0_rgba(20,184,166,0.3)] hover:shadow-[0_6px_20px_rgba(20,184,166,0.4)] hover:-translate-y-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 focus-visible:ring-offset-2"
             >
               Partner With Us
               <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
@@ -93,7 +93,7 @@ export default function Navbar() {
 
         {/* Mobile Menu Button */}
         <button
-          className="md:hidden text-slate-800 focus:outline-none p-2 hover:bg-slate-50 rounded-lg transition-colors"
+          className="md:hidden text-slate-800 focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 p-2 hover:bg-slate-50 rounded-lg transition-colors"
           onClick={() => setMobileOpen(!mobileOpen)}
           aria-label="Toggle menu"
         >
@@ -171,7 +171,7 @@ export default function Navbar() {
                 <Link
                   href="/contact"
                   onClick={() => setMobileOpen(false)}
-                  className="flex items-center justify-center gap-2 w-full bg-[#14b8a6] hover:bg-[#0f766e] text-white py-3.5 rounded-xl font-bold text-xs uppercase tracking-widest transition-all duration-300 ease-premium shadow-[0_4px_14px_0_rgba(20,184,166,0.39)] hover:-translate-y-1"
+                  className="flex items-center justify-center gap-2 w-full bg-teal-500 hover:bg-teal-600 text-white py-3.5 rounded-full font-bold text-xs uppercase tracking-widest transition-all duration-300 shadow-[0_4px_14px_0_rgba(20,184,166,0.3)] hover:-translate-y-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 focus-visible:ring-offset-2"
                 >
                   Partner With Us
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
