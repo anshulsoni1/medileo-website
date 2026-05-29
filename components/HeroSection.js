@@ -31,18 +31,37 @@ const slides = [
 
 export default function HeroSection() {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [isHovered, setIsHovered] = useState(false);
+  const [userInteracted, setUserInteracted] = useState(false);
 
   useEffect(() => {
+    if (isHovered || userInteracted) return;
     const timer = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % slides.length);
     }, 7500); // 7.5 seconds per slide
     return () => clearInterval(timer);
-  }, []);
+  }, [isHovered, userInteracted]);
+
+  const nextSlide = () => {
+    setCurrentSlide((prev) => (prev + 1) % slides.length);
+    setUserInteracted(true);
+  };
+
+  const prevSlide = () => {
+    setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
+    setUserInteracted(true);
+  };
 
   const slide = slides[currentSlide];
 
   return (
-    <section className="relative min-h-[900px] lg:min-h-screen flex items-center bg-[#021120] overflow-hidden">
+    <section 
+      className="relative min-h-[900px] lg:min-h-screen flex items-center bg-[#021120] overflow-hidden"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      onClick={() => setUserInteracted(true)}
+      onTouchStart={() => setUserInteracted(true)}
+    >
       {/* Refined Background Treatment - Clean, Professional, Deep */}
       <div className="absolute inset-0 z-0">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-teal-900/20 via-[#021120] to-[#021120]"></div>
@@ -117,27 +136,80 @@ export default function HeroSection() {
                   </p>
                 </div>
 
-                {/* 4. Manufacturing Showcase (Integrated & Scanable) */}
-                <div className="mb-12 max-w-2xl lg:max-w-3xl relative group">
-                  <div className="absolute inset-0 bg-gradient-to-r from-teal-500/10 to-transparent rounded-2xl blur-xl group-hover:from-teal-500/15 transition-all duration-500"></div>
-                  <div className="relative p-6 md:p-8 rounded-2xl bg-[#0a1e35]/60 border border-white/5 backdrop-blur-md hover:border-white/10 transition-colors">
-                    <div className="flex flex-col md:flex-row gap-5 items-start">
-                      <div className="flex-shrink-0 w-12 h-12 rounded-full bg-teal-500/10 flex items-center justify-center border border-teal-500/20">
-                        <svg className="w-6 h-6 text-teal-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
-                        </svg>
-                      </div>
-                      <div>
-                        <h3 className="text-white font-medium text-lg mb-2">Manufacturing & Excellence</h3>
-                        <p className="text-sm md:text-base text-white/60 leading-relaxed font-light">
-                          While we specialize in strategic pharmaceutical brand management and marketing, our uncompromising focus remains on product excellence. By collaborating with India’s leading WHO-GMP certified manufacturing partners, we deliver advanced therapeutic formulations developed with next-generation technologies including micronized and nano-droplet delivery systems.
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
               </motion.div>
             </AnimatePresence>
+
+            {/* 4. Manufacturing Showcase & Slider Controls (Static) */}
+            <motion.div 
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.3 }}
+              className="mb-12 w-full max-w-2xl lg:max-w-3xl relative z-30 group"
+            >
+              <div className="absolute inset-0 bg-gradient-to-r from-teal-500/10 to-transparent rounded-2xl blur-xl group-hover:from-teal-500/15 transition-all duration-500"></div>
+              
+              <div className="relative flex flex-col rounded-2xl bg-[#0a1e35]/60 border border-white/5 backdrop-blur-md hover:border-white/10 transition-colors overflow-hidden">
+                
+                {/* Showcase Content */}
+                <div className="p-6 md:p-8 flex flex-col md:flex-row gap-5 items-start">
+                  <div className="flex-shrink-0 w-12 h-12 rounded-full bg-teal-500/10 flex items-center justify-center border border-teal-500/20">
+                    <svg className="w-6 h-6 text-teal-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 className="text-white font-medium text-lg mb-2">Manufacturing & Excellence</h3>
+                    <p className="text-sm md:text-base text-white/60 leading-relaxed font-light">
+                      While we specialize in strategic pharmaceutical brand management and marketing, our uncompromising focus remains on product excellence. By collaborating with India’s leading WHO-GMP certified manufacturing partners, we deliver advanced therapeutic formulations developed with next-generation technologies including micronized and nano-droplet delivery systems.
+                    </p>
+                  </div>
+                </div>
+
+                {/* Slider Controls Footer */}
+                <div className="px-6 md:px-8 py-4 bg-white/[0.02] border-t border-white/5 flex flex-wrap sm:flex-nowrap items-center justify-between gap-4">
+                  
+                  {/* Slide Count */}
+                  <div className="flex items-center gap-3">
+                    <span className="text-teal-400 font-medium text-sm tabular-nums">0{currentSlide + 1}</span>
+                    <div className="w-8 h-px bg-white/20"></div>
+                    <span className="text-white/40 font-medium text-sm tabular-nums">0{slides.length}</span>
+                  </div>
+
+                  {/* Indicators */}
+                  <div className="flex items-center gap-2">
+                    {slides.map((_, idx) => (
+                      <button
+                        key={idx}
+                        onClick={(e) => { e.stopPropagation(); setCurrentSlide(idx); setUserInteracted(true); }}
+                        className={`transition-all duration-300 h-1.5 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 ${
+                          currentSlide === idx ? "w-8 bg-teal-400" : "w-2.5 bg-white/20 hover:bg-white/40"
+                        }`}
+                        aria-label={`Go to slide ${idx + 1}`}
+                      />
+                    ))}
+                  </div>
+
+                  {/* Prev/Next Navigation */}
+                  <div className="flex items-center gap-2">
+                    <button
+                      onClick={(e) => { e.stopPropagation(); prevSlide(); }}
+                      className="w-9 h-9 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/70 hover:bg-teal-500 hover:border-teal-500 hover:text-white transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500"
+                      aria-label="Previous slide"
+                    >
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M15 19l-7-7 7-7" /></svg>
+                    </button>
+                    <button
+                      onClick={(e) => { e.stopPropagation(); nextSlide(); }}
+                      className="w-9 h-9 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/70 hover:bg-teal-500 hover:border-teal-500 hover:text-white transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500"
+                      aria-label="Next slide"
+                    >
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M9 5l7 7-7 7" /></svg>
+                    </button>
+                  </div>
+
+                </div>
+              </div>
+            </motion.div>
 
             {/* 5. CTA Buttons (Enterprise-grade) */}
             <motion.div
@@ -165,23 +237,7 @@ export default function HeroSection() {
         </div>
       </div>
 
-      {/* Slide Indicators */}
-      <div className="absolute bottom-12 left-0 w-full z-30">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8 flex justify-center lg:justify-start">
-          <div className="flex gap-3">
-            {slides.map((_, idx) => (
-              <button
-                key={idx}
-                onClick={() => setCurrentSlide(idx)}
-                className={`h-1.5 rounded-full transition-all duration-500 ${
-                  currentSlide === idx ? "w-12 bg-teal-400" : "w-4 bg-white/20 hover:bg-white/40"
-                }`}
-                aria-label={`Go to slide ${idx + 1}`}
-              />
-            ))}
-          </div>
-        </div>
-      </div>
+
     </section>
   );
 }
