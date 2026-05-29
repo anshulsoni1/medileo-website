@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import Head from "next/head";
+import Link from "next/link";
 import { motion, useInView } from "framer-motion";
 import Footer from "@/components/Footer";
 import HeroSection from "@/components/HeroSection";
@@ -9,7 +10,7 @@ const fadeInUp = {
   visible: (i = 0) => ({
     opacity: 1,
     y: 0,
-    transition: { duration: 0.6, delay: i * 0.15, ease: "easeOut" },
+    transition: { duration: 0.8, delay: i * 0.15, ease: [0.22, 1, 0.36, 1] },
   }),
 };
 
@@ -22,7 +23,7 @@ function easeOutQuart(x) {
   return 1 - Math.pow(1 - x, 4);
 }
 
-function StatItem({ value, suffix = "", label, delay = 0, type = "number" }) {
+function StatCard({ value, suffix = "", label, delay = 0, type = "number" }) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.5 });
   const [displayValue, setDisplayValue] = useState(type === "number" ? "0" : value);
@@ -37,7 +38,7 @@ function StatItem({ value, suffix = "", label, delay = 0, type = "number" }) {
     const animateCount = (timestamp) => {
       if (!startTime) startTime = timestamp;
       const progress = Math.min((timestamp - startTime) / duration, 1);
-      const easedProgress = easeOutQuart(progress);
+      const easedProgress = 1 - Math.pow(1 - progress, 4);
       const current = Math.floor(easedProgress * targetValue);
       
       setDisplayValue(current.toString());
@@ -55,37 +56,56 @@ function StatItem({ value, suffix = "", label, delay = 0, type = "number" }) {
   return (
     <motion.div 
       ref={ref} 
-      className="text-center px-2 md:px-6 py-2 md:py-3 flex flex-col justify-center items-center group cursor-default"
-      whileHover={{ y: -2 }}
-      transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+      variants={{
+        hidden: { opacity: 0, y: 30 },
+        visible: { opacity: 1, y: 0, transition: { duration: 0.8, delay, ease: [0.22, 1, 0.36, 1] } }
+      }}
+      initial="hidden"
+      animate={isInView ? "visible" : "hidden"}
+      whileHover={{ y: -6, transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] } }}
+      className="bg-white rounded-2xl p-6 md:p-8 shadow-[0_8px_30px_-10px_rgba(0,0,0,0.04)] hover:shadow-[0_20px_40px_-15px_rgba(20,184,166,0.12)] hover:border-teal-500/30 border border-slate-100 flex flex-col justify-between items-start relative overflow-hidden group cursor-default min-h-[160px] md:min-h-[180px] transition-all duration-500 ease-premium"
     >
-      {type === "number" ? (
-        <motion.div 
-          initial={{ opacity: 0, scale: 0.98, filter: "blur(4px)" }}
-          animate={isInView ? { opacity: 1, scale: 1, filter: "blur(0px)" } : { opacity: 0, scale: 0.98, filter: "blur(4px)" }}
-          transition={{ duration: 1.0, delay, ease: [0.16, 1, 0.3, 1] }}
-          className="text-[2.5rem] md:text-5xl font-extrabold text-[#00152b] mb-2 font-serif tracking-tighter drop-shadow-sm group-hover:text-[#0f766e] transition-colors duration-500"
-        >
-          {displayValue}{suffix}
-        </motion.div>
-      ) : (
+      {/* Decorative enterprise accent (Top border) */}
+      <div className="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-[#14b8a6] to-[#0f766e] transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ease-out"></div>
+      
+      {/* Background Icon Watermark */}
+      <div className="absolute -bottom-4 -right-4 opacity-5 group-hover:opacity-10 transition-opacity duration-500 pointer-events-none">
+        <svg className="w-32 h-32 text-[#0f766e] transform group-hover:scale-110 group-hover:-rotate-6 transition-all duration-700" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
+           {/* Molecular bond structure */}
+           <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v4m0 0l-4-2m4 2l4-2M8 6v4m8-4v4m0 0l4 2m-4-2l-4 2m-4-2l-4 2m4-2v4m8-4v4m-8 4l4-2m0 0l4 2m-4-2v-4" />
+           <circle cx="12" cy="4" r="1.5" fill="currentColor"/>
+           <circle cx="8" cy="6" r="1.5" fill="currentColor"/>
+           <circle cx="16" cy="6" r="1.5" fill="currentColor"/>
+           <circle cx="4" cy="8" r="1.5" fill="currentColor"/>
+           <circle cx="20" cy="8" r="1.5" fill="currentColor"/>
+           <circle cx="8" cy="14" r="1.5" fill="currentColor"/>
+           <circle cx="16" cy="14" r="1.5" fill="currentColor"/>
+           <circle cx="12" cy="16" r="1.5" fill="currentColor"/>
+           <circle cx="12" cy="20" r="1.5" fill="currentColor"/>
+        </svg>
+      </div>
+
+      <div className="relative z-10 w-full flex flex-col h-full justify-center">
         <motion.div
-          initial={{ opacity: 0, scale: 0.98, filter: "blur(4px)" }}
-          animate={isInView ? { opacity: 1, scale: 1, filter: "blur(0px)" } : { opacity: 0, scale: 0.98, filter: "blur(4px)" }}
-          transition={{ duration: 1.0, delay, ease: [0.16, 1, 0.3, 1] }}
-          className="text-[2.5rem] md:text-5xl font-extrabold text-[#00152b] mb-2 font-serif tracking-tighter drop-shadow-sm group-hover:text-[#0f766e] transition-colors duration-500"
+          initial={{ opacity: 0, filter: "blur(4px)", x: -10 }}
+          animate={isInView ? { opacity: 1, filter: "blur(0px)", x: 0 } : { opacity: 0, filter: "blur(4px)", x: -10 }}
+          transition={{ duration: 1.0, delay: delay + 0.1, ease: [0.22, 1, 0.36, 1] }}
+          className={`font-serif font-extrabold tracking-tighter mb-2 md:mb-3 drop-shadow-sm group-hover:text-[#0f766e] transition-colors duration-500 ${
+            type === "text" && value.length >= 7 ? "text-[1.75rem] md:text-4xl leading-tight" : "text-5xl md:text-[3.5rem] leading-none"
+          } text-[#00152b]`}
         >
-          {value}{suffix}
+          {type === "number" ? displayValue : value}{suffix}
         </motion.div>
-      )}
-      <motion.div
-        initial={{ opacity: 0, filter: "blur(3px)" }}
-        animate={isInView ? { opacity: 1, filter: "blur(0px)" } : { opacity: 0, filter: "blur(3px)" }}
-        transition={{ duration: 1.0, delay: delay + 0.2, ease: [0.16, 1, 0.3, 1] }}
-        className="text-[0.65rem] md:text-[0.7rem] font-bold text-slate-500/90 uppercase tracking-[0.2em] group-hover:text-[#0f766e] transition-colors duration-500"
-      >
-        {label}
-      </motion.div>
+        
+        <motion.div
+          initial={{ opacity: 0, filter: "blur(3px)" }}
+          animate={isInView ? { opacity: 1, filter: "blur(0px)" } : { opacity: 0, filter: "blur(3px)" }}
+          transition={{ duration: 1.0, delay: delay + 0.3, ease: [0.22, 1, 0.36, 1] }}
+          className="text-xs md:text-sm font-bold text-slate-500 uppercase tracking-[0.15em] group-hover:text-[#14b8a6] transition-colors duration-500"
+        >
+          {label}
+        </motion.div>
+      </div>
     </motion.div>
   );
 }
@@ -135,16 +155,16 @@ function FocusAreas() {
   ];
 
   return (
-    <section ref={ref} className="pt-6 md:pt-10 pb-20 md:pb-24 bg-gradient-to-b from-[#f1f5f9] via-white to-slate-50 relative">
-      {/* Subtle top edge transition */}
-      <div className="absolute top-0 left-0 w-full h-32 bg-gradient-to-b from-[#f1f5f9] to-transparent pointer-events-none"></div>
+    <section ref={ref} className="pt-16 md:pt-24 pb-20 md:pb-24 bg-slate-50 relative">
+      {/* Smooth top edge transition from white */}
+      <div className="absolute top-0 left-0 w-full h-32 bg-gradient-to-b from-white to-transparent pointer-events-none z-0"></div>
       
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         <div className="text-center max-w-2xl mx-auto mb-10 md:mb-12">
           <motion.div
             initial={{ opacity: 0, filter: "blur(4px)" }}
             animate={isInView ? { opacity: 1, filter: "blur(0px)" } : { opacity: 0, filter: "blur(4px)" }}
-            transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
             className="flex justify-center items-center gap-5 mb-6 md:mb-8"
           >
             <span className="h-px w-12 bg-[#14b8a6]/40"></span>
@@ -156,7 +176,7 @@ function FocusAreas() {
           <motion.h2
             initial={{ opacity: 0, y: 15 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 15 }}
-            transition={{ duration: 1.2, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 0.8, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
             className="text-4xl md:text-[3.25rem] font-extrabold text-[#00152b] mb-5 md:mb-6 tracking-tighter font-serif leading-tight"
           >
             Core Specialties
@@ -164,7 +184,7 @@ function FocusAreas() {
           <motion.p
             initial={{ opacity: 0, y: 10 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
-            transition={{ duration: 1.2, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
             className="text-slate-600 leading-relaxed text-lg md:text-xl font-light max-w-2xl mx-auto"
           >
             Delivering highly effective formulations. Each molecule undergoes rigorous multi-stage checks before reaching pharmacy shelves, focusing heavily on consistent quality and therapeutic excellence.
@@ -177,38 +197,27 @@ function FocusAreas() {
               key={idx}
               custom={idx}
               variants={{
-                initial: { opacity: 0, y: 20, scale: 0.98 },
+                initial: { opacity: 0, y: 30 },
                 visible: (i) => ({
                   opacity: 1,
                   y: 0,
-                  scale: 1,
-                  transition: { duration: 1.0, delay: 0.15 + i * 0.1, ease: [0.16, 1, 0.3, 1] }
-                }),
-                hover: {
-                  y: -4,
-                  boxShadow: "0 30px 60px -15px rgba(15,118,110,0.12), 0 15px 25px -5px rgba(15,118,110,0.08)",
-                  transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] }
-                }
+                  transition: { duration: 0.8, delay: i * 0.1, ease: [0.22, 1, 0.36, 1] }
+                })
               }}
               initial="initial"
               animate={isInView ? "visible" : "initial"}
-              whileHover="hover"
-              className="bg-white p-8 lg:p-10 rounded-[1.5rem] border border-slate-100 shadow-xl shadow-slate-200/20 relative group cursor-pointer overflow-hidden flex flex-col h-full"
+              className="bg-white p-6 md:p-8 rounded-2xl border border-slate-200/60 shadow-[0_8px_30px_-10px_rgba(0,0,0,0.04)] hover:-translate-y-1.5 hover:shadow-[0_20px_40px_-15px_rgba(20,184,166,0.12)] hover:border-teal-500/30 transition-all duration-500 ease-premium relative group cursor-pointer overflow-hidden flex flex-col h-full"
             >
-              {/* Subtle top accent border line that glows on hover */}
-              <motion.div 
-                className="absolute top-0 left-0 w-full h-[3px] bg-gradient-to-r from-[#14b8a6] to-[#0d9488] opacity-0 group-hover:opacity-100 transition-opacity duration-700 ease-out" 
+              {/* Subtle top accent border line that expands on hover */}
+              <div 
+                className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#14b8a6] to-[#0d9488] transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ease-out" 
               />
               
-              <motion.div
-                variants={{ hover: { scale: 1.05, y: -2 } }}
-                transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-                className="mb-6 md:mb-8 bg-gradient-to-br from-slate-50 to-slate-100/50 border border-slate-200/60 shadow-[0_8px_15px_-3px_rgba(0,0,0,0.04)] w-14 h-14 md:w-16 md:h-16 flex items-center justify-center rounded-2xl group-hover:from-teal-50/80 group-hover:to-teal-100/30 group-hover:border-teal-200/60 group-hover:shadow-[0_12px_25px_-5px_rgba(20,184,166,0.15)] transition-all duration-500 relative overflow-hidden"
+              <div
+                className="mb-5 w-14 h-14 rounded-xl bg-teal-50 border border-teal-100/50 text-[#0f766e] flex items-center justify-center group-hover:bg-teal-100/50 group-hover:scale-105 transition-all duration-500"
               >
-                {/* Subtle internal glare */}
-                <div className="absolute top-0 left-0 w-full h-1/2 bg-gradient-to-b from-white/60 to-transparent opacity-50 pointer-events-none"></div>
                 {area.icon}
-              </motion.div>
+              </div>
               <h3 className="text-xl md:text-[1.35rem] font-bold text-[#00152b] mb-3 md:mb-4 font-serif tracking-tight leading-snug group-hover:text-[#0f766e] transition-colors duration-300">
                 {area.title}
               </h3>
@@ -234,32 +243,44 @@ export default function Home() {
       <HeroSection />
 
       {/* Stats Section */}
-      <section className="relative z-20 -mt-20 md:-mt-32 max-w-7xl mx-auto px-4 sm:px-6 mb-4 md:mb-8">
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-50px" }}
-          transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1] }}
-          className="bg-gradient-to-b from-white/95 to-slate-50/95 backdrop-blur-3xl rounded-[1.5rem] md:rounded-[2rem] shadow-[0_20px_40px_-15px_rgba(20,184,166,0.1),_0_0_20px_0_rgba(0,0,0,0.03)] hover:shadow-[0_30px_60px_-15px_rgba(15,118,110,0.15)] transition-shadow duration-700 ease-out p-8 md:py-10 md:px-12 border border-slate-100/80 relative overflow-hidden group/stats"
-        >
-          {/* Subtle gradient accent line at the top to blend with hero */}
-          <div className="absolute top-0 left-0 w-full h-[3px] bg-gradient-to-r from-transparent via-teal-400/30 to-transparent opacity-80"></div>
-          
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-y-8 md:gap-y-0 gap-x-4 md:divide-x divide-slate-200/40 relative z-10">
-            {[
-              { value: "50", suffix: "+", label: "Product Lines", delay: 0 },
-              { value: "WHO-GMP", label: "Certified", delay: 0.1, type: "text" },
-              { value: "Strict", label: "Quality Standards", delay: 0.2, type: "text" },
-              { value: "Pan-India", label: "Presence", delay: 0.3, type: "text" },
-            ].map((stat, idx) => (
-              <StatItem key={idx} {...stat} />
-            ))}
-          </div>
-        </motion.div>
+      <section className="relative z-20 -mt-16 md:-mt-28 max-w-7xl mx-auto px-4 sm:px-6 mb-12 md:mb-20">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 md:gap-6">
+          {[
+            { value: "50", suffix: "+", label: "Product Lines", delay: 0 },
+            { value: "WHO-GMP", label: "Certified", delay: 0.1, type: "text" },
+            { value: "Strict", label: "Quality Standards", delay: 0.2, type: "text" },
+            { value: "Pan-India", label: "Presence", delay: 0.3, type: "text" },
+          ].map((stat, idx) => (
+            <StatCard key={idx} {...stat} />
+          ))}
+        </div>
       </section>
 
       {/* Focus Areas Section */}
       <FocusAreas />
+
+      {/* Final Push CTA */}
+      <section className="bg-[#00152b] py-20 md:py-28 relative overflow-hidden">
+        <div className="absolute inset-0 opacity-[0.05] text-white bg-science-grid"></div>
+        <div className="absolute top-0 right-0 w-full h-full bg-gradient-to-bl from-[#0f766e]/30 via-transparent to-[#00152b] pointer-events-none"></div>
+        <div className="max-w-4xl mx-auto px-6 text-center relative z-10">
+          <h2 className="text-3xl md:text-5xl font-extrabold text-white font-serif mb-6 tracking-tight leading-tight">
+            Ready to Elevate Your Pharmaceutical Supply Chain?
+          </h2>
+          <p className="text-slate-300 text-lg md:text-xl font-light mb-10 max-w-2xl mx-auto">
+            Connect with our corporate team to explore strategic partnerships, product distribution, and collaborative healthcare solutions.
+          </p>
+          <div className="flex justify-center">
+            <Link
+              href="/contact"
+              className="inline-flex items-center justify-center gap-3 bg-[#14b8a6] hover:bg-[#0f766e] text-white px-10 py-5 rounded-xl font-bold transition-all duration-300 ease-premium shadow-[0_10px_20px_-5px_rgba(20,184,166,0.3)] hover:shadow-[0_15px_30px_-5px_rgba(20,184,166,0.4)] hover:-translate-y-1 tracking-wide"
+            >
+              Initiate a Partnership
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
+            </Link>
+          </div>
+        </div>
+      </section>
 
       <Footer />
     </>

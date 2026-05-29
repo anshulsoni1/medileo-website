@@ -8,7 +8,6 @@ const LOGO_URL = "/logo.png";
 const NAV_LINKS = [
   { href: "/", label: "Home" },
   { href: "/about", label: "About Us" },
-  { href: "/contact", label: "Contact" },
 ];
 
 export default function Navbar() {
@@ -30,21 +29,21 @@ export default function Navbar() {
     <header 
       className={`sticky top-0 z-40 w-full transition-all duration-300 ease-out ${
         isScrolled 
-          ? "bg-white/90 backdrop-blur-lg shadow-lg shadow-teal-900/5" 
+          ? "bg-white/95 backdrop-blur-md shadow-md shadow-slate-200/50" 
           : "bg-white border-b border-transparent"
       }`}
     >
       <div 
         className={`max-w-7xl mx-auto px-6 flex justify-between items-center transition-all duration-300 ease-out ${
-          isScrolled ? "h-20" : "h-28 md:h-[7.5rem]"
+          isScrolled ? "h-16 md:h-20" : "h-24 md:h-[6.5rem]"
         }`}
       >
         {/* Logo */}
         <Link href="/" className="flex items-center h-full py-2 group">
           <img
             alt="Medileo Healthcare Logo"
-            className={`w-auto object-contain transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] drop-shadow-[0_1px_1px_rgba(0,0,0,0.05)] group-hover:opacity-90 group-hover:scale-[1.01] ${
-              isScrolled ? "h-12 md:h-[3.25rem]" : "h-16 md:h-[4.5rem]"
+            className={`w-auto object-contain transition-all duration-500 ease-premium drop-shadow-[0_1px_1px_rgba(0,0,0,0.05)] group-hover:opacity-90 group-hover:scale-[1.01] ${
+              isScrolled ? "h-14 md:h-[4rem]" : "h-20 md:h-[5.5rem]"
             }`}
             style={{ imageRendering: "high-quality" }}
             src={LOGO_URL}
@@ -52,7 +51,7 @@ export default function Navbar() {
         </Link>
 
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex space-x-10 h-full items-center relative">
+        <nav className="hidden md:flex space-x-12 h-full items-center relative">
           {NAV_LINKS.map((link) => {
             const isActive = router.pathname === link.href;
             return (
@@ -62,10 +61,10 @@ export default function Navbar() {
                 className="relative h-full flex items-center group"
               >
                 <span 
-                  className={`text-xs font-semibold uppercase tracking-[0.15em] transition-colors duration-300 ${
+                  className={`text-sm font-semibold uppercase tracking-[0.1em] transition-colors duration-300 ease-premium ${
                     isActive 
                       ? "text-[#0f766e]" 
-                      : "text-slate-500 group-hover:text-[#0f766e]"
+                      : "text-slate-600 group-hover:text-[#0f766e]"
                   }`}
                 >
                   {link.label}
@@ -73,13 +72,23 @@ export default function Navbar() {
                 {isActive && (
                   <motion.div
                     layoutId="activeNavIndicator"
-                    className="absolute bottom-[-1px] left-0 right-0 h-[2px] bg-[#0f766e]"
+                    className="absolute bottom-[-1px] left-0 right-0 h-[3px] rounded-t-md bg-[#0f766e]"
                     transition={{ type: "spring", stiffness: 350, damping: 30 }}
                   />
                 )}
               </Link>
             );
           })}
+
+          <div className="flex items-center pl-4 border-l border-slate-200 h-8">
+            <Link
+              href="/contact"
+              className="flex items-center gap-2 bg-[#14b8a6] hover:bg-[#0f766e] text-white px-5 py-2.5 rounded-full font-bold text-xs uppercase tracking-widest transition-all duration-300 ease-premium shadow-[0_4px_14px_0_rgba(20,184,166,0.39)] hover:shadow-[0_6px_20px_rgba(20,184,166,0.4)] hover:-translate-y-1"
+            >
+              Partner With Us
+              <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
+            </Link>
+          </div>
         </nav>
 
         {/* Mobile Menu Button */}
@@ -151,6 +160,23 @@ export default function Navbar() {
                   </motion.div>
                 );
               })}
+              
+              <motion.div
+                initial={{ opacity: 0, x: -10 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -10 }}
+                transition={{ duration: 0.2, delay: NAV_LINKS.length * 0.05 }}
+                className="pt-4 mt-2 border-t border-slate-100"
+              >
+                <Link
+                  href="/contact"
+                  onClick={() => setMobileOpen(false)}
+                  className="flex items-center justify-center gap-2 w-full bg-[#14b8a6] hover:bg-[#0f766e] text-white py-3.5 rounded-xl font-bold text-xs uppercase tracking-widest transition-all duration-300 ease-premium shadow-[0_4px_14px_0_rgba(20,184,166,0.39)] hover:-translate-y-1"
+                >
+                  Partner With Us
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
+                </Link>
+              </motion.div>
             </div>
           </motion.nav>
         )}
