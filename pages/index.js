@@ -1,9 +1,12 @@
 import React, { useEffect, useRef, useState } from "react";
 import Head from "next/head";
+import SEO from "@/components/SEO";
+import { getIndexSchema } from "@/utils/schema";
 import Link from "next/link";
 import { motion, useInView } from "framer-motion";
 import Footer from "@/components/Footer";
 import HeroSection from "@/components/HeroSection";
+import FAQSection from "@/components/FAQSection";
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 30 },
@@ -235,10 +238,12 @@ function FocusAreas() {
 export default function Home() {
   return (
     <>
-      <Head>
-        <title>Medileo Healthcare | Pioneering Pharmaceutical Excellence</title>
-        <meta name="description" content="Medileo Healthcare is a leader in therapeutic formulations." />
-      </Head>
+      <SEO 
+        title="Medileo Healthcare | WHO-GMP Certified Pharmaceutical Manufacturing in India"
+        description="Medileo Healthcare is a leading Indian pharmaceutical company delivering high-quality, WHO-GMP certified therapeutic formulations and healthcare solutions globally."
+        canonicalUrl="https://www.medileo.com/"
+        structuredData={getIndexSchema()}
+      />
       {/* Hero Section */}
       <HeroSection />
 
@@ -259,15 +264,18 @@ export default function Home() {
       {/* Focus Areas Section */}
       <FocusAreas />
 
+      {/* FAQ Section */}
+      <FAQSection />
+
       {/* Final Push CTA */}
       <section className="bg-[#021120] py-16 md:py-24 relative overflow-hidden">
         <div className="absolute inset-0 opacity-[0.05] text-white bg-science-grid"></div>
         <div className="absolute top-0 right-0 w-full h-full bg-gradient-to-bl from-[#0f766e]/30 via-transparent to-[#021120] pointer-events-none"></div>
-        <div className="max-w-4xl mx-auto px-6 text-center relative z-10">
+        <div className="text-center mb-16 md:mb-20">
           <h2 className="text-3xl md:text-5xl font-extrabold text-white font-serif mb-6 tracking-tight leading-tight">
-            Ready to Elevate Your Pharmaceutical Supply Chain?
+            Global Pharmaceutical Excellence
           </h2>
-          <p className="text-slate-300 text-lg md:text-xl font-light mb-10 max-w-2xl mx-auto">
+          <p className="text-slate-300 text-lg md:text-xl font-light max-w-3xl mx-auto leading-relaxed">
             Connect with our corporate team to explore strategic partnerships, product distribution, and collaborative healthcare solutions.
           </p>
           <div className="flex justify-center">

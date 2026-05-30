@@ -1,5 +1,7 @@
 import React from "react";
 import Head from "next/head";
+import SEO from "@/components/SEO";
+import { getContactSchema } from "@/utils/schema";
 import { motion } from "framer-motion";
 import Footer from "@/components/Footer";
 
@@ -15,10 +17,12 @@ const fadeInUp = {
 export default function Contact() {
   return (
     <>
-      <Head>
-        <title>Corporate Communications | Medileo Healthcare</title>
-        <meta name="description" content="Contact Medileo Healthcare for medical inquiries and partnerships." />
-      </Head>
+      <SEO 
+        title="Contact Medileo Healthcare | Pharmaceutical Manufacturing Partnerships"
+        description="Partner with Medileo Healthcare for WHO-GMP certified pharmaceutical contract manufacturing, product inquiries, and global corporate collaborations."
+        canonicalUrl="https://www.medileo.com/contact"
+        structuredData={getContactSchema()}
+      />
 
       {/* Premium Corporate Hero */}
       <section className="bg-[#021120] pt-32 pb-32 md:pt-40 md:pb-40 relative overflow-hidden">
@@ -44,7 +48,7 @@ export default function Contact() {
               <span className="h-px w-12 bg-[#14b8a6]/60"></span>
             </div>
             <h1 className="text-4xl md:text-6xl lg:text-[4rem] font-extrabold text-white mb-6 font-serif tracking-tight leading-[1.15] drop-shadow-lg">
-              Partner with <span className="text-[#14b8a6]">Medileo</span>
+              Global Pharmaceutical Partnerships
             </h1>
             <p className="text-slate-300 max-w-2xl mx-auto text-lg md:text-xl font-light leading-relaxed">
               For business inquiries, healthcare partnerships, product information, and distribution collaborations, connect with the Medileo Healthcare team.
@@ -134,34 +138,49 @@ India — 400075
                 <p className="text-slate-500 font-light text-lg">Please fill out the form below. Our corporate team typically responds within 24 hours.</p>
               </div>
 
-              <form className="space-y-8">
+              <form 
+                className="space-y-8" 
+                onSubmit={(e) => { 
+                  e.preventDefault(); 
+                  alert("Thank you for your inquiry. Our corporate team will reach out to you shortly."); 
+                  e.target.reset(); 
+                }}
+              >
                 <div className="grid md:grid-cols-2 gap-8">
                   <div className="relative">
-                    <label className="block text-xs font-bold text-slate-500 uppercase tracking-widest mb-2.5">
+                    <label htmlFor="fullName" className="block text-xs font-bold text-slate-500 uppercase tracking-widest mb-2.5">
                       Full Name <span className="text-red-400">*</span>
                     </label>
                     <input
+                      id="fullName"
+                      name="fullName"
                       type="text"
+                      required
+                      aria-required="true"
                       className="w-full bg-slate-50/50 border border-slate-200 rounded-xl px-5 py-4 focus:outline-none focus:border-teal-500 focus:ring-4 focus:ring-teal-500/20 transition-all font-light text-slate-700"
                       placeholder="e.g. Dr. Jane Doe"
                     />
                   </div>
                   <div className="relative">
-                    <label className="block text-xs font-bold text-slate-500 uppercase tracking-widest mb-2.5">
+                    <label htmlFor="emailAddress" className="block text-xs font-bold text-slate-500 uppercase tracking-widest mb-2.5">
                       Email Address <span className="text-red-400">*</span>
                     </label>
                     <input
+                      id="emailAddress"
+                      name="emailAddress"
                       type="email"
+                      required
+                      aria-required="true"
                       className="w-full bg-slate-50/50 border border-slate-200 rounded-xl px-5 py-4 focus:outline-none focus:border-teal-500 focus:ring-4 focus:ring-teal-500/20 transition-all font-light text-slate-700"
                       placeholder="jane.doe@hospital.org"
                     />
                   </div>
                 </div>
                 <div className="relative">
-                  <label className="block text-xs font-bold text-slate-500 uppercase tracking-widest mb-2.5">
+                  <label htmlFor="department" className="block text-xs font-bold text-slate-500 uppercase tracking-widest mb-2.5">
                     Subject / Department <span className="text-red-400">*</span>
                   </label>
-                  <select className="w-full bg-slate-50/50 border border-slate-200 rounded-xl px-5 py-4 focus:outline-none focus:border-teal-500 focus:ring-4 focus:ring-teal-500/20 transition-all font-light text-slate-700 appearance-none">
+                  <select id="department" name="department" required aria-required="true" className="w-full bg-slate-50/50 border border-slate-200 rounded-xl px-5 py-4 focus:outline-none focus:border-teal-500 focus:ring-4 focus:ring-teal-500/20 transition-all font-light text-slate-700 appearance-none">
                     <option>General Inquiry</option>
                     <option>Pharmacovigilance (Adverse Events)</option>
                     <option>Global Business Development</option>
@@ -172,11 +191,15 @@ India — 400075
                   </div>
                 </div>
                 <div className="relative">
-                  <label className="block text-xs font-bold text-slate-500 uppercase tracking-widest mb-2.5">
+                  <label htmlFor="message" className="block text-xs font-bold text-slate-500 uppercase tracking-widest mb-2.5">
                     Message <span className="text-red-400">*</span>
                   </label>
                   <textarea
+                    id="message"
+                    name="message"
                     rows="5"
+                    required
+                    aria-required="true"
                     className="w-full bg-slate-50/50 border border-slate-200 rounded-xl px-5 py-4 focus:outline-none focus:border-teal-500 focus:ring-4 focus:ring-teal-500/20 transition-all font-light text-slate-700 resize-none"
                     placeholder="Provide detailed context for your inquiry..."
                   ></textarea>
@@ -184,7 +207,7 @@ India — 400075
                 
                 <div className="pt-2">
                   <button
-                    type="button"
+                    type="submit"
                     className="w-full flex items-center justify-center gap-3 bg-teal-500 hover:bg-teal-600 text-white font-bold py-4 rounded-full tracking-widest uppercase text-sm transition-all duration-300 shadow-[0_10px_20px_-5px_rgba(20,184,166,0.3)] hover:shadow-[0_15px_30px_-5px_rgba(20,184,166,0.4)] hover:-translate-y-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 focus-visible:ring-offset-2"
                   >
                     Send Corporate Inquiry

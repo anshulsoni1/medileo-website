@@ -1,5 +1,7 @@
 import React from "react";
 import Head from "next/head";
+import SEO from "@/components/SEO";
+import { getAboutSchema } from "@/utils/schema";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import Footer from "@/components/Footer";
@@ -39,10 +41,12 @@ const pillars = [
 export default function About() {
   return (
     <>
-      <Head>
-        <title>About Us | Medileo Healthcare</title>
-        <meta name="description" content="Learn about Medileo Healthcare's mission and patient-centric innovation." />
-      </Head>
+      <SEO 
+        title="About Medileo Healthcare | Global Pharmaceutical Manufacturer"
+        description="Discover Medileo Healthcare's commitment to WHO-GMP certified pharmaceutical manufacturing, innovative therapeutic formulations, and global healthcare accessibility."
+        canonicalUrl="https://www.medileo.com/about"
+        structuredData={getAboutSchema()}
+      />
       
       {/* Premium Corporate Hero */}
       <section className="bg-[#021120] pt-32 pb-32 md:pt-40 md:pb-40 relative overflow-hidden">
@@ -221,7 +225,7 @@ export default function About() {
                 </span>
               </div>
               <h2 className="text-3xl md:text-5xl font-extrabold text-white font-serif tracking-tight mb-6">
-                Specialized Care Areas
+                Specialized Therapeutic Areas
               </h2>
               <p className="text-slate-300 leading-relaxed font-light mb-12 text-lg lg:max-w-xl">
                 Our advanced therapeutic portfolio is carefully designed to support healthcare professionals across multiple specialties through trusted, research-driven pharmaceutical solutions.

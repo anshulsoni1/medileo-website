@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { motion, AnimatePresence } from "framer-motion";
@@ -40,8 +41,12 @@ export default function Navbar() {
       >
         {/* Logo */}
         <Link href="/" className="flex items-center h-full py-2 group">
-          <img
-            alt="Medileo Healthcare Logo"
+          <Image
+            alt="Medileo Healthcare Corporate Logo"
+            title="Medileo Healthcare"
+            width={240}
+            height={80}
+            priority={true}
             className={`w-auto object-contain transition-all duration-500 ease-premium drop-shadow-[0_1px_1px_rgba(0,0,0,0.05)] group-hover:opacity-90 group-hover:scale-[1.01] ${
               isScrolled ? "h-14 md:h-[4rem]" : "h-20 md:h-[5.5rem]"
             }`}
@@ -96,6 +101,7 @@ export default function Navbar() {
           className="md:hidden text-slate-800 focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 p-2 hover:bg-slate-50 rounded-lg transition-colors"
           onClick={() => setMobileOpen(!mobileOpen)}
           aria-label="Toggle menu"
+          aria-expanded={mobileOpen}
         >
           <motion.svg
             className="h-6 w-6"

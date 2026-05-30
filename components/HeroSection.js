@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import TypewriterText from "@/components/TypewriterText";
 import HeroVisual from "@/components/HeroVisual";
@@ -74,6 +75,7 @@ export default function HeroSection() {
             exit={{ opacity: 0 }}
             transition={{ duration: 1.5, ease: "easeInOut" }}
             className="absolute inset-0"
+            style={{ willChange: "opacity, transform" }}
           >
             {slide.bgType === "capsule" ? (
               <div className="absolute right-0 top-1/2 -translate-y-1/2 w-full lg:w-[60%] h-full flex items-center justify-center opacity-70 mix-blend-screen pointer-events-none">
@@ -83,10 +85,16 @@ export default function HeroSection() {
               </div>
             ) : (
               <div className="absolute inset-0">
-                <div 
-                  className="absolute inset-0 bg-cover bg-center opacity-[0.12] mix-blend-luminosity grayscale-[40%]"
-                  style={{ backgroundImage: `url(${slide.bgImage})` }}
-                />
+                <div className="absolute inset-0 opacity-[0.12] mix-blend-luminosity grayscale-[40%]">
+                  <Image
+                    src={slide.bgImage}
+                    alt={`Medileo Healthcare Pharmaceutical Manufacturing - ${slide.highlight}`}
+                    fill
+                    priority
+                    sizes="100vw"
+                    className="object-cover object-center"
+                  />
+                </div>
                 <div className="absolute inset-0 bg-gradient-to-r from-[#021120] via-[#021120]/95 to-transparent" />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#021120] via-transparent to-[#021120]/50" />
               </div>
@@ -132,7 +140,7 @@ export default function HeroSection() {
                 {/* 3. Executive Summary */}
                 <div className="mb-10 max-w-2xl lg:max-w-3xl">
                   <p className="text-lg md:text-xl text-white/70 font-light leading-relaxed">
-                    Welcome to Medileo Healthcare. We are a dynamic and fast-growing pharmaceutical company dedicated to delivering high-quality, affordable, and innovative healthcare solutions across diverse medical specialties.
+                    Medileo Healthcare is a leading WHO-GMP certified pharmaceutical manufacturer in India, dedicated to developing accessible, high-quality therapeutic formulations and innovative healthcare solutions for global markets.
                   </p>
                 </div>
 
@@ -172,7 +180,7 @@ export default function HeroSection() {
                   <div className="flex items-center gap-3">
                     <span className="text-teal-400 font-medium text-sm tabular-nums">0{currentSlide + 1}</span>
                     <div className="w-8 h-px bg-white/20"></div>
-                    <span className="text-white/40 font-medium text-sm tabular-nums">0{slides.length}</span>
+                    <span className="text-white/60 font-medium text-sm tabular-nums">0{slides.length}</span>
                   </div>
 
                   {/* Indicators */}
