@@ -29,31 +29,31 @@ const pillars = [
   {
     emoji: "❤️",
     title: "Patient-Centric Care",
-    desc: "Behind every formulation is a commitment to improving patient outcomes through trusted and accessible healthcare solutions.",
+    desc: "Behind every formulation is a commitment to helping patients achieve better outcomes through trusted and accessible healthcare solutions.",
   },
   {
     emoji: "🤝",
     title: "Integrity & Transparency",
-    desc: "We build long-term relationships with healthcare professionals and partners through ethical practices, honesty, and transparency.",
+    desc: "We build long-term relationships with healthcare professionals and partners through ethical practices, honesty and transparency.",
   },
 ];
 
 export default function About() {
   return (
     <>
-      <SEO 
+      <SEO
         title="About Medileo Healthcare | Global Pharmaceutical Manufacturer"
         description="Discover Medileo Healthcare's commitment to WHO-GMP certified pharmaceutical manufacturing, innovative therapeutic formulations, and global healthcare accessibility."
         canonicalUrl="https://www.medileo.com/about"
         structuredData={getAboutSchema()}
       />
-      
+
       {/* Premium Corporate Hero */}
       <section className="bg-[#021120] pt-32 pb-32 md:pt-40 md:pb-40 relative overflow-hidden">
         {/* Subtle Corporate Gradients & Patterns */}
         <div className="absolute top-0 right-0 w-full h-full bg-gradient-to-bl from-[#0f766e]/40 via-[#021120]/50 to-[#021120] pointer-events-none"></div>
         <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)', backgroundSize: '32px 32px' }}></div>
-        
+
         <div className="max-w-7xl mx-auto px-6 relative z-10 text-center">
           <motion.div initial="hidden" animate="visible" variants={staggerContainer}>
             <motion.div custom={0} variants={fadeInUp} className="flex justify-center items-center gap-4 mb-6">
@@ -75,18 +75,18 @@ export default function About() {
         <div className="max-w-7xl mx-auto px-6">
           <div className="bg-white rounded-3xl shadow-[0_20px_40px_-10px_rgba(0,0,0,0.08)] p-10 md:p-20 border border-slate-200/60 -mt-16 md:-mt-24 relative z-20 overflow-hidden">
             <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-[#14b8a6] via-[#0f766e] to-[#14b8a6]"></div>
-            
+
             <div className="max-w-4xl mx-auto text-center relative z-10">
               <div className="space-y-8 text-slate-600 leading-relaxed font-light text-lg md:text-xl">
                 <p>
-                  At <strong className="font-bold text-[#00152b]">Medileo Healthcare Pvt. Ltd.</strong>, we are committed to delivering high-quality, affordable, and innovative pharmaceutical solutions across diverse therapeutic segments.
+                  At <strong className="font-bold text-[#00152b]">Medileo Healthcare Pvt. Ltd.</strong> we are committed to delivering high-quality, affordable and innovative pharmaceutical solutions across diverse therapeutic segments.
                 </p>
                 <div className="w-16 h-px bg-slate-200 mx-auto"></div>
                 <p>
-                  Specializing in strategic pharmaceutical brand management and healthcare marketing, we collaborate with India’s leading WHO-GMP certified manufacturing facilities to provide advanced therapeutic formulations that meet the highest standards of quality, safety, and efficacy.
+                  Specializing in strategic pharmaceutical brand management and healthcare marketing, we collaborate with India’s leading WHO-GMP certified manufacturing facilities to provide advanced therapeutic formulations that meet the highest standards of quality, safety and efficacy.
                 </p>
                 <p>
-                  Our growing portfolio spans Cardiology, Diabetology, Neuro-Psychiatry, Gastroenterology, and Cellular Nutrition, helping healthcare professionals deliver better patient outcomes through trusted therapeutic solutions.
+                  Our growing portfolio spans Cardiology, Diabetology, Neuro-Psychiatry, Gastroenterology and Cellular Nutrition, helping healthcare professionals deliver better patient outcomes through trusted therapeutic solutions.
                 </p>
               </div>
             </div>
@@ -150,7 +150,7 @@ export default function About() {
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full flex justify-center pointer-events-none opacity-[0.015] select-none">
           <span className="text-[15rem] lg:text-[25rem] font-black font-serif leading-none whitespace-nowrap text-[#021120]">PURPOSE</span>
         </div>
-        
+
         <div className="max-w-7xl mx-auto px-6 relative z-10">
           <div className="text-center mb-16 md:mb-20">
             <div className="flex items-center justify-center gap-4 mb-4">
@@ -173,12 +173,12 @@ export default function About() {
               <div className="absolute top-6 right-6 text-slate-300 text-[10px] font-mono leading-none tracking-tighter opacity-50">+</div>
               <div className="absolute bottom-6 left-6 text-slate-300 text-[10px] font-mono leading-none tracking-tighter opacity-50">+</div>
               <div className="absolute bottom-6 right-6 text-slate-300 text-[10px] font-mono leading-none tracking-tighter opacity-50">+</div>
-              
+
               <div className="absolute -bottom-8 -right-8 opacity-5 group-hover:opacity-10 transition-opacity duration-500 pointer-events-none text-9xl">👁️</div>
-              
+
               <h3 className="text-3xl md:text-4xl font-bold font-serif text-[#00152b] tracking-tight mb-6">Our Vision</h3>
               <p className="text-slate-600 font-light leading-relaxed text-lg md:text-xl">
-                To emerge as a premier and trusted leader in the pharmaceutical landscape, recognized for scientific innovation, uncompromising quality standards, and an unwavering commitment to bridging the gap between vital care and total cure.
+                To emerge as a premier and trusted leader in the pharmaceutical landscape, recognized for scientific innovation, uncompromising quality standards and an unwavering commitment to bridging the gap between vital care and total cure.
               </p>
             </div>
             {/* Mission Card */}
@@ -189,12 +189,12 @@ export default function About() {
               <div className="absolute top-6 right-6 text-slate-300 text-[10px] font-mono leading-none tracking-tighter opacity-50">+</div>
               <div className="absolute bottom-6 left-6 text-slate-300 text-[10px] font-mono leading-none tracking-tighter opacity-50">+</div>
               <div className="absolute bottom-6 right-6 text-slate-300 text-[10px] font-mono leading-none tracking-tighter opacity-50">+</div>
-              
+
               <div className="absolute -bottom-8 -right-8 opacity-5 group-hover:opacity-10 transition-opacity duration-500 pointer-events-none text-9xl">🎯</div>
 
               <h3 className="text-3xl md:text-4xl font-bold font-serif text-[#00152b] tracking-tight mb-6">Our Mission</h3>
               <p className="text-slate-600 font-light leading-relaxed text-lg md:text-xl">
-                To improve patient outcomes by delivering premium-quality therapeutic formulations that meet the highest international standards. Through collaborations with leading WHO-GMP certified manufacturing partners, we ensure rigorous quality and accessibility across cardio-diabetic, neuro-psychiatry, and cellular nutrition therapies.
+                To improve patient outcomes by delivering premium-quality therapeutic formulations that meet the highest international standards. Through collaborations with leading WHO-GMP certified manufacturing partners, we ensure rigorous quality and accessibility across cardio-diabetic, neuro-psychiatry and cellular nutrition therapies.
               </p>
             </div>
           </div>
@@ -212,10 +212,10 @@ export default function About() {
         </div>
         <div className="absolute inset-0 opacity-[0.02] text-white bg-science-grid pointer-events-none"></div>
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-5xl h-[400px] bg-[#14b8a6] blur-[150px] opacity-[0.1] pointer-events-none"></div>
-        
+
         <div className="max-w-7xl mx-auto px-6 relative z-10">
           <div className="flex flex-col lg:flex-row gap-16 lg:gap-24">
-            
+
             {/* Left: Therapeutic Categories Stack */}
             <div className="flex-1">
               <div className="flex items-center gap-4 mb-6">
@@ -230,32 +230,26 @@ export default function About() {
               <p className="text-slate-300 leading-relaxed font-light mb-12 text-lg lg:max-w-xl">
                 Our advanced therapeutic portfolio is carefully designed to support healthcare professionals across multiple specialties through trusted, research-driven pharmaceutical solutions.
               </p>
-              
+
               <div className="space-y-5 md:space-y-6">
                 {[
                   { id: "01", title: "Cardiology & Hypertension", desc: "Advanced therapeutic combinations supporting cardiovascular wellness and hypertension management." },
                   { id: "02", title: "Diabetology", desc: "High-efficacy pharmaceutical formulations designed to support glycemic control in Type-2 Diabetes Mellitus." },
                   { id: "03", title: "Neuro-Psychiatry & Migraine", desc: "Precision therapeutic support for migraine prophylaxis and neuropathic wellness management." },
-                  { id: "04", title: "Gastroenterology", desc: "Advanced gastrointestinal formulations supporting GERD, reflux, and hyperacidity management." },
-                  { id: "05", title: "Cellular Nutrition & Vitamin Care", desc: "Advanced nutritional therapies utilizing micronutrients, organic calcium complexes, and nano-droplet technologies." },
+                  { id: "04", title: "Gastroenterology", desc: "Advanced gastrointestinal formulations supporting GERD, reflux and hyperacidity management." },
+                  { id: "05", title: "Cellular Nutrition & Vitamin Care", desc: "Advanced nutritional therapies utilizing micronutrients, organic calcium complexes and nano-droplet technologies." },
                 ].map((item, i) => (
-                  <div key={i} className="group flex flex-col sm:flex-row items-start sm:items-center gap-6 p-6 md:p-8 rounded-[2rem] bg-white/[0.02] border border-white/5 hover:bg-white/[0.04] hover:border-teal-500/30 transition-all duration-500 ease-premium relative overflow-hidden hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.5)] cursor-pointer">
+                  <div key={i} className="group flex flex-col sm:flex-row items-start sm:items-center gap-6 p-6 md:p-8 rounded-[2rem] bg-white/[0.02] border border-white/5 hover:bg-white/[0.04] hover:border-teal-500/30 transition-all duration-500 ease-premium relative overflow-hidden hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.5)]">
                     <div className="absolute top-0 left-0 w-1.5 h-full bg-gradient-to-b from-[#14b8a6] to-[#0f766e] transform origin-top scale-y-0 group-hover:scale-y-100 transition-transform duration-500 ease-out z-20"></div>
                     <div className="absolute right-0 top-1/2 -translate-y-1/2 w-64 h-64 bg-teal-500 rounded-full blur-[100px] opacity-0 group-hover:opacity-[0.15] transition-opacity duration-700 pointer-events-none z-0"></div>
-                    
+
                     <div className="flex-shrink-0 w-14 h-14 md:w-20 md:h-20 rounded-2xl bg-black/20 border border-white/5 flex items-center justify-center shadow-inner group-hover:border-teal-500/30 transition-colors duration-500 relative z-10">
                       <span className="text-[#14b8a6] font-bold font-serif text-2xl md:text-3xl opacity-40 group-hover:opacity-100 transition-opacity duration-500 tracking-tighter">{item.id}</span>
                     </div>
-                    
+
                     <div className="flex-1 relative z-10">
                       <h4 className="text-xl md:text-2xl font-extrabold text-white mb-2 md:mb-3 font-serif tracking-tight group-hover:text-teal-50 transition-colors duration-300">{item.title}</h4>
                       <p className="text-slate-400 font-light leading-relaxed text-[0.95rem] md:text-base lg:text-[1.05rem] group-hover:text-slate-300 transition-colors duration-300">{item.desc}</p>
-                    </div>
-
-                    <div className="hidden lg:flex flex-shrink-0 items-center justify-center w-12 h-12 rounded-full border border-white/10 group-hover:bg-[#14b8a6] group-hover:border-[#14b8a6] transition-all duration-500 group-hover:translate-x-2 relative z-10">
-                       <svg className="w-5 h-5 text-slate-500 group-hover:text-[#00152b] transition-colors duration-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                       </svg>
                     </div>
                   </div>
                 ))}
@@ -266,10 +260,10 @@ export default function About() {
             <div className="lg:w-[480px]">
               <div className="sticky top-32">
                 <div className="bg-gradient-to-br from-white/10 to-transparent backdrop-blur-xl p-10 md:p-14 rounded-3xl border border-white/10 shadow-[0_20px_40px_-10px_rgba(0,0,0,0.5)] relative group overflow-hidden">
-                  
+
                   {/* Subtle technical dots */}
                   <div className="absolute inset-0 opacity-[0.08] text-white bg-technical-dots pointer-events-none"></div>
-                  
+
                   <div className="w-16 h-16 rounded-2xl bg-teal-500/20 border border-teal-400/30 flex items-center justify-center mb-8">
                     <svg className="w-8 h-8 text-teal-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
@@ -282,13 +276,13 @@ export default function About() {
                   <p className="text-slate-300 leading-relaxed font-light relative z-10 text-lg">
                     Medileo Healthcare collaborates with leading WHO-GMP certified pharmaceutical manufacturing partners utilizing advanced technologies such as Micronized Technology and Nano Droplet delivery systems to support enhanced formulation performance and therapeutic effectiveness.
                   </p>
-                  
+
                   {/* Restrained glowing accents */}
                   <div className="absolute -bottom-24 -right-24 w-64 h-64 bg-teal-500 rounded-full blur-[100px] opacity-20 pointer-events-none transition-opacity duration-500 group-hover:opacity-30"></div>
                 </div>
               </div>
             </div>
-            
+
           </div>
         </div>
       </section>
@@ -312,7 +306,7 @@ export default function About() {
               Trusted Quality Partnerships
             </h2>
             <p className="text-slate-600 leading-relaxed font-light text-lg md:text-xl max-w-4xl mx-auto">
-              Medileo Healthcare partners with India’s leading WHO-GMP certified manufacturing facilities to ensure every formulation meets rigorous pharmaceutical quality standards, safety benchmarks, and therapeutic reliability expectations.
+              Medileo Healthcare partners with India’s leading WHO-GMP certified manufacturing facilities to ensure every formulation meets rigorous pharmaceutical quality standards, safety benchmarks and therapeutic reliability expectations.
             </p>
           </div>
 
@@ -328,7 +322,7 @@ export default function About() {
               },
               {
                 title: "Ethical Healthcare Commitment",
-                desc: "Unwavering dedication to transparency, compliance, and regulatory standards in all our pharmaceutical operations.",
+                desc: "Unwavering dedication to transparency, compliance and regulatory standards in all our pharmaceutical operations.",
               }
             ].map((card, i) => (
               <div key={i} className="bg-white p-6 md:p-8 rounded-2xl border border-slate-200/60 shadow-[0_8px_30px_-10px_rgba(0,0,0,0.04)] hover:-translate-y-1.5 hover:shadow-[0_20px_40px_-15px_rgba(20,184,166,0.12)] hover:border-teal-500/30 transition-all duration-500 ease-premium relative group overflow-hidden">

@@ -177,6 +177,23 @@ India — 400075
                   </div>
                 </div>
                 <div className="relative">
+                  <label htmlFor="phoneNumber" className="block text-xs font-bold text-slate-500 uppercase tracking-widest mb-2.5">
+                    Phone Number <span className="text-red-400">*</span>
+                  </label>
+                  <input
+                    id="phoneNumber"
+                    name="phoneNumber"
+                    type="tel"
+                    required
+                    aria-required="true"
+                    onBlur={(e) => { e.target.value = e.target.value.trim(); }}
+                    onInvalid={(e) => e.target.setCustomValidity('A valid phone number is required.')}
+                    onInput={(e) => e.target.setCustomValidity('')}
+                    className="w-full bg-slate-50/50 border border-slate-200 rounded-xl px-5 py-4 focus:outline-none focus:border-teal-500 focus:ring-4 focus:ring-teal-500/20 transition-all font-light text-slate-700"
+                    placeholder="e.g. +91 98765 43210"
+                  />
+                </div>
+                <div className="relative">
                   <label htmlFor="department" className="block text-xs font-bold text-slate-500 uppercase tracking-widest mb-2.5">
                     Subject / Department <span className="text-red-400">*</span>
                   </label>

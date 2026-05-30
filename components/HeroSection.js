@@ -140,7 +140,7 @@ export default function HeroSection() {
                 {/* 3. Executive Summary */}
                 <div className="mb-10 max-w-2xl lg:max-w-3xl">
                   <p className="text-lg md:text-xl text-white/70 font-light leading-relaxed">
-                    Medileo Healthcare is a leading WHO-GMP certified pharmaceutical manufacturer in India, dedicated to developing accessible, high-quality therapeutic formulations and innovative healthcare solutions for global markets.
+                    Medileo Healthcare is committed to improving healthcare outcomes by providing high-quality therapeutic formulations and innovative healthcare solutions through trusted WHO-GMP certified manufacturing partnerships.
                   </p>
                 </div>
 

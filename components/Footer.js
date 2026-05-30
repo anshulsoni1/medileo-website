@@ -70,13 +70,7 @@ export default function Footer({ variant = "default" }) {
                   <div className="w-2.5 h-2.5 rounded-full bg-teal-500/20 border border-teal-500/50 flex items-center justify-center group-hover:bg-teal-500/40 transition-colors shadow-[0_0_8px_rgba(20,184,166,0.2)]">
                     <div className="w-1 h-1 rounded-full bg-teal-400"></div>
                   </div>
-                  <span className="text-white/80 text-sm font-medium tracking-wide group-hover:text-white transition-colors">WHO-GMP Certified</span>
-                </div>
-                <div className="flex items-center gap-3.5 group">
-                  <div className="w-2.5 h-2.5 rounded-full bg-teal-500/20 border border-teal-500/50 flex items-center justify-center group-hover:bg-teal-500/40 transition-colors shadow-[0_0_8px_rgba(20,184,166,0.2)]">
-                    <div className="w-1 h-1 rounded-full bg-teal-400"></div>
-                  </div>
-                  <span className="text-white/80 text-sm font-medium tracking-wide group-hover:text-white transition-colors">ISO 9001:2015</span>
+                  <span className="text-white/80 text-sm font-medium tracking-wide group-hover:text-white transition-colors">WHO-GMP Certified products</span>
                 </div>
               </div>
             </div>
