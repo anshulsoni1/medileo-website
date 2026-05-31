@@ -20,6 +20,7 @@ const playfair = Playfair_Display({
 });
 
 export default function App({ Component, pageProps }) {
+  console.log("GA ID is:", process.env.NEXT_PUBLIC_GA_ID);
   useReportWebVitals((metric) => {
     switch (metric.name) {
       case 'FCP':
