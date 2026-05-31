@@ -7,6 +7,7 @@ import { motion, useInView } from "framer-motion";
 import Footer from "@/components/Footer";
 import HeroSection from "@/components/HeroSection";
 import FAQSection from "@/components/FAQSection";
+import { sendGAEvent } from '@next/third-parties/google';
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 30 },
@@ -281,6 +282,7 @@ export default function Home() {
           <div className="flex justify-center">
             <Link
               href="/contact"
+              onClick={() => sendGAEvent({ event: 'cta_click', button_name: 'footer_initiate_partnership' })}
               className="inline-flex items-center justify-center gap-3 bg-teal-500 hover:bg-teal-600 text-white px-10 py-5 rounded-full font-bold transition-all duration-300 shadow-[0_10px_20px_-5px_rgba(20,184,166,0.3)] hover:shadow-[0_15px_30px_-5px_rgba(20,184,166,0.4)] hover:-translate-y-1 tracking-wide focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 focus-visible:ring-offset-2 focus-visible:ring-offset-[#021120]"
             >
               Initiate a Partnership

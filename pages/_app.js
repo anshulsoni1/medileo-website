@@ -4,6 +4,7 @@ import { useReportWebVitals } from "next/web-vitals";
 import TopBar from "@/components/TopBar";
 import Navbar from "@/components/Navbar";
 import CustomCursor from "@/components/CustomCursor";
+import { GoogleAnalytics } from '@next/third-parties/google';
 
 const inter = Inter({
   variable: "--font-inter",
@@ -42,6 +43,7 @@ export default function App({ Component, pageProps }) {
       <main className="flex-grow">
         <Component {...pageProps} />
       </main>
+      <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID} />
     </div>
   );
 }

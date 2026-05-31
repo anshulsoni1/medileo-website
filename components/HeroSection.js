@@ -3,6 +3,7 @@ import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import TypewriterText from "@/components/TypewriterText";
 import HeroVisual from "@/components/HeroVisual";
+import { sendGAEvent } from '@next/third-parties/google';
 
 const slides = [
   {
@@ -228,6 +229,7 @@ export default function HeroSection() {
             >
               <a
                 href="/contact"
+                onClick={() => sendGAEvent({ event: 'cta_click', button_name: 'hero_partner_with_us' })}
                 className="group flex items-center justify-center gap-2 bg-teal-500 hover:bg-teal-600 text-white px-8 py-3.5 rounded-full font-semibold transition-all duration-300 shadow-[0_0_20px_rgba(20,184,166,0.2)] hover:shadow-[0_0_30px_rgba(20,184,166,0.4)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 focus-visible:ring-offset-2 focus-visible:ring-offset-[#021120]"
               >
                 Partner With Us
