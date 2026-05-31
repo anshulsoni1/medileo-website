@@ -31,85 +31,88 @@ export default function AdminLogin() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-[#021120] p-4 relative overflow-hidden font-sans">
+    <div className="min-h-screen flex flex-col justify-center py-12 sm:px-6 lg:px-8 bg-slate-50 font-sans relative overflow-hidden">
       <Head>
         <title>Admin Authentication | Medileo Healthcare</title>
         <meta name="robots" content="noindex, nofollow" />
       </Head>
 
-      {/* Deep Navy Corporate Background with Scientific Grids & Glows */}
-      <div className="absolute inset-0 z-0">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-teal-900/20 via-[#021120] to-[#021120]"></div>
-        <div className="absolute inset-0 opacity-[0.03] bg-[url('/science-grid.svg')] mix-blend-overlay"></div>
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-teal-500/10 blur-[100px] rounded-full pointer-events-none"></div>
-      </div>
-      
-      <motion.div
-        initial={{ opacity: 0, y: 20, filter: "blur(4px)" }}
-        animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-        transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-        className="w-full max-w-[420px] bg-[#0a1e35]/80 backdrop-blur-xl rounded-3xl shadow-[0_20px_40px_-15px_rgba(20,184,166,0.15)] border border-white/10 p-8 md:p-10 relative z-10 overflow-hidden"
-      >
-        {/* Subtle top edge glow */}
-        <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-teal-500 to-transparent opacity-50"></div>
+      {/* Subtle Background Pattern */}
+      <div className="absolute inset-0 z-0 opacity-[0.015] bg-[url('/science-grid.svg')] mix-blend-multiply pointer-events-none"></div>
 
-        <div className="text-center mb-10">
-          <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-teal-500/10 border border-teal-500/20 text-teal-400 mb-6 shadow-[0_0_15px_rgba(20,184,166,0.2)]">
-            <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+      <div className="sm:mx-auto sm:w-full sm:max-w-md relative z-10">
+        <div className="flex justify-center">
+          <div className="w-12 h-12 rounded-xl bg-teal-500/10 border border-teal-500/20 flex items-center justify-center text-teal-600 shadow-sm">
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
             </svg>
           </div>
-          <h1 className="text-3xl font-serif font-medium text-white tracking-tight">Admin Portal</h1>
-          <p className="text-slate-400 mt-2 font-light text-sm">Medileo Secure Infrastructure</p>
         </div>
+        <h2 className="mt-6 text-center text-2xl font-bold tracking-tight text-slate-900">
+          Sign in to Medileo Admin
+        </h2>
+        <p className="mt-2 text-center text-sm text-slate-500">
+          Secure corporate infrastructure portal
+        </p>
+      </div>
 
-        {errorMsg && (
-          <motion.div 
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            className="mb-6 p-4 rounded-xl bg-red-900/30 border border-red-500/30 text-red-300 text-sm font-medium text-center backdrop-blur-sm"
-          >
-            {errorMsg}
-          </motion.div>
-        )}
+      <motion.div
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.4, ease: "easeOut" }}
+        className="mt-8 sm:mx-auto sm:w-full sm:max-w-md relative z-10"
+      >
+        <div className="bg-white py-10 px-4 shadow-xl shadow-slate-200/50 sm:rounded-2xl sm:px-10 border border-slate-200/60">
+          
+          {errorMsg && (
+            <div className="mb-6 p-4 rounded-xl bg-red-50 border border-red-100 flex items-center gap-3 animate-fade-in-down">
+              <svg className="w-5 h-5 text-red-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" /></svg>
+              <p className="text-sm font-semibold text-red-600">{errorMsg}</p>
+            </div>
+          )}
 
-        <form onSubmit={handleLogin} className="space-y-6">
-          <div>
-            <label className="block text-sm font-medium text-slate-300 mb-2">Corporate Email</label>
-            <input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className="w-full px-5 py-3.5 rounded-xl border border-white/10 bg-white/5 text-white placeholder-white/30 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent transition-all backdrop-blur-sm focus:bg-white/10"
-              placeholder="admin@medileo.com"
-              required
-            />
-          </div>
+          <form onSubmit={handleLogin} className="space-y-6">
+            <div>
+              <label className="block text-[0.8rem] font-bold text-slate-600 mb-2 tracking-wide uppercase">
+                Corporate Email
+              </label>
+              <input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="block w-full rounded-xl border border-slate-200/80 px-4 py-2.5 text-slate-900 placeholder-slate-400 focus:border-teal-500 focus:outline-none focus:ring-4 focus:ring-teal-500/20 sm:text-sm transition-all hover:border-slate-300 bg-slate-50 focus:bg-white"
+                placeholder="admin@medileo.com"
+                required
+              />
+            </div>
 
-          <div>
-            <label className="block text-sm font-medium text-slate-300 mb-2">Passcode</label>
-            <input
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              className="w-full px-5 py-3.5 rounded-xl border border-white/10 bg-white/5 text-white placeholder-white/30 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent transition-all backdrop-blur-sm focus:bg-white/10"
-              placeholder="••••••••"
-              required
-            />
-          </div>
+            <div>
+              <label className="block text-[0.8rem] font-bold text-slate-600 mb-2 tracking-wide uppercase">
+                Passcode
+              </label>
+              <input
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className="block w-full rounded-xl border border-slate-200/80 px-4 py-2.5 text-slate-900 placeholder-slate-400 focus:border-teal-500 focus:outline-none focus:ring-4 focus:ring-teal-500/20 sm:text-sm transition-all hover:border-slate-300 bg-slate-50 focus:bg-white"
+                placeholder="••••••••"
+                required
+              />
+            </div>
 
-          <button
-            type="submit"
-            disabled={loading}
-            className="w-full bg-teal-500 hover:bg-teal-400 text-[#021120] font-bold py-4 rounded-xl transition-all duration-300 shadow-[0_0_20px_rgba(20,184,166,0.25)] hover:shadow-[0_0_30px_rgba(20,184,166,0.4)] disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-2 mt-2"
-          >
-            {loading ? (
-              <span className="w-5 h-5 border-2 border-[#021120]/30 border-t-[#021120] rounded-full animate-spin"></span>
-            ) : (
-              "Authenticate"
-            )}
-          </button>
-        </form>
+            <button
+              type="submit"
+              disabled={loading}
+              className="flex w-full justify-center items-center gap-2 rounded-xl bg-slate-900 px-4 py-3 text-sm font-semibold text-white shadow-sm hover:bg-slate-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slate-900 transition-all disabled:opacity-70 disabled:cursor-not-allowed"
+            >
+              {loading ? (
+                <span className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></span>
+              ) : (
+                "Authenticate"
+              )}
+            </button>
+          </form>
+        </div>
       </motion.div>
     </div>
   );

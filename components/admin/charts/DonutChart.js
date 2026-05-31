@@ -22,10 +22,10 @@ export default function DonutChart({ data, dataKey = "value" }) {
           ))}
         </Pie>
         <RechartsTooltip 
-          contentStyle={{ borderRadius: '12px', border: 'none', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)' }}
-          itemStyle={{ color: '#1e293b', fontWeight: 500 }}
+          contentStyle={{ backgroundColor: '#021120', borderRadius: '10px', border: 'none', boxShadow: '0 20px 25px -5px rgb(0 0 0 / 0.2)', padding: '8px 12px' }}
+          itemStyle={{ color: '#f8fafc', fontWeight: 600, fontSize: '13px' }}
         />
-        <Legend verticalAlign="bottom" height={36} iconType="circle" />
+        <Legend verticalAlign="bottom" height={36} iconType="circle" wrapperStyle={{ fontSize: '12px', fontWeight: 500, color: '#64748b' }} />
       </PieChart>
     </ResponsiveContainer>
   );

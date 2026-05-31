@@ -97,14 +97,20 @@ export default function AdminInquiries() {
   };
 
   const statusColors = {
-    New: "bg-blue-100 text-blue-700 border-blue-200",
-    Contacted: "bg-amber-100 text-amber-700 border-amber-200",
-    Closed: "bg-emerald-100 text-emerald-700 border-emerald-200",
+    New: "bg-blue-50 text-blue-700 border-blue-200 ring-1 ring-inset ring-blue-600/20",
+    Contacted: "bg-amber-50 text-amber-700 border-amber-200 ring-1 ring-inset ring-amber-600/20",
+    Closed: "bg-emerald-50 text-emerald-700 border-emerald-200 ring-1 ring-inset ring-emerald-600/20",
+  };
+
+  const statusDots = {
+    New: "bg-blue-500",
+    Contacted: "bg-amber-500",
+    Closed: "bg-emerald-500",
   };
 
   // Table Column Definition
   const columns = [
-    { key: "full_name", label: "Name" },
+    { key: "full_name", label: "Name", render: (row) => <span className="font-medium text-slate-900">{row.full_name}</span> },
     { key: "email", label: "Email" },
     { 
       key: "company", 
@@ -124,7 +130,8 @@ export default function AdminInquiries() {
       key: "status", 
       label: "Status",
       render: (row) => (
-        <span className={`px-2.5 py-1 text-xs font-semibold rounded-full border ${statusColors[row.status] || "bg-slate-100 text-slate-700 border-slate-200"}`}>
+        <span className={`inline-flex items-center gap-1.5 px-2.5 py-1 text-xs font-semibold rounded-md ${statusColors[row.status] || "bg-slate-50 ring-1 ring-inset ring-slate-500/10 text-slate-600"}`}>
+          <span className={`w-1.5 h-1.5 rounded-full ${statusDots[row.status] || "bg-slate-400"}`}></span>
           {row.status}
         </span>
       )
@@ -155,16 +162,18 @@ export default function AdminInquiries() {
           
           <button 
             onClick={fetchInquiries}
-            className="flex items-center gap-2 px-4 py-2 bg-white border border-slate-200 text-slate-600 rounded-lg text-sm font-medium hover:bg-slate-50 hover:text-slate-900 transition-colors shadow-sm"
+            className="flex items-center gap-2 px-4 py-2 bg-white border border-slate-200/80 text-slate-600 rounded-xl text-sm font-semibold hover:bg-slate-50 hover:text-slate-900 transition-all shadow-sm"
           >
-            <svg className={`w-4 h-4 ${isLoading ? 'animate-spin text-teal-600' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" /></svg>
+            <svg className={`w-4 h-4 ${isLoading ? 'animate-spin text-teal-600' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" /></svg>
             Refresh
           </button>
         </div>
 
         {error && (
-          <div className="p-4 rounded-xl bg-red-50 border border-red-200 text-red-700 text-sm font-medium flex items-center gap-3">
-            <svg className="w-5 h-5 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+          <div className="p-4 rounded-xl bg-red-500/10 border border-red-500/20 text-red-700 text-sm font-semibold flex items-center gap-3 animate-fade-in-down shadow-sm">
+            <div className="w-8 h-8 rounded-lg bg-red-500/10 flex items-center justify-center shrink-0">
+              <svg className="w-5 h-5 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" /></svg>
+            </div>
             {error}
           </div>
         )}
