@@ -20,20 +20,9 @@ const playfair = Playfair_Display({
 });
 
 export default function App({ Component, pageProps }) {
-  console.log("GA ID is:", process.env.NEXT_PUBLIC_GA_ID);
   useReportWebVitals((metric) => {
-    switch (metric.name) {
-      case 'FCP':
-      case 'LCP':
-      case 'CLS':
-      case 'INP':
-      case 'TTFB':
-        // Log to console for local monitoring or route to an analytics endpoint
-        console.log(`[Web Vitals] ${metric.name}:`, Math.round(metric.value));
-        break;
-      default:
-        break;
-    }
+    // Optionally route these metrics to a true analytics endpoint in the future
+    // rather than dumping them into the public console.
   });
 
   return (

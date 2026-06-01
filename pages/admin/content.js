@@ -32,7 +32,7 @@ export default function AdminContent() {
     fetchData();
   }, []);
 
-  const fetchData = async () => {
+  async function fetchData() {
     setIsLoading(true);
     try {
       // Fetch FAQs
@@ -56,12 +56,12 @@ export default function AdminContent() {
     } finally {
       setIsLoading(false);
     }
-  };
+  }
 
-  const showNotification = (msg, type = "success") => {
+  function showNotification(msg, type = "success") {
     setNotification({ msg, type });
     setTimeout(() => setNotification(null), 3000);
-  };
+  }
 
   // --- SETTINGS MUTATIONS ---
   const handleSettingsChange = (key, field, value) => {

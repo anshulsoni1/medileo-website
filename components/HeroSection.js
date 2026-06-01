@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import TypewriterText from "@/components/TypewriterText";
 import HeroVisual from "@/components/HeroVisual";
@@ -31,6 +32,8 @@ const slides = [
   }
 ];
 
+const AUTO_SLIDE_INTERVAL_MS = 4500;
+
 export default function HeroSection() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
@@ -40,7 +43,7 @@ export default function HeroSection() {
     if (isHovered || userInteracted) return;
     const timer = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % slides.length);
-    }, 7500); // 7.5 seconds per slide
+    }, AUTO_SLIDE_INTERVAL_MS);
     return () => clearInterval(timer);
   }, [isHovered, userInteracted]);
 
@@ -227,20 +230,20 @@ export default function HeroSection() {
               transition={{ duration: 0.7, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
               className="relative inline-flex flex-col sm:flex-row gap-2 p-2 bg-white/[0.03] border border-white/10 rounded-[2.5rem] backdrop-blur-md shadow-2xl w-full sm:w-auto mt-2"
             >
-              <a
+              <Link
                 href="/contact"
                 onClick={() => sendGAEvent({ event: 'cta_click', button_name: 'hero_partner_with_us' })}
                 className="group flex items-center justify-center gap-2 bg-teal-500 hover:bg-teal-600 text-white px-8 py-3.5 rounded-full font-semibold transition-all duration-300 shadow-[0_0_20px_rgba(20,184,166,0.2)] hover:shadow-[0_0_30px_rgba(20,184,166,0.4)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 focus-visible:ring-offset-2 focus-visible:ring-offset-[#021120]"
               >
                 Partner With Us
                 <svg className="w-5 h-5 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
-              </a>
-              <a
+              </Link>
+              <Link
                 href="/about"
                 className="flex items-center justify-center px-8 py-3.5 rounded-full font-medium text-white/80 hover:text-white hover:bg-white/10 transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 focus-visible:ring-offset-2 focus-visible:ring-offset-[#021120]"
               >
                 Explore Our Expertise
-              </a>
+              </Link>
             </motion.div>
           </div>
           

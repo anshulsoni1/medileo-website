@@ -47,7 +47,7 @@ export default function AdminLayout({ children }) {
     )}
   ];
 
-  const SidebarContent = () => (
+  const sidebarContent = (
     <>
       <div className="p-6 border-b border-white/5 flex items-center justify-between">
         <div className="flex items-center gap-3">
@@ -146,7 +146,7 @@ export default function AdminLayout({ children }) {
       
       {/* Desktop Sidebar */}
       <aside className="w-[260px] bg-[#021120] text-slate-300 hidden md:flex flex-col border-r border-slate-800 shadow-xl z-20">
-        <SidebarContent />
+        {sidebarContent}
       </aside>
 
       {/* Mobile Sidebar Overlay */}
@@ -154,7 +154,7 @@ export default function AdminLayout({ children }) {
         <div className="fixed inset-0 z-40 md:hidden">
           <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm" onClick={() => setIsMobileMenuOpen(false)}></div>
           <aside className="fixed inset-y-0 left-0 w-[260px] bg-[#021120] text-slate-300 flex flex-col shadow-2xl z-50 transition-transform transform translate-x-0">
-            <SidebarContent />
+            {sidebarContent}
           </aside>
         </div>
       )}

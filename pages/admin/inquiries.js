@@ -24,7 +24,7 @@ export default function AdminInquiries() {
     fetchInquiries();
   }, []);
 
-  const fetchInquiries = async () => {
+  async function fetchInquiries() {
     setIsLoading(true);
     setError(null);
     try {
@@ -42,7 +42,7 @@ export default function AdminInquiries() {
     } finally {
       setIsLoading(false);
     }
-  };
+  }
 
   // Status Update Mutation
   const handleStatusUpdate = async (id, newStatus) => {
