@@ -72,9 +72,9 @@ export default function Contact() {
   return (
     <>
       <SEO 
-        title="Contact Medileo Healthcare | Pharmaceutical Manufacturing Partnerships"
-        description="Partner with Medileo Healthcare for WHO-GMP certified pharmaceutical contract manufacturing, product inquiries, and global corporate collaborations."
-        canonicalUrl="https://www.medileo.com/contact"
+        title="Contact Us | Medileo Healthcare"
+        description="Get in touch with Medileo Healthcare for business inquiries, pharmaceutical partnerships, and stockist opportunities."
+        canonicalUrl="https://www.medileohealthcare.com/contact"
         structuredData={getContactSchema()}
       />
 

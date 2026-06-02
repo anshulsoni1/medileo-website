@@ -42,9 +42,9 @@ export default function About() {
   return (
     <>
       <SEO
-        title="About Medileo Healthcare | Global Pharmaceutical Manufacturer"
-        description="Discover Medileo Healthcare's commitment to WHO-GMP certified pharmaceutical manufacturing, innovative therapeutic formulations, and global healthcare accessibility."
-        canonicalUrl="https://www.medileo.com/about"
+        title="About Us | Medileo Healthcare"
+        description="Learn about Medileo Healthcare's mission, values, and our commitment to delivering WHO-GMP certified pharmaceutical formulations globally."
+        canonicalUrl="https://www.medileohealthcare.com/about"
         structuredData={getAboutSchema()}
       />
 

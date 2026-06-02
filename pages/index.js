@@ -240,10 +240,10 @@ export default function Home() {
   return (
     <>
       <SEO 
-        title="Medileo Healthcare | WHO-GMP Certified Pharmaceutical Manufacturing in India"
-        description="Medileo Healthcare is a leading Indian pharmaceutical company delivering high-quality, WHO-GMP certified therapeutic formulations and healthcare solutions globally."
-        canonicalUrl="https://www.medileo.com/"
-        structuredData={getIndexSchema()}
+        title="Medileo Healthcare | Trusted Pharmaceutical Solutions"
+        description="Medileo Healthcare Pvt. Ltd. delivers WHO-GMP certified pharmaceutical formulations globally. Discover our Cardiology, Neuro-Psychiatry, and Diabetology portfolio."
+        canonicalUrl="https://www.medileohealthcare.com/"
+        structuredData={getOrganizationSchema()}
       />
       {/* Hero Section */}
       <HeroSection />

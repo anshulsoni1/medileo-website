@@ -81,7 +81,7 @@ export default function AdminLogin() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 className="block w-full rounded-xl border border-slate-200/80 px-4 py-2.5 text-slate-900 placeholder-slate-400 focus:border-teal-500 focus:outline-none focus:ring-4 focus:ring-teal-500/20 sm:text-sm transition-all hover:border-slate-300 bg-slate-50 focus:bg-white"
-                placeholder="admin@medileo.com"
+                placeholder="admin@medileohealthcare.com"
                 required
               />
             </div>

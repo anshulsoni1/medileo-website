@@ -116,7 +116,7 @@ export default async function handler(req) {
             }}
           >
             <div style={{ width: '12px', height: '12px', borderRadius: '50%', backgroundColor: '#14b8a6' }} />
-            <span style={{ color: '#14b8a6', fontSize: '24px', fontWeight: 600, letterSpacing: '0.1em' }}>MEDILEO.COM</span>
+            <span style={{ color: '#14b8a6', fontSize: '24px', fontWeight: 600, letterSpacing: '0.1em' }}>MEDILEOHEALTHCARE.COM</span>
           </div>
         </div>
       ),

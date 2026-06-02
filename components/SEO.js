@@ -1,9 +1,9 @@
 import Head from 'next/head';
 
 export default function SEO({ 
-  title = "Medileo Healthcare | Premium Pharmaceutical Manufacturing",
-  description = "Medileo Healthcare is a dynamic pharmaceutical company dedicated to high-quality, affordable, and innovative healthcare solutions.",
-  canonicalUrl = "https://www.medileo.com",
+  title = "Medileo Healthcare | Trusted Pharmaceutical Solutions",
+  description = "Medileo Healthcare Pvt. Ltd. delivers WHO-GMP certified pharmaceutical formulations globally. Discover our Cardiology, Neuro-Psychiatry, and Diabetology portfolio.",
+  canonicalUrl = "https://www.medileohealthcare.com",
   ogType = "website",
   structuredData = null
 }) {
