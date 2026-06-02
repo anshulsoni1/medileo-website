@@ -58,7 +58,7 @@ export default function Footer({ variant = "default" }) {
               <ul className="flex flex-col gap-4">
                 <li className="text-white/60 text-sm font-light cursor-default hover:text-white/80 transition-colors w-fit">Cardiovascular</li>
                 <li className="text-white/60 text-sm font-light cursor-default hover:text-white/80 transition-colors w-fit">Neurology</li>
-                <li className="text-white/60 text-sm font-light cursor-default hover:text-white/80 transition-colors w-fit">Anti-Infectives</li>
+                <li className="text-white/60 text-sm font-light cursor-default hover:text-white/80 transition-colors w-fit">Diabetology</li>
               </ul>
             </div>
 

@@ -243,7 +243,7 @@ export default function Home() {
         title="Medileo Healthcare | Trusted Pharmaceutical Solutions"
         description="Medileo Healthcare Pvt. Ltd. delivers WHO-GMP certified pharmaceutical formulations globally. Discover our Cardiology, Neuro-Psychiatry, and Diabetology portfolio."
         canonicalUrl="https://www.medileohealthcare.com/"
-        structuredData={getOrganizationSchema()}
+        structuredData={getIndexSchema()}
       />
       {/* Hero Section */}
       <HeroSection />
