@@ -270,9 +270,9 @@ export default function Home() {
 
       {/* Final Push CTA */}
       <section className="bg-[#021120] py-16 md:py-24 relative overflow-hidden">
-        <div className="absolute inset-0 opacity-[0.05] text-white bg-science-grid"></div>
+        <div className="absolute inset-0 opacity-[0.05] text-white bg-science-grid pointer-events-none"></div>
         <div className="absolute top-0 right-0 w-full h-full bg-gradient-to-bl from-[#0f766e]/30 via-transparent to-[#021120] pointer-events-none"></div>
-        <div className="text-center mb-16 md:mb-20">
+        <div className="relative z-10 text-center mb-16 md:mb-20 px-4">
           <h2 className="text-3xl md:text-5xl font-extrabold text-white font-serif mb-6 tracking-tight leading-tight">
             Global Pharmaceutical Excellence
           </h2>
