@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useFAQs } from "@/hooks/useCMS";
+import { sendGAEvent } from '@next/third-parties/google';
 
-const faqs = [
+const fallbackFaqs = [
   {
     question: "What therapeutic areas does Medileo serve?",
     answer: "Medileo Healthcare focuses on advanced pharmaceutical formulations across Cardiology, Hypertension, Diabetology, Neuro-Psychiatry, Gastroenterology, and Cellular Nutrition.",
@@ -18,9 +20,18 @@ const faqs = [
 
 export default function FAQSection() {
   const [openIndex, setOpenIndex] = useState(null);
+  const { data: cmsFaqs, isLoading } = useFAQs(fallbackFaqs);
+  
+  const faqs = cmsFaqs || fallbackFaqs;
 
-  const toggleFAQ = (index) => {
-    setOpenIndex(openIndex === index ? null : index);
+  const toggleFAQ = (index, question) => {
+    const isExpanding = openIndex !== index;
+    setOpenIndex(isExpanding ? index : null);
+    sendGAEvent({ 
+      event: 'faq_interaction', 
+      action: isExpanding ? 'expand' : 'collapse', 
+      question 
+    });
   };
 
   return (
@@ -41,15 +52,26 @@ export default function FAQSection() {
         </div>
 
         <div className="space-y-4">
-          {faqs.map((faq, index) => {
-            const isOpen = openIndex === index;
-            return (
-              <div 
-                key={index}
-                className={`border rounded-2xl transition-all duration-300 ease-in-out ${isOpen ? 'border-teal-500/50 bg-teal-50/30 shadow-[0_10px_30px_-10px_rgba(20,184,166,0.15)]' : 'border-slate-200/60 bg-white hover:border-teal-500/30 hover:shadow-md'}`}
-              >
+          {isLoading ? (
+            // Skeleton Loader
+            <>
+              {[1, 2, 3].map((i) => (
+                <div key={i} className="border border-slate-100 rounded-2xl bg-slate-50 p-6 flex justify-between animate-pulse">
+                  <div className="w-2/3 h-6 bg-slate-200 rounded"></div>
+                  <div className="w-8 h-8 rounded-full bg-slate-200"></div>
+                </div>
+              ))}
+            </>
+          ) : (
+            faqs.map((faq, index) => {
+              const isOpen = openIndex === index;
+              return (
+                <div
+                  key={index}
+                  className={`border rounded-2xl transition-all duration-300 ease-in-out ${isOpen ? 'border-teal-500/50 bg-teal-50/30 shadow-[0_10px_30px_-10px_rgba(20,184,166,0.15)]' : 'border-slate-200/60 bg-white hover:border-teal-500/30 hover:shadow-md'}`}
+                >
                 <button
-                  onClick={() => toggleFAQ(index)}
+                  onClick={() => toggleFAQ(index, faq.question)}
                   className="w-full px-6 py-5 md:px-8 md:py-6 flex items-center justify-between focus:outline-none"
                   aria-expanded={isOpen}
                 >
@@ -84,7 +106,8 @@ export default function FAQSection() {
                 </AnimatePresence>
               </div>
             );
-          })}
+          })
+          )}
         </div>
       </div>
     </section>

@@ -1,4 +1,4 @@
-const BASE_URL = "https://www.medileohealthcare.com";
+const BASE_URL = "https://medileohealthcare.com";
 
 const organizationSchema = {
   "@context": "https://schema.org",

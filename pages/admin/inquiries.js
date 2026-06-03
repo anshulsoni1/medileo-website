@@ -14,6 +14,10 @@ export default function AdminInquiries() {
   // Filter states
   const [searchTerm, setSearchTerm] = useState("");
   const [statusFilter, setStatusFilter] = useState("All");
+  const [assignmentFilter, setAssignmentFilter] = useState("All Leads");
+
+  // Admin users state for display
+  const [adminUsersMap, setAdminUsersMap] = useState({});
 
   // Drawer state
   const [selectedInquiry, setSelectedInquiry] = useState(null);
@@ -29,6 +33,15 @@ export default function AdminInquiries() {
     setError(null);
     try {
       const supabase = createClient();
+      
+      // Fetch users for mapping
+      const { data: usersData, error: usersError } = await supabase.from("admin_users").select("*");
+      if (!usersError && usersData) {
+        const mapping = {};
+        usersData.forEach(u => mapping[u.id] = u.full_name || u.email);
+        setAdminUsersMap(mapping);
+      }
+
       const { data, error } = await supabase
         .from("inquiries")
         .select("*")
@@ -54,6 +67,24 @@ export default function AdminInquiries() {
 
     if (error) throw error;
 
+    // Log the status update
+    try {
+      const oldStatus = inquiries.find(i => i.id === id)?.status || "Unknown";
+      await fetch('/api/admin/audit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          action: 'UPDATE_STATUS',
+          entityType: 'INQUIRY',
+          entityId: id,
+          oldValue: { status: oldStatus },
+          newValue: { status: newStatus }
+        })
+      });
+    } catch (err) {
+      console.error("Audit log failed", err);
+    }
+
     // Optimistic local UI update
     setInquiries((prev) =>
       prev.map((inq) => (inq.id === id ? { ...inq, status: newStatus } : inq))
@@ -73,7 +104,19 @@ export default function AdminInquiries() {
         return false;
       }
       
-      // 2. Search Term Filter (Name, Email, Company, Subject)
+      // 2. Assignment Filter
+      if (assignmentFilter === "Unassigned Leads" && !inq.assigned_to) {
+        // Unassigned only
+      } else if (assignmentFilter === "Unassigned Leads" && inq.assigned_to) {
+        return false;
+      }
+      if (assignmentFilter === "My Leads") {
+        // Since we don't have a real auth context here, we assume the dummy admin ID is '00000000-0000-0000-0000-000000000000'
+        const myId = '00000000-0000-0000-0000-000000000000';
+        if (inq.assigned_to !== myId) return false;
+      }
+      
+      // 3. Search Term Filter (Name, Email, Company, Subject)
       if (searchTerm) {
         const term = searchTerm.toLowerCase();
         const matchesName = inq.full_name?.toLowerCase().includes(term);
@@ -88,7 +131,7 @@ export default function AdminInquiries() {
       
       return true;
     });
-  }, [inquiries, searchTerm, statusFilter]);
+  }, [inquiries, searchTerm, statusFilter, assignmentFilter]);
 
   // Open Drawer Handler
   const handleRowClick = (inquiry) => {
@@ -136,6 +179,15 @@ export default function AdminInquiries() {
         </span>
       )
     },
+    {
+      key: "assigned_to",
+      label: "Assignee",
+      render: (row) => (
+        <span className="text-xs text-slate-600 font-medium bg-slate-100 px-2 py-1 rounded-md whitespace-nowrap">
+          {row.assigned_to ? (adminUsersMap[row.assigned_to] || "Unknown Rep") : "Unassigned"}
+        </span>
+      )
+    },
     { 
       key: "created_at", 
       label: "Date",
@@ -179,10 +231,12 @@ export default function AdminInquiries() {
         )}
 
         <FilterBar 
-          searchTerm={searchTerm}
-          onSearchChange={setSearchTerm}
-          statusFilter={statusFilter}
+          searchTerm={searchTerm} 
+          onSearchChange={setSearchTerm} 
+          statusFilter={statusFilter} 
           onStatusChange={setStatusFilter}
+          assignmentFilter={assignmentFilter}
+          onAssignmentChange={setAssignmentFilter}
         />
 
         <DataTable 
@@ -198,12 +252,20 @@ export default function AdminInquiries() {
         />
       </div>
 
-      <DetailDrawer 
-        isOpen={isDrawerOpen}
-        onClose={() => setIsDrawerOpen(false)}
-        inquiry={selectedInquiry}
-        onStatusUpdate={handleStatusUpdate}
-      />
+      {selectedInquiry && (
+        <DetailDrawer
+          isOpen={isDrawerOpen}
+          onClose={() => setIsDrawerOpen(false)}
+          inquiry={selectedInquiry}
+          onStatusUpdate={handleStatusUpdate}
+          onAssignUpdate={(id, assignee) => {
+            setInquiries(prev => prev.map(inq => inq.id === id ? { ...inq, assigned_to: assignee } : inq));
+            if (selectedInquiry.id === id) {
+              setSelectedInquiry({ ...selectedInquiry, assigned_to: assignee });
+            }
+          }}
+        />
+      )}
     </AdminLayout>
   );
 }

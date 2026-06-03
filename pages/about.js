@@ -44,7 +44,7 @@ export default function About() {
       <SEO
         title="About Us | Medileo Healthcare"
         description="Learn about Medileo Healthcare's mission, values, and our commitment to delivering WHO-GMP certified pharmaceutical formulations globally."
-        canonicalUrl="https://www.medileohealthcare.com/about"
+        canonicalUrl="https://medileohealthcare.com/about"
         structuredData={getAboutSchema()}
       />
 

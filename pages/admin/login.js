@@ -26,6 +26,21 @@ export default function AdminLogin() {
       setErrorMsg(error.message);
       setLoading(false);
     } else {
+      // Log login event
+      try {
+        await fetch('/api/admin/audit', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            action: 'LOGIN',
+            entityType: 'AUTH',
+            userEmail: email,
+            newValue: { status: 'success' }
+          })
+        });
+      } catch (err) {
+        console.error("Audit log failed", err);
+      }
       router.push("/admin/dashboard");
     }
   };

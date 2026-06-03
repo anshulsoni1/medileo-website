@@ -242,7 +242,7 @@ export default function Home() {
       <SEO 
         title="Medileo Healthcare | Trusted Pharmaceutical Solutions"
         description="Medileo Healthcare Pvt. Ltd. delivers WHO-GMP certified pharmaceutical formulations globally. Discover our Cardiology, Neuro-Psychiatry, and Diabetology portfolio."
-        canonicalUrl="https://www.medileohealthcare.com/"
+        canonicalUrl="https://medileohealthcare.com/"
         structuredData={getIndexSchema()}
       />
       {/* Hero Section */}

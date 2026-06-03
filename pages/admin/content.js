@@ -79,6 +79,21 @@ export default function AdminContent() {
         .eq("key", key);
 
       if (error) throw error;
+      
+      // Log audit
+      try {
+        await fetch('/api/admin/audit', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            action: 'EDIT_CONTENT',
+            entityType: 'SITE_SETTINGS',
+            entityId: key,
+            newValue: settings[key]
+          })
+        });
+      } catch(err) { console.error("Audit log failed", err); }
+
       showNotification(`${key.replace('_', ' ')} updated successfully!`);
     } catch (err) {
       console.error(err);
@@ -104,10 +119,39 @@ export default function AdminContent() {
       if (editingFaq) {
         const { error } = await supabase.from("faqs").update(faqForm).eq("id", editingFaq.id);
         if (error) throw error;
+        
+        try {
+          await fetch('/api/admin/audit', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              action: 'UPDATE_FAQ',
+              entityType: 'FAQ',
+              entityId: editingFaq.id,
+              oldValue: editingFaq,
+              newValue: faqForm
+            })
+          });
+        } catch(err) { console.error("Audit log failed", err); }
+        
         showNotification("FAQ updated successfully!");
       } else {
-        const { error } = await supabase.from("faqs").insert([faqForm]);
+        const { data: newFaq, error } = await supabase.from("faqs").insert([faqForm]).select().single();
         if (error) throw error;
+        
+        try {
+          await fetch('/api/admin/audit', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              action: 'CREATE_FAQ',
+              entityType: 'FAQ',
+              entityId: newFaq?.id,
+              newValue: faqForm
+            })
+          });
+        } catch(err) { console.error("Audit log failed", err); }
+        
         showNotification("FAQ created successfully!");
       }
       setIsFaqModalOpen(false);
@@ -123,6 +167,19 @@ export default function AdminContent() {
     try {
       const { error } = await supabase.from("faqs").delete().eq("id", id);
       if (error) throw error;
+      
+      try {
+        await fetch('/api/admin/audit', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            action: 'DELETE_FAQ',
+            entityType: 'FAQ',
+            entityId: id
+          })
+        });
+      } catch(err) { console.error("Audit log failed", err); }
+
       showNotification("FAQ deleted successfully!");
       fetchData();
     } catch (err) {
@@ -136,6 +193,20 @@ export default function AdminContent() {
       const { error } = await supabase.from("faqs").update({ is_active: checked }).eq("id", faq.id);
       if (error) throw error;
       
+      try {
+        await fetch('/api/admin/audit', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            action: 'TOGGLE_FAQ_STATUS',
+            entityType: 'FAQ',
+            entityId: faq.id,
+            oldValue: { is_active: faq.is_active },
+            newValue: { is_active: checked }
+          })
+        });
+      } catch(err) { console.error("Audit log failed", err); }
+
       // Optimistic update
       setFaqs(faqs.map(f => f.id === faq.id ? { ...f, is_active: checked } : f));
       showNotification("FAQ status updated.");

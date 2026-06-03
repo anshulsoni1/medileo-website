@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { motion, AnimatePresence } from "framer-motion";
+import { sendGAEvent } from '@next/third-parties/google';
 
 const LOGO_URL = "/logo.png";
 
@@ -63,6 +64,7 @@ export default function Navbar() {
               <Link
                 key={link.href}
                 href={link.href}
+                onClick={() => sendGAEvent({ event: 'navigation_click', link_name: link.label })}
                 className="relative h-full flex items-center group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 focus-visible:ring-inset rounded-md px-2"
               >
                 <span 
@@ -88,6 +90,7 @@ export default function Navbar() {
           <div className="flex items-center pl-4 border-l border-slate-200 h-8">
             <Link
               href="/contact"
+              onClick={() => sendGAEvent({ event: 'navigation_click', button_name: 'nav_partner_with_us' })}
               className="flex items-center gap-2 bg-teal-500 hover:bg-teal-600 text-white px-5 py-2.5 rounded-full font-bold text-xs uppercase tracking-widest transition-all duration-300 shadow-[0_4px_14px_0_rgba(20,184,166,0.3)] hover:shadow-[0_6px_20px_rgba(20,184,166,0.4)] hover:-translate-y-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 focus-visible:ring-offset-2"
             >
               Partner With Us
@@ -154,7 +157,10 @@ export default function Navbar() {
                   >
                     <Link
                       href={link.href}
-                      onClick={() => setMobileOpen(false)}
+                      onClick={() => {
+                        setMobileOpen(false);
+                        sendGAEvent({ event: 'navigation_click', link_name: link.label });
+                      }}
                       className={`block py-2 text-xs font-semibold uppercase tracking-[0.15em] transition-colors duration-300 ${
                         isActive
                           ? "text-[#0f766e] border-l-2 border-[#0f766e] pl-4 bg-teal-50/50"
@@ -176,7 +182,10 @@ export default function Navbar() {
               >
                 <Link
                   href="/contact"
-                  onClick={() => setMobileOpen(false)}
+                  onClick={() => {
+                    setMobileOpen(false);
+                    sendGAEvent({ event: 'navigation_click', button_name: 'nav_partner_with_us' });
+                  }}
                   className="flex items-center justify-center gap-2 w-full bg-teal-500 hover:bg-teal-600 text-white py-3.5 rounded-full font-bold text-xs uppercase tracking-widest transition-all duration-300 shadow-[0_4px_14px_0_rgba(20,184,166,0.3)] hover:-translate-y-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 focus-visible:ring-offset-2"
                 >
                   Partner With Us

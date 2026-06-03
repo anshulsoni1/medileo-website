@@ -3,7 +3,7 @@ import Head from 'next/head';
 export default function SEO({ 
   title = "Medileo Healthcare | Trusted Pharmaceutical Solutions",
   description = "Medileo Healthcare Pvt. Ltd. delivers WHO-GMP certified pharmaceutical formulations globally. Discover our Cardiology, Neuro-Psychiatry, and Diabetology portfolio.",
-  canonicalUrl = "https://www.medileohealthcare.com",
+  canonicalUrl = "https://medileohealthcare.com",
   ogType = "website",
   structuredData = null
 }) {

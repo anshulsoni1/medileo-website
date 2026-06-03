@@ -5,7 +5,10 @@ export default function FilterBar({
   onSearchChange, 
   statusFilter, 
   onStatusChange,
-  statusOptions = ["All", "New", "Contacted", "Closed"]
+  statusOptions = ["All", "New", "Contacted", "Closed"],
+  assignmentFilter,
+  onAssignmentChange,
+  assignmentOptions = ["All Leads", "My Leads", "Unassigned Leads"]
 }) {
   return (
     <div className="flex flex-col md:flex-row gap-4 justify-between items-center bg-white p-4 rounded-xl border border-slate-200/60 shadow-sm mb-6">
@@ -24,17 +27,33 @@ export default function FilterBar({
       </div>
 
       {/* Filter Dropdown */}
-      <div className="flex items-center gap-3 w-full md:w-auto">
-        <label className="text-[0.8rem] font-bold text-slate-500 uppercase tracking-widest whitespace-nowrap">Status</label>
-        <select
-          value={statusFilter}
-          onChange={(e) => onStatusChange(e.target.value)}
-          className="w-full md:w-40 px-3 py-2 bg-slate-50 border border-slate-200/80 rounded-lg text-sm text-slate-700 font-medium focus:outline-none focus:ring-2 focus:ring-teal-500 focus:bg-white transition-all cursor-pointer"
-        >
-          {statusOptions.map(option => (
-            <option key={option} value={option}>{option}</option>
-          ))}
-        </select>
+      <div className="flex flex-col md:flex-row items-start md:items-center gap-3 w-full md:w-auto">
+        {onAssignmentChange && (
+          <div className="flex items-center gap-2">
+            <label className="text-[0.8rem] font-bold text-slate-500 uppercase tracking-widest whitespace-nowrap hidden md:block">Assignee</label>
+            <select
+              value={assignmentFilter}
+              onChange={(e) => onAssignmentChange(e.target.value)}
+              className="w-full md:w-40 px-3 py-2 bg-slate-50 border border-slate-200/80 rounded-lg text-sm text-slate-700 font-medium focus:outline-none focus:ring-2 focus:ring-teal-500 focus:bg-white transition-all cursor-pointer"
+            >
+              {assignmentOptions.map(option => (
+                <option key={option} value={option}>{option}</option>
+              ))}
+            </select>
+          </div>
+        )}
+        <div className="flex items-center gap-2">
+          <label className="text-[0.8rem] font-bold text-slate-500 uppercase tracking-widest whitespace-nowrap hidden md:block">Status</label>
+          <select
+            value={statusFilter}
+            onChange={(e) => onStatusChange(e.target.value)}
+            className="w-full md:w-40 px-3 py-2 bg-slate-50 border border-slate-200/80 rounded-lg text-sm text-slate-700 font-medium focus:outline-none focus:ring-2 focus:ring-teal-500 focus:bg-white transition-all cursor-pointer"
+          >
+            {statusOptions.map(option => (
+              <option key={option} value={option}>{option}</option>
+            ))}
+          </select>
+        </div>
       </div>
     </div>
   );

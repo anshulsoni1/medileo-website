@@ -50,17 +50,19 @@ export default function HeroSection() {
   const nextSlide = () => {
     setCurrentSlide((prev) => (prev + 1) % slides.length);
     setUserInteracted(true);
+    sendGAEvent({ event: 'slider_interaction', action: 'next' });
   };
 
   const prevSlide = () => {
     setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
     setUserInteracted(true);
+    sendGAEvent({ event: 'slider_interaction', action: 'prev' });
   };
 
   const slide = slides[currentSlide];
 
   return (
-    <section 
+    <section
       className="relative min-h-[900px] lg:min-h-screen flex items-center bg-[#021120] overflow-hidden"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
@@ -110,7 +112,7 @@ export default function HeroSection() {
       {/* Main Content Area */}
       <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-20 w-full pt-32 pb-32 md:pb-40">
         <div className="grid lg:grid-cols-12 gap-12 items-center">
-          
+
           <div className="lg:col-span-8 flex flex-col items-center lg:items-start text-center lg:text-left">
             <AnimatePresence mode="wait">
               <motion.div
@@ -152,16 +154,16 @@ export default function HeroSection() {
             </AnimatePresence>
 
             {/* 4. Manufacturing Showcase & Slider Controls (Static) */}
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.3 }}
               className="mb-12 w-full max-w-2xl lg:max-w-3xl relative z-30 group"
             >
               <div className="absolute inset-0 bg-gradient-to-r from-teal-500/10 to-transparent rounded-2xl blur-xl group-hover:from-teal-500/15 transition-all duration-500"></div>
-              
+
               <div className="relative flex flex-col rounded-2xl bg-[#0a1e35]/60 border border-white/5 backdrop-blur-md hover:border-white/10 transition-colors overflow-hidden">
-                
+
                 {/* Showcase Content */}
                 <div className="p-6 md:p-8 flex flex-col md:flex-row gap-5 items-start">
                   <div className="flex-shrink-0 w-12 h-12 rounded-full bg-teal-500/10 flex items-center justify-center border border-teal-500/20">
@@ -179,7 +181,7 @@ export default function HeroSection() {
 
                 {/* Slider Controls Footer */}
                 <div className="px-6 md:px-8 py-4 bg-white/[0.02] border-t border-white/5 flex flex-wrap sm:flex-nowrap items-center justify-between gap-4">
-                  
+
                   {/* Slide Count */}
                   <div className="flex items-center gap-3">
                     <span className="text-teal-400 font-medium text-sm tabular-nums">0{currentSlide + 1}</span>
@@ -193,9 +195,8 @@ export default function HeroSection() {
                       <button
                         key={idx}
                         onClick={(e) => { e.stopPropagation(); setCurrentSlide(idx); setUserInteracted(true); }}
-                        className={`transition-all duration-300 h-1.5 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 ${
-                          currentSlide === idx ? "w-8 bg-teal-400" : "w-2.5 bg-white/20 hover:bg-white/40"
-                        }`}
+                        className={`transition-all duration-300 h-1.5 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 ${currentSlide === idx ? "w-8 bg-teal-400" : "w-2.5 bg-white/20 hover:bg-white/40"
+                          }`}
                         aria-label={`Go to slide ${idx + 1}`}
                       />
                     ))}
@@ -246,7 +247,7 @@ export default function HeroSection() {
               </Link>
             </motion.div>
           </div>
-          
+
         </div>
       </div>
 

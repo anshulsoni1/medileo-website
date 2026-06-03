@@ -12,6 +12,7 @@ import { createClient } from "@/utils/supabaseBrowser";
 export default function AdminDashboard() {
   const router = useRouter();
   const [inquiries, setInquiries] = useState([]);
+  const [adminUsersMap, setAdminUsersMap] = useState({});
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -26,6 +27,13 @@ export default function AdminDashboard() {
         .order("created_at", { ascending: false });
 
       if (error) throw error;
+      
+      const { data: usersData } = await supabase.from("admin_users").select("*");
+      if (usersData) {
+        const mapping = {};
+        usersData.forEach(u => mapping[u.id] = u.full_name || u.email);
+        setAdminUsersMap(mapping);
+      }
       
       // Architecture preparation: map data to ensure fallback source exists
       const processedData = (data || []).map(inq => ({
@@ -75,6 +83,29 @@ export default function AdminDashboard() {
       { name: "Closed", value: kpis.closedCount, color: "#10b981" }, // emerald-500
     ].filter(item => item.value > 0);
   }, [kpis]);
+
+  // Compute Assignment Metrics
+  const assignmentData = useMemo(() => {
+    let assigned = 0;
+    let unassigned = 0;
+    const userCounts = {};
+
+    inquiries.forEach(inq => {
+      if (inq.assigned_to) {
+        assigned++;
+        userCounts[inq.assigned_to] = (userCounts[inq.assigned_to] || 0) + 1;
+      } else {
+        unassigned++;
+      }
+    });
+
+    const repDistribution = Object.keys(userCounts).map(id => ({
+      name: adminUsersMap[id] || "Unknown Rep",
+      value: userCounts[id]
+    })).sort((a, b) => b.value - a.value);
+
+    return { assigned, unassigned, repDistribution };
+  }, [inquiries, adminUsersMap]);
 
   // Compute Monthly Trend for Area Chart
   const trendData = useMemo(() => {
@@ -249,6 +280,48 @@ export default function AdminDashboard() {
             icon={<svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>}
           />
         </div>
+
+        {/* Assignment Metrics (Leads per user) */}
+        {!isLoading && inquiries.length > 0 && (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="bg-white p-6 rounded-2xl border border-slate-200/60 shadow-sm flex flex-col justify-center items-center text-center">
+              <h3 className="text-[0.8rem] font-bold text-slate-500 uppercase tracking-widest mb-4">Assigned vs Unassigned</h3>
+              <div className="flex gap-8 w-full justify-center">
+                <div>
+                  <p className="text-3xl font-bold text-slate-800">{assignmentData.assigned}</p>
+                  <p className="text-sm font-medium text-slate-500 mt-1">Assigned</p>
+                </div>
+                <div className="w-px bg-slate-200"></div>
+                <div>
+                  <p className="text-3xl font-bold text-amber-600">{assignmentData.unassigned}</p>
+                  <p className="text-sm font-medium text-amber-600/70 mt-1">Unassigned</p>
+                </div>
+              </div>
+            </div>
+            
+            <div className="lg:col-span-2 bg-white p-6 rounded-2xl border border-slate-200/60 shadow-sm">
+              <h3 className="text-[0.8rem] font-bold text-slate-500 uppercase tracking-widest mb-4">Leads per Sales Rep</h3>
+              {assignmentData.repDistribution.length > 0 ? (
+                <div className="space-y-4">
+                  {assignmentData.repDistribution.map((rep, idx) => (
+                    <div key={idx} className="flex items-center gap-4">
+                      <div className="w-32 text-sm font-medium text-slate-700 truncate">{rep.name}</div>
+                      <div className="flex-1 bg-slate-100 rounded-full h-2.5 overflow-hidden">
+                        <div 
+                          className="bg-teal-500 h-2.5 rounded-full" 
+                          style={{ width: `${Math.max(5, (rep.value / assignmentData.assigned) * 100)}%` }}
+                        ></div>
+                      </div>
+                      <div className="w-8 text-right text-sm font-bold text-slate-700">{rep.value}</div>
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <p className="text-sm text-slate-500 py-4 text-center">No leads assigned to any reps yet.</p>
+              )}
+            </div>
+          </div>
+        )}
 
         {/* Charts & Widgets */}
         {!isLoading && inquiries.length === 0 ? (

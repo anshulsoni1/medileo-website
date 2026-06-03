@@ -104,8 +104,7 @@ export default function AdminAnalytics() {
       color: colors[i % colors.length]
     })).sort((a, b) => b.value - a.value);
 
-    // Calculate Conversion Rate (Inquiries / Total Visitors)
-    // Note: Since Visitors is currently a mock string like "24,592", we parse it for a dynamic fallback calculation
+    // Calculate Global Conversion Rate (Inquiries / Total Visitors)
     let conversionRate = "0.0%";
     if (webData && webData.kpis && webData.kpis.totalVisitors) {
       const visitors = parseInt(webData.kpis.totalVisitors.replace(/,/g, ''), 10);
@@ -114,7 +113,13 @@ export default function AdminAnalytics() {
       }
     }
 
-    return { total, statusData, trendData, sourceData, conversionRate };
+    // Calculate Response Rate (Contacted + Closed / Total)
+    let responseRate = "0.0%";
+    if (total > 0) {
+      responseRate = (((contactedCount + closedCount) / total) * 100).toFixed(1) + "%";
+    }
+
+    return { total, statusData, trendData, sourceData, conversionRate, responseRate };
   }, [inquiries, webData]);
 
   const topPagesColumns = [
@@ -149,15 +154,17 @@ export default function AdminAnalytics() {
             <p className="text-slate-500 text-sm mt-1">Unified view of web traffic, user behavior, and business lead analytics.</p>
           </div>
           
-          <div className="bg-amber-50 border border-amber-200 rounded-xl p-4 flex items-start gap-4 shadow-sm">
-            <div className="p-2 bg-amber-100 rounded-lg text-amber-600 mt-0.5">
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" /></svg>
+          {(!isLoadingWeb && webData?.status === "missing_credentials") && (
+            <div className="bg-amber-50 border border-amber-200 rounded-xl p-4 flex items-start gap-4 shadow-sm">
+              <div className="p-2 bg-amber-100 rounded-lg text-amber-600 mt-0.5">
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" /></svg>
+              </div>
+              <div>
+                <h4 className="text-amber-800 font-semibold text-sm">Web Analytics Integration Pending</h4>
+                <p className="text-amber-700 text-sm mt-1">Website Traffic, SEO, and User Behavior metrics are currently rendering structural previews using mock data. Please configure your Google Analytics 4 environment variables to enable live data. The Inquiry Analytics section below is fully live and connected to your database.</p>
+              </div>
             </div>
-            <div>
-              <h4 className="text-amber-800 font-semibold text-sm">Web Analytics Integration Pending</h4>
-              <p className="text-amber-700 text-sm mt-1">Website Traffic, SEO, and User Behavior metrics are currently rendering structural previews using mock data. The Inquiry Analytics section below is fully live and connected to your database.</p>
-            </div>
-          </div>
+          )}
         </div>
 
         {error && (
@@ -169,7 +176,17 @@ export default function AdminAnalytics() {
 
         {/* --- SECTION: WEB ANALYTICS --- */}
         <div>
-          <h2 className="text-lg font-semibold text-slate-800 border-b border-slate-200 pb-2 mb-6">Website Analytics (Preview)</h2>
+          <div className="flex items-center gap-3 mb-6 border-b border-slate-200 pb-2">
+            <h2 className="text-lg font-semibold text-slate-800">
+              Website Analytics {webData?.status === "missing_credentials" ? "(Preview)" : ""}
+            </h2>
+            {webData?.status === "live" && (
+              <span className="px-2 py-0.5 bg-emerald-100 text-emerald-700 border border-emerald-200 rounded-full text-xs font-semibold uppercase tracking-wider flex items-center gap-1.5">
+                <span className="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-pulse"></span>
+                Live GA4 Data
+              </span>
+            )}
+          </div>
           
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6 mb-6">
             <KpiCard 
@@ -278,6 +295,13 @@ export default function AdminAnalytics() {
               trendLabel="Lifetime Volume"
               colorClass="text-teal-600"
               icon={<svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" /></svg>}
+            />
+            <KpiCard 
+              title="Response Rate" 
+              count={isLoadingInquiries ? "-" : inquiryMetrics.responseRate} 
+              trendLabel="Contacted & Closed"
+              colorClass="text-blue-600"
+              icon={<svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>}
             />
             <KpiCard 
               title="Global Conv. Rate" 
