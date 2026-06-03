@@ -9,15 +9,28 @@ export default async function handler(req, res) {
 
   const propertyId = process.env.GA_PROPERTY_ID;
   const clientEmail = process.env.GOOGLE_CLIENT_EMAIL;
-  // Handle newlines in private key securely
   const privateKey = process.env.GOOGLE_PRIVATE_KEY?.replace(/\\n/g, '\n');
 
-  // If any credentials are missing, return fallback mock data gracefully
+  // Explicitly log presence to server terminal
+  console.log("[GA4_INIT_CHECK] GA_PROPERTY_ID:", !!propertyId);
+  console.log("[GA4_INIT_CHECK] GOOGLE_CLIENT_EMAIL:", !!clientEmail);
+  console.log("[GA4_INIT_CHECK] GOOGLE_PRIVATE_KEY:", !!privateKey);
+
+  const envCheck = {
+    hasPropertyId: !!propertyId,
+    hasClientEmail: !!clientEmail,
+    hasPrivateKey: !!privateKey
+  };
+
   if (!propertyId || !clientEmail || !privateKey) {
+    console.warn("[GA4_DEBUG] Missing credentials:", envCheck);
     const mockData = await getMockAnalyticsOverview();
     return res.status(200).json({ 
       ...mockData, 
-      status: "missing_credentials" 
+      status: "missing_credentials",
+      error: "MISSING_ENV_VARS",
+      details: { propertyIdQueried: propertyId || 'None', errorMessage: "Missing one or more required environment variables." },
+      envCheck
     });
   }
 
@@ -132,13 +145,20 @@ export default async function handler(req, res) {
     });
 
   } catch (error) {
-    console.error("GA4 Data API Error:", error);
-    // Fallback to mock on unexpected API errors
+    const exactErrorMessage = error.message || String(error);
+    console.error("[GA4_DEBUG] API Exception thrown:", exactErrorMessage);
+    console.error(error); // Full stack trace
+    
     const mockData = await getMockAnalyticsOverview();
     return res.status(200).json({ 
       ...mockData, 
-      status: "missing_credentials",
-      error: "API_ERROR"
+      status: "api_error",
+      error: exactErrorMessage,
+      details: {
+        propertyIdQueried: propertyId,
+        errorMessage: exactErrorMessage
+      },
+      envCheck
     });
   }
 }

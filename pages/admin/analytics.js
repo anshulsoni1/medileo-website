@@ -153,6 +153,33 @@ export default function AdminAnalytics() {
             <h1 className="text-2xl font-serif font-bold text-slate-900">Analytics Hub</h1>
             <p className="text-slate-500 text-sm mt-1">Unified view of web traffic, user behavior, and business lead analytics.</p>
           </div>
+
+          {webData?.details && (
+            <div className="bg-slate-900 border border-slate-700 rounded-xl p-5 shadow-lg text-slate-200 text-sm animate-fade-in">
+              <div className="flex items-center gap-2 mb-3 text-red-400">
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" /></svg>
+                <h4 className="font-bold uppercase tracking-wider text-xs">Admin Analytics Debug Panel</h4>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <div className="mb-2"><span className="text-slate-400">Integration Status:</span> <span className="font-mono text-xs bg-slate-800 px-2 py-1 rounded text-amber-300 ml-2">{webData.status}</span></div>
+                  <div className="mb-2"><span className="text-slate-400">Error Code:</span> <span className="font-mono text-xs bg-slate-800 px-2 py-1 rounded text-red-300 ml-2">{webData.error || 'N/A'}</span></div>
+                  <div className="mb-1"><span className="text-slate-400">Property ID Queried:</span> <span className="font-mono text-xs bg-slate-800 px-2 py-1 rounded text-blue-300 ml-2">{webData.details?.propertyIdQueried || 'Unknown'}</span></div>
+                </div>
+                <div className="bg-slate-800/50 p-3 rounded-lg border border-slate-700/50">
+                  <div className="mb-1.5 flex items-center justify-between"><span className="text-slate-400 text-xs font-mono">GA_PROPERTY_ID:</span> <span>{webData.envCheck?.hasPropertyId ? "✅ Detected" : "❌ Missing"}</span></div>
+                  <div className="mb-1.5 flex items-center justify-between"><span className="text-slate-400 text-xs font-mono">GOOGLE_CLIENT_EMAIL:</span> <span>{webData.envCheck?.hasClientEmail ? "✅ Detected" : "❌ Missing"}</span></div>
+                  <div className="mb-1 flex items-center justify-between"><span className="text-slate-400 text-xs font-mono">GOOGLE_PRIVATE_KEY:</span> <span>{webData.envCheck?.hasPrivateKey ? "✅ Detected" : "❌ Missing"}</span></div>
+                </div>
+              </div>
+              {webData.details?.errorMessage && (
+                <div className="mt-4 p-3 bg-red-950/40 border border-red-900/50 rounded-lg">
+                  <span className="text-red-400 text-[10px] font-bold uppercase mb-1.5 block tracking-wider">Exact API Error Message:</span>
+                  <p className="font-mono text-xs text-red-200 whitespace-pre-wrap break-all">{webData.details.errorMessage}</p>
+                </div>
+              )}
+            </div>
+          )}
           
           {(!isLoadingWeb && webData?.status === "missing_credentials") && (
             <div className="bg-amber-50 border border-amber-200 rounded-xl p-4 flex items-start gap-4 shadow-sm">

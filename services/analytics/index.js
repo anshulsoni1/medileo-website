@@ -13,6 +13,8 @@ export const getAnalyticsOverview = async () => {
     return {
       status: "missing_credentials",
       error: "NETWORK_ERROR",
+      details: { errorMessage: error.message },
+      envCheck: { hasPropertyId: false, hasClientEmail: false, hasPrivateKey: false },
       kpis: {},
       trafficTrend: [],
       trafficSources: [],
